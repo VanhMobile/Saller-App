@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 48 48"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Messenger</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g
+        id="Page-1"
+        stroke="none"
+        stroke-width="1"
+        fill="none"
+        fill-rule="evenodd">
+        <g
+            id="Social-Icons---Isolated"
+            transform="translate(-276.000000, -1287.000000)"
+            fill="#007FFF">
+            <path
+                d="M300,1287 C286.745143,1287 276,1296.94919 276,1309.22222 C276,1316.21556 279.489988,1322.45348 284.944099,1326.52696 L284.944099,1335 L293.115876,1330.51511 C295.296745,1331.11867 297.607155,1331.44444 300,1331.44444 C313.254857,1331.44444 324,1321.49526 324,1309.22222 C324,1296.94919 313.254857,1287 300,1287 L300,1287 Z M302.385093,1316.92593 L296.273292,1310.40741 L284.347826,1316.92593 L297.465839,1303 L303.726708,1309.51852 L315.503106,1303 L302.385093,1316.92593 L302.385093,1316.92593 Z"
+                id="Messenger"></path>
+        </g>
+    </g>
+</svg>
