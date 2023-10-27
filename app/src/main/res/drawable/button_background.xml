@@ -11,7 +11,7 @@
     <!-- Default state -->
     <item>
         <shape>
-            <solid android:color="#388E3C"/> <!-- Background color when not pressed -->
+            <solid android:color="@color/line"/> <!-- Background color when not pressed -->
             <corners android:radius="8dp"/> <!-- Rounded corners -->
         </shape>
     </item>

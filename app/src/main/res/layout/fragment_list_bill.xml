@@ -11,29 +11,54 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/line"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_bold"
+                android:text="Hóa đơn"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/icon_add_circle" />
+        </LinearLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:orientation="horizontal"
-            android:padding="10dp" >
+            android:padding="10dp">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
-                app:queryHint="search here..."
                 android:background="@drawable/radius_item_layout"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:queryHint="search here..." />
 
             <ImageView
-                android:src="@drawable/icon_filters"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:scaleType="fitXY"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_filters"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.483"
@@ -45,7 +70,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_listBill"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
