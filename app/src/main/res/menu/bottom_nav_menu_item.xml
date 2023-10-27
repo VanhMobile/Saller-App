@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottomNavHome"
+        android:icon="@drawable/icon_home"
+        android:title="@string/bottom_nav_home" />
+    <item
+        android:id="@+id/bottomNavBill"
+        android:icon="@drawable/icon_bill"
+        android:title="@string/bottom_nav_bill" />
+    <item
+        android:id="@+id/bottomEmployee"
+        android:icon="@drawable/icon_employees"
+        android:title="@string/bottom_nav_employee" />
+    <item
+        android:id="@+id/bottomProduct"
+        android:icon="@drawable/icon_product_manager"
+        android:title="@string/bottom_nav_product" />
+    <item
+        android:id="@+id/bottomNavAccount"
+        android:icon="@drawable/icon_person"
+        android:title="@string/bottom_nav_account" />
+</menu>

@@ -2,4 +2,9 @@
     <string name="app_name">Saller app</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_bill">Bill</string>
+    <string name="bottom_nav_employee">Employee</string>
+    <string name="bottom_nav_product">Product</string>
+    <string name="bottom_nav_account">Account</string>
 </resources>
