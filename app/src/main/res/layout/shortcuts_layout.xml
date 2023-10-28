@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:paddingBottom="@dimen/_20sdp"
+    android:layout_marginStart="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:elevation="8dp"
+    android:orientation="vertical"
+    android:background="@drawable/item_layout_home">
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/inter_light"
+        android:gravity="center_horizontal"
+        android:text="Lối tắt"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13ssp" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+        <LinearLayout
+            android:id="@+id/btnAddProduct"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/buttom_shortcut_home">
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_add_bill"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nhập kho"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_10ssp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/addEmployee"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/buttom_shortcut_home">
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_add_person"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thêm nhân viên"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_10ssp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/createBill"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/buttom_shortcut_home">
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_export_bill"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xuất kho"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_10ssp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
+        <LinearLayout
+            android:id="@+id/customerManager"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/buttom_shortcut_home">
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_customer"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="khách hàng"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_10ssp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/customerCategory"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/buttom_shortcut_home">
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_group"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loại khách hàng"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_10ssp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/productCategory"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/buttom_shortcut_home">
+            <ImageView
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/icon_product_category"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Danh mục hàng"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_10ssp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
