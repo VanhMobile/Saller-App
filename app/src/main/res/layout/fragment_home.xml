@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_home"
+    android:orientation="vertical"
+    tools:context=".controller.fragment.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_toolbar"
+        android:background="@color/line"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iconHome"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/icon_home" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_toEndOf="@+id/iconHome"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/home"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp" />
+
+        <ImageView
+            android:id="@+id/iconCartShopping"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:src="@drawable/icon_cart_shopping" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/item_layout_home"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/icon_calendar"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_light"
+                    android:gravity="center_vertical"
+                    android:text="@string/statistics_30_day"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/totalRevenue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/view"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter"
+                        android:gravity="center_horizontal"
+                        android:text="@string/total_revenue"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:background="@color/light_gray" />
+
+                    <TextView
+                        android:id="@+id/totalExpenditure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/view"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter"
+                        android:gravity="center_horizontal"
+                        android:text="@string/total_expenditure"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalExpenditure"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalExpenditure"
+                        android:layout_alignStart="@+id/view"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center_horizontal"
+                        android:text="0 Đ"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_15ssp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalRevenue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalRevenue"
+                        android:layout_alignEnd="@+id/view"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center_horizontal"
+                        android:text="0 Đ"
+                        android:textColor="@color/line"
+                        android:textSize="@dimen/_15ssp" />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/view"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/light_gray" />
+
+                    <TextView
+                        android:id="@+id/sumPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view2"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Doanh thu: 0"
+                        android:textColor="@color/line"
+                        android:textSize="@dimen/_11ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/item_layout_home"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/icon_chart"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_light"
+                    android:gravity="center_vertical"
+                    android:text="Thống kê sản lượng kho"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_300sdp"
+                    android:layout_marginTop="@dimen/_10sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/item_layout_home"
+                android:elevation="8dp"
+                android:orientation="vertical"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/icon_calendar"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:fontFamily="@font/inter_light"
+                    android:gravity="center_vertical"
+                    android:text="Thống kê doanh thu hôm nay"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/totalRevenue1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/view1"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter"
+                        android:gravity="center_horizontal"
+                        android:text="@string/total_revenue"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="@dimen/_1sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/light_gray" />
+
+                    <TextView
+                        android:id="@+id/totalExpenditure1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/view1"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter"
+                        android:gravity="center_horizontal"
+                        android:text="@string/total_expenditure"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalExpenditureDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalExpenditure1"
+                        android:layout_alignStart="@+id/view1"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center_horizontal"
+                        android:text="0 Đ"
+                        android:textColor="@color/red"
+                        android:textSize="@dimen/_15ssp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalRevenueDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/totalRevenue1"
+                        android:layout_alignEnd="@+id/view1"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center_horizontal"
+                        android:text="0 Đ"
+                        android:textColor="@color/line"
+                        android:textSize="@dimen/_15ssp" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/view1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/light_gray" />
+
+                    <TextView
+                        android:id="@+id/sumPirceDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view3"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Doanh thu: 0"
+                        android:textColor="@color/line"
+                        android:textSize="@dimen/_11ssp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include
+                android:id="@+id/shortcut"
+                layout="@layout/shortcuts_layout" />
+
+            <include layout="@layout/help_layout"
+                android:id="@+id/help"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
