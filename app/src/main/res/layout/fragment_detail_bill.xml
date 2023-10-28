@@ -41,12 +41,11 @@
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="@dimen/_20sdp"
-                    android:background="@android:color/transparent"
                     android:src="@drawable/icon_save" />
 
             </LinearLayout>
