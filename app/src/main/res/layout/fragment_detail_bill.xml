@@ -9,6 +9,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,44 +17,46 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/_50sdp"
                 android:background="@color/line"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp">
+
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/icon_back"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"/>
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_back" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Chi tiết hóa đơn"
                     android:layout_gravity="center_vertical"
-                    android:textSize="18sp"
-                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/inter_bold"
-                    android:layout_marginLeft="10dp"/>
+                    android:text="Chi tiết hóa đơn"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_save"
-                    android:background="@android:color/transparent"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginRight="10dp"/>
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/icon_save" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_margin="20dp"
                 android:background="@drawable/radius_item_layout"
-                android:layout_margin="10dp"
+                android:orientation="horizontal"
                 android:padding="10dp">
 
                 <TextView
@@ -74,227 +77,229 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_box"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/inter"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:paddingVertical="10dp"
+                android:paddingLeft="20dp"
                 android:text="Hàng hóa"
                 android:textColor="@color/line"
-                android:textSize="17sp"
-                android:drawableLeft="@drawable/icon_box" />
+                android:textSize="17sp" />
 
-            <ScrollView
-                android:layout_width="350dp"
-                android:layout_height="150dp"
-                android:layout_marginTop="10dp"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:background="@drawable/radius_item_layout"
-                android:layout_gravity="center_horizontal">
-
+                android:orientation="vertical">
                 <androidx.recyclerview.widget.RecyclerView
-                    android:padding="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:padding="10dp" />
+            </LinearLayout>
 
-            </ScrollView>
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="50dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter"
+                    android:paddingLeft="30dp"
                     android:text="Số lượng sản phẩm:"
-                    android:textSize="17sp"
-                    android:fontFamily="@font/inter"
-                    android:paddingLeft="30dp"
-                    />
+                    android:textSize="17sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:paddingRight="20dp"
                     android:text="3"
-                    android:textSize="17sp"
-                    android:fontFamily="@font/inter"
-                    android:paddingRight="20dp"
-                    />
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/inter"
+                    android:paddingLeft="30dp"
                     android:text="Tổng vốn:"
-                    android:textSize="17sp"
-                    android:fontFamily="@font/inter"
-                    android:paddingLeft="30dp"
-                    />
+                    android:textSize="17sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="40000 VND"
-                    android:textSize="17sp"
                     android:fontFamily="@font/inter"
                     android:paddingRight="20dp"
-                    />
+                    android:text="40000 VND"
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Tổng tiền:"
-                    android:textSize="17sp"
                     android:fontFamily="@font/inter"
                     android:paddingLeft="30dp"
-                    />
+                    android:text="Tổng tiền:"
+                    android:textSize="17sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="60000 VND"
-                    android:textSize="17sp"
                     android:fontFamily="@font/inter"
                     android:paddingRight="20dp"
-                    />
+                    android:text="60000 VND"
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_customer_green"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/inter"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:paddingVertical="10dp"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Khách hàng"
                 android:textColor="@color/line"
-                android:textSize="17sp"
-                android:drawableLeft="@drawable/icon_customer_green" />
+                android:textSize="17sp" />
 
             <LinearLayout
-                android:layout_width="350dp"
+                android:layout_width="@dimen/_290sdp"
                 android:layout_height="150dp"
-                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="20dp"
                 android:background="@drawable/radius_item_layout"
-                android:padding="20dp"
-                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
-                android:layout_gravity="center_horizontal">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:text="0984907397"
                     android:layout_marginVertical="10dp"
                     android:drawableLeft="@drawable/icon_phone"
-                    android:drawablePadding="8dp"/>
+                    android:drawablePadding="8dp"
+                    android:text="0984907397"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="17sp"
-                    android:text="Phúc thọ - Hà Nội"
                     android:drawableLeft="@drawable/icon_address"
-                    android:drawablePadding="8dp"/>
+                    android:drawablePadding="8dp"
+                    android:text="Phúc thọ - Hà Nội"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
-                    android:textSize="17sp"
-                    android:text="0984907397"
                     android:drawableLeft="@drawable/icon_category"
-                    android:drawablePadding="8dp"/>
+                    android:drawablePadding="8dp"
+                    android:text="0984907397"
+                    android:textSize="17sp" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:drawableLeft="@drawable/icon_price"
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/inter"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
                 android:paddingVertical="10dp"
+                android:paddingLeft="20dp"
                 android:text="Thanh toán"
                 android:textColor="@color/line"
-                android:textSize="17sp"
-                android:drawableLeft="@drawable/icon_price" />
+                android:textSize="17sp" />
 
             <LinearLayout
-                android:layout_width="350dp"
+                android:layout_width="@dimen/_290sdp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
                 android:background="@drawable/radius_item_layout"
-                android:padding="20dp"
                 android:orientation="vertical"
-                android:layout_gravity="center_horizontal">
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:padding="20dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="@font/inter"
+                        android:paddingLeft="10dp"
                         android:text="27/10/2023"
-                        android:textSize="17sp"
-                        android:fontFamily="@font/inter"
-                        android:paddingLeft="10dp"
-                        />
+                        android:textSize="17sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Đã thanh toán"
-                        android:textSize="17sp"
                         android:fontFamily="@font/inter"
                         android:paddingRight="10dp"
-                        />
+                        android:text="Đã thanh toán"
+                        android:textSize="17sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="tiền mặt"
-                        android:textSize="17sp"
                         android:fontFamily="@font/inter"
                         android:paddingLeft="10dp"
-                        />
+                        android:text="tiền mặt"
+                        android:textSize="17sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="60000 VND"
-                        android:textSize="17sp"
                         android:fontFamily="@font/inter"
                         android:paddingRight="10dp"
-                        />
+                        android:text="60000 VND"
+                        android:textSize="17sp" />
                 </LinearLayout>
 
             </LinearLayout>
-
 
 
         </LinearLayout>
