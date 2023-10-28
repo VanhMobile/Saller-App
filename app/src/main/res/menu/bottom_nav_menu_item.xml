@@ -10,11 +10,11 @@
         android:icon="@drawable/icon_bill"
         android:title="@string/bottom_nav_bill" />
     <item
-        android:id="@+id/bottomEmployee"
+        android:id="@+id/bottomNavEmployee"
         android:icon="@drawable/icon_employees"
         android:title="@string/bottom_nav_employee" />
     <item
-        android:id="@+id/bottomProduct"
+        android:id="@+id/bottomNavProduct"
         android:icon="@drawable/icon_product_manager"
         android:title="@string/bottom_nav_product" />
     <item
