@@ -22,6 +22,7 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
                     android:src="@drawable/icon_back"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"/>
@@ -41,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/icon_save"
+                    android:background="@android:color/transparent"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="10dp"/>
 
