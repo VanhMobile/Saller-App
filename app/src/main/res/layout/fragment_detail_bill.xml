@@ -124,7 +124,7 @@
                     android:fontFamily="@font/inter"
                     android:paddingRight="20dp"
                     android:text="3"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_13ssp" />
 
             </LinearLayout>
 
