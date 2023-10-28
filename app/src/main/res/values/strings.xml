@@ -7,4 +7,8 @@
     <string name="bottom_nav_employee">Employee</string>
     <string name="bottom_nav_product">Product</string>
     <string name="bottom_nav_account">Account</string>
+    <string name="home">Trang chủ</string>
+    <string name="statistics_30_day">Thống kê 30 ngày gần đây</string>
+    <string name="total_revenue">Tổng thu</string>
+    <string name="total_expenditure">Tổng chi</string>
 </resources>

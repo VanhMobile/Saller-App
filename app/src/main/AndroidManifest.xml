@@ -13,6 +13,12 @@
         android:theme="@style/Theme.SallerApp"
         tools:targetApi="31">
         <activity
+            android:name=".controller.view.BillActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controller.view.ProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".controller.view.WellComeActivity"
             android:exported="false" />
         <activity
