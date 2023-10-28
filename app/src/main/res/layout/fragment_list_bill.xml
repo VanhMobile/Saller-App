@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/_50sdp"
             android:background="@color/line"
             android:orientation="horizontal">
 
@@ -28,11 +28,10 @@
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center_vertical"
-                android:background="@android:color/transparent"
                 android:layout_marginRight="@dimen/_20sdp"
                 android:src="@drawable/icon_add_circle" />
         </LinearLayout>
