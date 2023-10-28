@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.fragment.Fragment_list_customers">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:background="@color/line"
+           android:paddingHorizontal="20dp"
+           android:orientation="horizontal">
+
+           <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@android:color/transparent"
+               android:src="@drawable/icon_back"
+               android:layout_gravity="center_vertical"
+               android:layout_marginLeft="10dp"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Danh sách khách hàng"
+               android:layout_weight="1"
+               android:layout_gravity="center_vertical"
+               android:textSize="18sp"
+               android:textColor="@color/white"
+               android:fontFamily="@font/inter_bold"
+               android:layout_marginLeft="20dp"/>
+
+           <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/icon_add_circle"
+               android:background="@android:color/transparent"
+               android:layout_gravity="center_vertical"
+               android:layout_marginRight="10dp"/>
+
+       </LinearLayout>
+
+       <EditText
+           android:background="@drawable/edt_add_product"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_margin="20dp"
+           android:padding="10dp"
+           android:hint="Tìm kiếm khách hàng"/>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:padding="20dp"
+           android:layout_marginTop="20dp"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
+
+   </LinearLayout>
+
+</FrameLayout>
