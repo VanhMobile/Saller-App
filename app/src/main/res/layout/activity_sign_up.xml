@@ -1,7 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.view.SignUpActivity"/>
+    tools:context=".controller.view.SignUpActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/line_light">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_signup"
+        android:fontFamily="@font/inter_bold"
+        android:textSize="@dimen/_25ssp"
+        android:textStyle="bold"/>
+
+
+    <EditText
+        android:id="@+id/ed_signup_email"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:backgroundTint="@color/line"
+        android:hint="@string/til_email"
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_person_outline"
+        android:drawablePadding="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
+
+
+    <EditText
+        android:id="@+id/ed_signup_password"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:backgroundTint="@color/line"
+        android:hint="@string/til_password"
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_password"
+        android:drawablePadding="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
+    <EditText
+        android:id="@+id/ed_signup_confirmpassword"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:backgroundTint="@color/line"
+        android:hint="@string/txt_confirm_password"
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_password"
+        android:drawablePadding="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signup_signup"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_42sdp"
+        android:layout_height="wrap_content"
+        app:cornerRadius="@dimen/_8sdp"
+        android:padding="@dimen/_4sdp"
+        android:text="@string/txt_signup"
+        android:fontFamily="@font/inter_light"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/line"
+        android:layout_marginTop="@dimen/_11sdp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signup_login"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@color/line"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_42sdp"
+        android:layout_height="wrap_content"
+        app:cornerRadius="@dimen/_8sdp"
+        android:fontFamily="@font/inter_light"
+        android:text="@string/txt_login"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
+        android:padding="@dimen/_4sdp"
+        android:textColor="@color/line"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:text="@string/txt_login_gg"
+        android:fontFamily="@font/inter"
+        android:textSize="14sp" />
+
+    <ImageButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/icon_google" />
+</LinearLayout>
