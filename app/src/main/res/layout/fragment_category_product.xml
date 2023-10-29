@@ -48,13 +48,14 @@
             android:background="@drawable/edt_add_product"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"
             android:hint="Tìm kiếm danh mục sản phẩm"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:padding="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+           android:paddingHorizontal="@dimen/_10sdp"
+            tools:listitem="@layout/item_category_product"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
