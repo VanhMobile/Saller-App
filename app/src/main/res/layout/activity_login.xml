@@ -4,48 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:orientation="vertical"
+    android:background="@color/line_light"
     tools:context=".controller.view.LoginActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_100sdp"
         android:fontFamily="@font/inter"
         android:text="@string/txt_login"
-        android:textSize="32sp"
+        android:textSize="@dimen/_25ssp"
         android:textStyle="bold" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_25sdp"
+    <EditText
+        android:id="@+id/ed_login_email"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:backgroundTint="@color/line"
         android:hint="@string/til_email"
-        android:fontFamily="@font/inter"
-        app:startIconContentDescription="Email"
-        app:startIconDrawable="@drawable/icon_person">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_user"
+        android:drawablePadding="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
 
 
     <EditText
         android:id="@+id/ed_login_password"
         android:layout_marginTop="@dimen/_5sdp"
         android:backgroundTint="@color/line"
-        android:hint="Mật khẩu"
-        android:drawablePadding="@dimen/_5sdp"
+        android:hint="@string/til_password"
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_password"
+        android:drawablePadding="@dimen/_8sdp"
         android:paddingBottom="@dimen/_11sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/icon_lock"
+
         android:layout_marginHorizontal="@dimen/_15sdp"/>
 
     <TextView
@@ -57,29 +54,33 @@
         android:gravity="right"
         android:text="@string/txt_remember"
         android:fontFamily="@font/inter"
-        android:textSize="12sp" />
+        android:textSize="@dimen/_10ssp" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login_login"
-        android:layout_width="@dimen/_200sdp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_42sdp"
         android:layout_height="wrap_content"
-        app:cornerRadius="@dimen/_8sdp"
-        android:fontFamily="@font/inter"
+        app:cornerRadius="@dimen/_7sdp"
+        android:fontFamily="@font/inter_light"
+        android:textStyle="bold"
         android:text="@string/txt_login"
         android:textSize="@dimen/_15ssp"
         android:textColor="@color/white"
         android:backgroundTint="@color/line"
-        android:layout_marginTop="@dimen/_11sdp"/>
+        android:layout_marginTop="@dimen/_35sdp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login_signup"
         app:strokeWidth="@dimen/_1sdp"
         app:strokeColor="@color/line"
-        android:layout_width="@dimen/_200sdp"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_42sdp"
         android:layout_height="wrap_content"
-        app:cornerRadius="@dimen/_8sdp"
-        android:fontFamily="@font/inter"
+        app:cornerRadius="@dimen/_7sdp"
+        android:fontFamily="@font/inter_light"
+        android:textStyle="bold"
         android:text="@string/txt_signup"
         android:textSize="@dimen/_15ssp"
         android:textColor="@color/line"
@@ -91,7 +92,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_13sdp"
         android:text="@string/txt_login_gg"
         android:fontFamily="@font/inter"
         android:textSize="14sp" />

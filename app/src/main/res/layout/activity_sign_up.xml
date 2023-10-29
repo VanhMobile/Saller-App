@@ -6,76 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".controller.view.SignUpActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/line_light">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_signup"
         android:fontFamily="@font/inter_bold"
-        android:textSize="32sp"/>
+        android:textSize="@dimen/_25ssp"
+        android:textStyle="bold"/>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/ed_signup_email"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:backgroundTint="@color/line"
         android:hint="@string/til_email"
-        android:fontFamily="@font/inter"
-        app:startIconDrawable="@drawable/icon_person"
-        app:startIconContentDescription="Email"
-        android:layout_marginTop="20dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edEmail"
-            android:fontFamily="@font/inter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="350dp"
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_user"
+        android:drawablePadding="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
+
+
+    <EditText
+        android:id="@+id/ed_signup_password"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:backgroundTint="@color/line"
         android:hint="@string/til_password"
-        android:fontFamily="@font/inter"
-        app:startIconDrawable="@drawable/icon_pwlock"
-        app:endIconMode="password_toggle"
-        android:layout_marginTop="7dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edPassword"
-            android:fontFamily="@font/inter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="350dp"
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_password"
+        android:drawablePadding="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
+    <EditText
+        android:id="@+id/ed_signup_confirmpassword"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:backgroundTint="@color/line"
         android:hint="@string/txt_confirm_password"
-        android:fontFamily="@font/inter"
-        app:startIconDrawable="@drawable/icon_pwlock"
-        app:endIconMode="password_toggle"
-        android:layout_marginTop="7dp">
+        android:textColorHint="@color/black"
+        android:drawableStart="@drawable/icon_password"
+        android:drawablePadding="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edConfirmPassword"
-            android:fontFamily="@font/inter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_signup_signup"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/_45sdp"
+        android:layout_marginHorizontal="@dimen/_42sdp"
         android:layout_height="wrap_content"
         app:cornerRadius="@dimen/_8sdp"
         android:padding="@dimen/_4sdp"
@@ -92,7 +79,7 @@
         app:strokeWidth="@dimen/_1sdp"
         app:strokeColor="@color/line"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/_45sdp"
+        android:layout_marginHorizontal="@dimen/_42sdp"
         android:layout_height="wrap_content"
         app:cornerRadius="@dimen/_8sdp"
         android:fontFamily="@font/inter_light"
@@ -107,17 +94,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hoặc đăng nhập với google"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:text="@string/txt_login_gg"
         android:fontFamily="@font/inter"
-        android:gravity="right"
-        android:layout_marginTop="20dp"
-        android:textSize="14sp"/>
+        android:textSize="14sp" />
 
     <ImageButton
         android:id="@+id/btnGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_google"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="@android:color/transparent"/>
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/icon_google" />
 </LinearLayout>
