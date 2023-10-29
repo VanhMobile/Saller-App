@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sallerapp.R;
+import com.example.sallerapp.databinding.FragmentCategoryProductBinding;
+import com.example.sallerapp.funtions.MyFragment;
 
 
 public class CategoryProductFragment extends Fragment {
+
+    private FragmentCategoryProductBinding cateProBinding;
 
 
     public CategoryProductFragment() {
@@ -31,7 +35,20 @@ public class CategoryProductFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category_product, container, false);
+        cateProBinding = FragmentCategoryProductBinding.inflate(inflater,container,false);
+        initView();
+        return cateProBinding.getRoot();
+    }
+
+    private void initView() {
+        cateProBinding.addCatePro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
+                        , R.id.fragmentAddPro
+                        , new AddCategoryProductFragment()
+                        , true);
+            }
+        });
     }
 }
