@@ -31,8 +31,8 @@
         >
         <LinearLayout
             android:id="@+id/btnAddProduct"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:background="@drawable/buttom_shortcut_home">
@@ -51,8 +51,8 @@
 
         <LinearLayout
             android:id="@+id/addEmployee"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:orientation="vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -74,8 +74,8 @@
 
         <LinearLayout
             android:id="@+id/createBill"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:background="@drawable/buttom_shortcut_home">
@@ -102,8 +102,8 @@
         >
         <LinearLayout
             android:id="@+id/customerManager"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:background="@drawable/buttom_shortcut_home">
@@ -122,8 +122,8 @@
 
         <LinearLayout
             android:id="@+id/customerCategory"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:orientation="vertical"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -145,8 +145,8 @@
 
         <LinearLayout
             android:id="@+id/productCategory"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:background="@drawable/buttom_shortcut_home">

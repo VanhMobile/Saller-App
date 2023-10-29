@@ -9,14 +9,32 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sallerapp.R;
+import com.example.sallerapp.controller.view.CustomerActivity;
+import com.example.sallerapp.databinding.FragmentListCustomersBinding;
+import com.example.sallerapp.funtions.MyFragment;
 
 
 public class Fragment_list_customers extends Fragment {
 
+    private FragmentListCustomersBinding listCustomerBinding;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_customers, container, false);
+        listCustomerBinding = FragmentListCustomersBinding.inflate(inflater,container,false);
+        initView();
+        return listCustomerBinding.getRoot();
+    }
+
+    private void initView() {
+        listCustomerBinding.addCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
+                        , R.id.fragmentCustomer
+                        , new Fragment_add_customer()
+                        , true);
+            }
+        });
     }
 }

@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.view.ProductActivity">
+    tools:context=".controller.view.CustomerActivity">
+
     <fragment
-        android:id="@+id/fragmentAddPro"
+        android:id="@+id/fragmentCustomer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:name="com.example.sallerapp.controller.fragment.BlankFragment"

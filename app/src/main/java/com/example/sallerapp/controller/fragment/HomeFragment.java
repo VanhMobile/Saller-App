@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sallerapp.controller.view.BillActivity;
+import com.example.sallerapp.controller.view.CustomerActivity;
+import com.example.sallerapp.controller.view.EmployeeActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.databinding.FragmentHomeBinding;
 
@@ -45,7 +47,9 @@ public class HomeFragment extends Fragment {
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(new Intent(requireContext(), ProductActivity.class));
+                Intent intent = new Intent(requireContext(), ProductActivity.class);
+                intent.putExtra("product","addProduct");
+               startActivity(intent);
             }
         });
 
@@ -53,6 +57,30 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(requireContext(), BillActivity.class));
+            }
+        });
+
+
+        homeBinding.shortcut.addEmployee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), EmployeeActivity.class));
+            }
+        });
+
+        homeBinding.shortcut.customerManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), CustomerActivity.class));
+            }
+        });
+
+        homeBinding.shortcut.productCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), ProductActivity.class);
+                intent.putExtra("product","categoryProduct");
+                startActivity(intent);
             }
         });
     }

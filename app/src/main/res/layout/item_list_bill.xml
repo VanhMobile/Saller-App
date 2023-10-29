@@ -7,8 +7,8 @@
 
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:src="@drawable/icon_bill_viet"/>
@@ -30,23 +30,24 @@
                 android:layout_height="wrap_content"
                 android:text="HD1"
                 android:textStyle="bold"
-                android:textSize="17sp"
+                android:textSize="@dimen/_15ssp"
                 android:fontFamily="@font/inter_bold"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:layout_marginRight="10dp"
                     android:src="@drawable/icon_customer"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Khách lẻ"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/_10ssp"
                     android:fontFamily="@font/inter"/>
             </LinearLayout>
 
@@ -62,14 +63,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="27/10/2023"
-                android:textSize="15sp"
+                android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/inter"/>
             <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20000 VND"
-                android:textSize="15sp"
+                android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
                 android:fontFamily="@font/inter_bold"/>
         </LinearLayout>

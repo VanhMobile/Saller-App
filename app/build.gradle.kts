@@ -50,4 +50,7 @@ dependencies {
 
     // chart
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    //
+    implementation ("com.google.android.material:material:<version>")
 }
