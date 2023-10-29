@@ -24,7 +24,7 @@
         android:backgroundTint="@color/line"
         android:hint="@string/til_email"
         android:textColorHint="@color/black"
-        android:drawableStart="@drawable/icon_user"
+        android:drawableStart="@drawable/icon_person_outline"
         android:drawablePadding="@dimen/_8sdp"
         android:paddingBottom="@dimen/_11sdp"
         android:layout_width="match_parent"
