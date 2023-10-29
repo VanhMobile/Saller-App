@@ -1,7 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.view.SignUpActivity"/>
+    tools:context=".controller.view.SignUpActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_signup"
+        android:fontFamily="@font/inter_bold"
+        android:textSize="32sp"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/til_email"
+        android:fontFamily="@font/inter"
+        app:startIconDrawable="@drawable/icon_person"
+        app:startIconContentDescription="Email"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edEmail"
+            android:fontFamily="@font/inter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/til_password"
+        android:fontFamily="@font/inter"
+        app:startIconDrawable="@drawable/icon_pwlock"
+        app:endIconMode="password_toggle"
+        android:layout_marginTop="7dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edPassword"
+            android:fontFamily="@font/inter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/txt_confirm_password"
+        android:fontFamily="@font/inter"
+        app:startIconDrawable="@drawable/icon_pwlock"
+        app:endIconMode="password_toggle"
+        android:layout_marginTop="7dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edConfirmPassword"
+            android:fontFamily="@font/inter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signup_signup"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_45sdp"
+        android:layout_height="wrap_content"
+        app:cornerRadius="@dimen/_8sdp"
+        android:padding="@dimen/_4sdp"
+        android:text="@string/txt_signup"
+        android:fontFamily="@font/inter_light"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/line"
+        android:layout_marginTop="@dimen/_11sdp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_signup_login"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@color/line"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_45sdp"
+        android:layout_height="wrap_content"
+        app:cornerRadius="@dimen/_8sdp"
+        android:fontFamily="@font/inter_light"
+        android:text="@string/txt_login"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
+        android:padding="@dimen/_4sdp"
+        android:textColor="@color/line"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hoặc đăng nhập với google"
+        android:fontFamily="@font/inter"
+        android:gravity="right"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"/>
+
+    <ImageButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_google"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@android:color/transparent"/>
+</LinearLayout>

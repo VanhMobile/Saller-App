@@ -1,9 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".controller.view.LoginActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:fontFamily="@font/inter"
+        android:text="@string/txt_login"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:hint="@string/til_email"
+        android:fontFamily="@font/inter"
+        app:startIconContentDescription="Email"
+        app:startIconDrawable="@drawable/icon_person">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <EditText
+        android:id="@+id/ed_login_password"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:backgroundTint="@color/line"
+        android:hint="Mật khẩu"
+        android:drawablePadding="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_11sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/icon_lock"
+        android:layout_marginHorizontal="@dimen/_15sdp"/>
+
+    <TextView
+        android:id="@+id/txtRemember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:gravity="right"
+        android:text="@string/txt_remember"
+        android:fontFamily="@font/inter"
+        android:textSize="12sp" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login_login"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        app:cornerRadius="@dimen/_8sdp"
+        android:fontFamily="@font/inter"
+        android:text="@string/txt_login"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/line"
+        android:layout_marginTop="@dimen/_11sdp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login_signup"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@color/line"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        app:cornerRadius="@dimen/_8sdp"
+        android:fontFamily="@font/inter"
+        android:text="@string/txt_signup"
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/line"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="@dimen/_11sdp"/>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/txt_login_gg"
+        android:fontFamily="@font/inter"
+        android:textSize="14sp" />
+
+    <ImageButton
+        android:id="@+id/btnGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/icon_google" />
+
+
+</LinearLayout>
