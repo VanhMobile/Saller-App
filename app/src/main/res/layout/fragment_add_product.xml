@@ -8,7 +8,7 @@
     tools:context=".controller.fragment.AddProductFragment">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_toolbar"
+        android:layout_height="@dimen/_40sdp"
         android:background="@color/line"
         android:gravity="center_vertical">
 
@@ -50,15 +50,15 @@
             <LinearLayout
                 android:id="@+id/addImgProduct"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/_80sdp"
                 android:gravity="center"
-                android:layout_height="100dp"
+                android:layout_height="@dimen/_80sdp"
                 android:orientation="vertical"
                 android:elevation="8dp"
                 android:background="@drawable/shadow_add_img_r12">
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:src="@drawable/icon_add_img"/>
                 <TextView
                     android:layout_marginTop="@dimen/_6sdp"
@@ -76,6 +76,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
                 android:text="Tên hàng hóa"/>
@@ -96,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
@@ -117,6 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
@@ -138,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
@@ -160,6 +164,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
                 android:text="Số lượng"/>
@@ -181,6 +186,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_10ssp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
                 android:text="Loại"/>
@@ -205,6 +211,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:textSize="@dimen/_10ssp"
                 android:textColor="@color/black"
                 android:text="Ngày nhập hàng"/>
 
@@ -229,6 +236,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
                 android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp"
                 android:text="Ghi chú"/>
 
             <EditText
