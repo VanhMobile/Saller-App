@@ -34,12 +34,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/_6sdp"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter_bold"
                     android:text="Chi tiết hóa đơn"
                     android:textColor="@color/white"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/_15ssp" />
 
                 <ImageView
                     android:layout_width="@dimen/_20sdp"
@@ -53,7 +53,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
-                android:layout_margin="20dp"
+                android:layout_margin="@dimen/_15ssp"
                 android:background="@drawable/radius_item_layout"
                 android:orientation="horizontal"
                 android:padding="10dp">
@@ -77,27 +77,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/icon_box"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/_5sdp"
                 android:fontFamily="@font/inter"
                 android:gravity="center_vertical"
-                android:paddingVertical="10dp"
+                android:paddingVertical="@dimen/_6ssp"
                 android:paddingLeft="20dp"
                 android:text="Hàng hóa"
                 android:textColor="@color/line"
-                android:textSize="17sp" />
+                android:textSize="@dimen/_15ssp" />
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_margin="@dimen/_15sdp"
                 android:background="@drawable/radius_item_layout"
                 android:orientation="vertical">
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:padding="10dp" />
+                    android:layout_margin="@dimen/_15sdp"
+                    android:padding="@dimen/_5sdp" />
             </LinearLayout>
 
 
@@ -114,17 +114,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter"
-                    android:paddingLeft="30dp"
+                    android:paddingLeft="@dimen/_25sdp"
                     android:text="Số lượng sản phẩm:"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_15sdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:paddingRight="20dp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:text="3"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_15ssp" />
 
             </LinearLayout>
 
@@ -141,22 +141,22 @@
                     android:fontFamily="@font/inter"
                     android:paddingLeft="30dp"
                     android:text="Tổng vốn:"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_15sdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:paddingRight="20dp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:text="40000 VND"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_15sdp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -164,17 +164,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/inter"
-                    android:paddingLeft="30dp"
+                    android:paddingLeft="@dimen/_25sdp"
                     android:text="Tổng tiền:"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_15sdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:paddingRight="20dp"
+                    android:paddingRight="@dimen/_15sdp"
                     android:text="60000 VND"
-                    android:textSize="17sp" />
+                    android:textSize="@dimen/_15sdp" />
 
             </LinearLayout>
 
@@ -182,21 +182,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/icon_customer_green"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/_6sdp"
                 android:fontFamily="@font/inter"
                 android:gravity="center_vertical"
-                android:paddingVertical="10dp"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="10dp"
+                android:paddingVertical="@dimen/_6sdp"
+                android:paddingLeft="@dimen/_15ssp"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:text="Khách hàng"
                 android:textColor="@color/line"
-                android:textSize="17sp" />
+                android:textSize="@dimen/_15ssp" />
 
             <LinearLayout
                 android:layout_width="@dimen/_290sdp"
-                android:layout_height="150dp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="@dimen/_15ssp"
                 android:background="@drawable/radius_item_layout"
                 android:orientation="vertical"
                 android:padding="10dp">
@@ -250,7 +250,7 @@
                 android:background="@drawable/radius_item_layout"
                 android:orientation="vertical"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:padding="20dp">
+                android:padding="@dimen/_15ssp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -264,7 +264,7 @@
                         android:fontFamily="@font/inter"
                         android:paddingLeft="10dp"
                         android:text="27/10/2023"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -272,7 +272,7 @@
                         android:fontFamily="@font/inter"
                         android:paddingRight="10dp"
                         android:text="Đã thanh toán"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,7 +287,7 @@
                         android:fontFamily="@font/inter"
                         android:paddingLeft="10dp"
                         android:text="tiền mặt"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/_15ssp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -295,7 +295,7 @@
                         android:fontFamily="@font/inter"
                         android:paddingRight="10dp"
                         android:text="60000 VND"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
 
             </LinearLayout>
