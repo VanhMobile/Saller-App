@@ -19,6 +19,6 @@
         android:title="@string/bottom_nav_product" />
     <item
         android:id="@+id/bottomNavAccount"
-        android:icon="@drawable/icon_person"
+        android:icon="@drawable/icon_person_nav_bottom"
         android:title="@string/bottom_nav_account" />
 </menu>
