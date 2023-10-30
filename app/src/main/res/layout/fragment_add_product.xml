@@ -70,6 +70,15 @@
                     android:text="Thêm ảnh"/>
             </LinearLayout>
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                style="@style/img_add"
+                android:visibility="gone"
+                android:scaleType="fitCenter"
+                android:background="@drawable/shadow_add_img_r12"
+                android:id="@+id/img_product"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
