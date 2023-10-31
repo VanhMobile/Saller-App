@@ -53,4 +53,7 @@ dependencies {
 
     //
     implementation ("com.google.android.material:material:<version>")
+
+    //
+    implementation ("com.karumi:dexter:6.2.3")
 }
