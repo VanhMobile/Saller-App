@@ -63,7 +63,7 @@
             android:hint="Nhập mã xác nhận của bạn"
             android:textColorHint="@color/dark_gray"
             android:paddingTop="@dimen/_5sdp"
-            android:fontFamily="@font/inter_bold"
+            android:fontFamily="@font/inter"
             android:paddingBottom="@dimen/_10sdp"
             android:textSize="@dimen/_13ssp"
             android:backgroundTint="@android:color/transparent"/>
