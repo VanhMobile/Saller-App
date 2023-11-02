@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".controller.fragment.DetailBillFragment">
 
     <ScrollView
@@ -62,16 +63,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="@dimen/_10ssp"
                     android:fontFamily="@font/inter"
-                    android:text="Đơn hàng: HD1" />
+                    android:text="Đơn hàng: HD1"
+                    android:textSize="@dimen/_10ssp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter"
-                    android:textSize="@dimen/_10ssp"
-                    android:text="27/10/2023" />
+                    android:text="27/10/2023"
+                    android:textSize="@dimen/_10ssp" />
 
             </LinearLayout>
 
@@ -82,11 +83,13 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:src="@drawable/icon_box"/>
+                    android:src="@drawable/icon_box" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -104,11 +107,12 @@
                 android:layout_margin="@dimen/_15sdp"
                 android:background="@drawable/radius_item_layout"
                 android:orientation="vertical">
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_15sdp"
-                    android:padding="@dimen/_5sdp" />
+                    android:layout_margin="@dimen/_10sdp"
+                    tools:listitem="@layout/item_product_bill_detail" />
             </LinearLayout>
 
 
@@ -189,14 +193,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:src="@drawable/icon_customer_green"/>
+                    android:src="@drawable/icon_customer_green" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -220,16 +226,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/_3sdp"
                     android:layout_marginStart="@dimen/_3sdp"
-                    android:orientation="horizontal">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_3sdp">
+
                     <ImageView
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
 
-                        android:src="@drawable/icon_phone"/>
+                        android:src="@drawable/icon_phone" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -240,15 +248,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/_3sdp"
                     android:layout_marginStart="@dimen/_3sdp"
-                    android:orientation="horizontal">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_3sdp">
+
                     <ImageView
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
-                        android:src="@drawable/icon_address"/>
+                        android:src="@drawable/icon_address" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -262,17 +272,18 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="@dimen/_3sdp"
                     android:gravity="center_vertical"
-                    android:padding="@dimen/_3sdp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_3sdp">
+
                     <ImageView
                         android:layout_width="@dimen/_25sdp"
                         android:layout_height="@dimen/_25sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
-                        android:src="@drawable/icon_category"/>
+                        android:src="@drawable/icon_category" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:text="0984907397"
                         android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
@@ -283,14 +294,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:src="@drawable/icon_price"/>
+                    android:src="@drawable/icon_price" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -304,12 +317,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:background="@drawable/radius_item_layout"
                 android:orientation="vertical"
-                android:layout_marginBottom="@dimen/_20sdp"
                 android:padding="@dimen/_15ssp">
 
                 <LinearLayout
@@ -346,7 +359,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/inter"
                         android:paddingLeft="10dp"
-                        android:text="tiền mặt"
+                        android:text="Tiền mặt"
                         android:textSize="@dimen/_15ssp" />
 
                     <TextView
@@ -358,6 +371,29 @@
                         android:textSize="@dimen/_15ssp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter"
+                        android:paddingLeft="10dp"
+                        android:text="Đơn giá"
+                        android:textSize="@dimen/_15ssp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:paddingRight="10dp"
+                        android:text="Sỉ"
+                        android:textSize="@dimen/_15ssp" />
+                </LinearLayout>
+
             </LinearLayout>
 
 
@@ -365,4 +401,4 @@
 
     </ScrollView>
 
-</FrameLayout>
+</LinearLayout>
