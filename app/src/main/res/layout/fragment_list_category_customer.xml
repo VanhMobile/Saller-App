@@ -32,12 +32,12 @@
                 android:layout_marginLeft="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_bold"
-                android:text="Danh mục sản phẩm"
+                android:text="Danh mục khách hàng"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp" />
 
             <ImageView
-                android:id="@+id/addCatePro"
+                android:id="@+id/addCateCus"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:src="@drawable/icon_add_circle"
@@ -47,17 +47,19 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/edtSearch"
             android:background="@drawable/edt_add_product"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"
-            android:hint="Tìm kiếm danh mục sản phẩm"/>
+            android:hint="Tìm kiếm danh mục"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/item_category_product"
+            android:id="@+id/recListCategoryCus"
             android:layout_width="match_parent"
+            tools:listitem="@layout/item_category_customer"
             android:layout_height="match_parent"/>
 
     </LinearLayout>
