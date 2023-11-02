@@ -9,7 +9,7 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_gravity="center"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:src="@drawable/icon_tag" />
+        android:src="@drawable/icon_employee" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -18,11 +18,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/NameCategoryProduct"
+            android:id="@+id/NameCategoryCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_light"
-            android:text="1. Sản phẩm mới"
+            android:text="1. khách mới"
             android:textSize="@dimen/_15ssp" />
     </LinearLayout>
 

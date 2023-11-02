@@ -14,7 +14,7 @@ import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.EmployeeActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.databinding.FragmentHomeBinding;
-
+import com.example.sallerapp.funtions.RequestPermissions;
 
 
 public class HomeFragment extends Fragment {
@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView() {
+        RequestPermissions.requestReadImgGalleryCamera(requireContext());
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

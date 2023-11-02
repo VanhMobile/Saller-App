@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".controller.fragment.AddProductFragment">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
@@ -40,238 +41,315 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/addImgProduct"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="@dimen/_80sdp"
-                android:gravity="center"
                 android:layout_height="@dimen/_80sdp"
-                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/shadow_add_img_r12"
                 android:elevation="8dp"
-                android:background="@drawable/shadow_add_img_r12">
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/icon_add_img"/>
+                    android:src="@drawable/icon_add_img" />
+
                 <TextView
-                    android:layout_marginTop="@dimen/_6sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/dark_gray"
+                    android:layout_marginTop="@dimen/_6sdp"
                     android:fontFamily="@font/inter"
-                    android:textSize="@dimen/_10ssp"
-                    android:text="Thêm ảnh"/>
+                    android:text="Thêm ảnh"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="@dimen/_10ssp" />
             </LinearLayout>
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/img_product"
+                style="@style/img_add"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
-                style="@style/img_add"
-                android:visibility="gone"
-                android:scaleType="fitCenter"
                 android:background="@drawable/shadow_add_img_r12"
-                android:id="@+id/img_product"/>
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_10ssp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Mã Hàng hóa"
                 android:textColor="@color/black"
-                android:text="Tên hàng hóa"/>
+                android:textSize="@dimen/_10ssp" />
 
             <EditText
+                android:id="@+id/edtProductId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edt_add_product"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_3sdp"
-                />
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_10ssp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Tên hàng hóa"
                 android:textColor="@color/black"
-                android:text="Giá vốn"/>
+                android:textSize="@dimen/_10ssp" />
 
             <EditText
+                android:id="@+id/edtNameProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edt_add_product"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_3sdp"
-                />
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_10ssp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Giá vốn"
                 android:textColor="@color/black"
-                android:text="Giá bán lẻ"/>
+                android:textSize="@dimen/_10ssp" />
 
             <EditText
+                android:id="@+id/edtProductCost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edt_add_product"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_3sdp"
-                />
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_10ssp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Giá bán lẻ"
                 android:textColor="@color/black"
-                android:text="Giá bán sỉ"/>
+                android:textSize="@dimen/_10ssp" />
 
             <EditText
+                android:id="@+id/edtRetailProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edt_add_product"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_3sdp"
-                />
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_10ssp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Giá bán sỉ"
                 android:textColor="@color/black"
-                android:text="Số lượng"/>
+                android:textSize="@dimen/_10ssp" />
 
             <EditText
+                android:id="@+id/edtWholeSalePriceProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/edt_add_product"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
                 android:padding="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_3sdp"
-                />
+                android:textSize="@dimen/_13ssp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_10ssp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Số lượng"
                 android:textColor="@color/black"
-                android:text="Loại"/>
+                android:textSize="@dimen/_10ssp" />
+
+            <EditText
+                android:id="@+id/edtQuantityProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_13ssp" />
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Loại"
                 android:textColor="@color/black"
-                android:padding="@dimen/_6sdp"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:id="@+id/tvCategoryProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/edt_add_product"
                 android:drawableEnd="@drawable/icon_triangle_down"
-                android:text="Hàng bán chạy"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="@color/black"
-                android:text="Ngày nhập hàng"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:fontFamily="@font/inter_light"
-                android:textColor="@color/black"
                 android:padding="@dimen/_6sdp"
+                android:text="Hàng bán chạy"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/inter_light"
+                        android:text="Thuộc tính"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <TextView
+                        android:id="@+id/btnAddAttPro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/edt_add_bill"
+                        android:drawableStart="@drawable/icon_add_circle_green"
+                        android:drawablePadding="@dimen/_7sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:padding="@dimen/_6sdp"
+                        android:text="Thêm thuộc tính"
+                        android:textColor="@color/line"
+                        android:textSize="@dimen/_10ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recListAttPro"
+                    android:layout_width="match_parent"
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    tools:listitem="@layout/item_attribute_product"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/inter_light"
+                android:text="Ngày nhập hàng"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10ssp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@drawable/edt_add_product"
                 android:drawableEnd="@drawable/icon_calender_black"
-                android:text="18/05/2003"/>
+                android:fontFamily="@font/inter_light"
+                android:padding="@dimen/_6sdp"
+                android:text="18/05/2003"
+                android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:fontFamily="@font/inter_light"
+                android:text="Ghi chú"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
-                android:text="Ghi chú"/>
+                android:textSize="@dimen/_10ssp" />
 
             <EditText
+                android:id="@+id/edtNote"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
-                android:background="@drawable/edt_add_product"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:textSize="@dimen/_13ssp"
-                android:inputType="textMultiLine"
-                android:gravity="top|start"
-                android:padding="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_3sdp"
-                />
-            
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_13ssp" />
+
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40sdp"
-                android:layout_marginEnd="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:text="Lưu"
-                android:textSize="@dimen/_13ssp"
                 android:backgroundTint="@color/line"
-                app:cornerRadius="@dimen/_8sdp"/>
+                android:text="Lưu"
+                android:id="@+id/btnSave"
+                android:textSize="@dimen/_13ssp"
+                app:cornerRadius="@dimen/_8sdp" />
 
         </LinearLayout>
     </ScrollView>
