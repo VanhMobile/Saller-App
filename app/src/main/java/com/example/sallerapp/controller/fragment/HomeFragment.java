@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        homeBinding = FragmentHomeBinding.inflate(inflater,container,false);
+        homeBinding = FragmentHomeBinding.inflate(inflater, container, false);
 
         initView();
         return homeBinding.getRoot();
@@ -53,8 +53,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(requireContext(), ProductActivity.class);
-                intent.putExtra("product","addProduct");
-               startActivity(intent);
+                intent.putExtra("product", "addProduct");
+                startActivity(intent);
+            }
+        });
+
+        homeBinding.iconCartShopping.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), BillActivity.class));
             }
         });
 
@@ -76,7 +83,18 @@ public class HomeFragment extends Fragment {
         homeBinding.shortcut.customerManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireContext(), CustomerActivity.class));
+                Intent intent = new Intent(requireContext(),  CustomerActivity.class);
+                intent.putExtra("customer", "listCustomer");
+                startActivity(intent);
+            }
+        });
+
+        homeBinding.shortcut.customerCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(),  CustomerActivity.class);
+                intent.putExtra("customer", "categoryCustomer");
+                startActivity(intent);
             }
         });
 
@@ -84,7 +102,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(requireContext(), ProductActivity.class);
-                intent.putExtra("product","categoryProduct");
+                intent.putExtra("product", "categoryProduct");
                 startActivity(intent);
             }
         });

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.sallerapp.controller.fragment.AccountFragment;
 import com.example.sallerapp.controller.fragment.AddProductFragment;
 import com.example.sallerapp.controller.fragment.Fragment_list_bill;
 import com.example.sallerapp.controller.fragment.HomeFragment;
@@ -61,7 +62,10 @@ public class MainActivity extends AppCompatActivity {
                             , new ListProductsFragment()
                             , false);
                 } else if (item.getItemId() == R.id.bottomNavAccount) {
-                    
+                    MyFragment.replaceFragment(MainActivity.this.getSupportFragmentManager()
+                            , R.id.fragmentContainer
+                            , new AccountFragment()
+                            , false);
                 }
                 return true;
             }
