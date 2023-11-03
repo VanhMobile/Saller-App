@@ -1,5 +1,6 @@
 package com.example.sallerapp.controller.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,9 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sallerapp.R;
+import com.example.sallerapp.controller.view.EmployeeActivity;
+import com.example.sallerapp.databinding.FragmentListEmployeeBinding;
 
 
 public class ListEmployeeFragment extends Fragment {
+
+    private FragmentListEmployeeBinding employBinding;
 
 
     public ListEmployeeFragment() {
@@ -30,7 +35,17 @@ public class ListEmployeeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_employee, container, false);
+        employBinding = FragmentListEmployeeBinding.inflate(inflater,container,false);
+        initView();
+        return employBinding.getRoot();
+    }
+
+    private void initView() {
+        employBinding.btnAddEmployee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), EmployeeActivity.class));
+            }
+        });
     }
 }

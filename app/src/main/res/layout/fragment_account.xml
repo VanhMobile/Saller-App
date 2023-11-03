@@ -173,10 +173,24 @@
                 android:layout_marginStart="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_60sdp"
                 android:layout_marginEnd="@dimen/_40sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:backgroundTint="@color/line"
                 android:text="Đăng xuất"
                 android:id="@+id/btnLogout"
+                android:textSize="@dimen/_13ssp"
+                app:cornerRadius="@dimen/_8sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="Cập nhập mật khẩu"
+                android:textColor="@color/line"
+                android:backgroundTint="@color/white"
+                app:strokeWidth="@dimen/_1sdp"
+                app:strokeColor="@color/line"
                 android:textSize="@dimen/_13ssp"
                 app:cornerRadius="@dimen/_8sdp" />
         </LinearLayout>

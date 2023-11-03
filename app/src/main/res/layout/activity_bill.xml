@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.view.ProductActivity">
-    <FrameLayout
+    <fragment
         android:id="@+id/fragmentBill"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:name="com.example.sallerapp.controller.fragment.BlankFragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
