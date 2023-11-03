@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.sallerapp.controller.view.EmployeeActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.databinding.FragmentHomeBinding;
 import com.example.sallerapp.funtions.RequestPermissions;
+import com.example.sallerapp.funtions.IdGenerator;
 
 
 public class HomeFragment extends Fragment {
@@ -45,6 +47,8 @@ public class HomeFragment extends Fragment {
 
     private void initView() {
         RequestPermissions.requestReadImgGalleryCamera(requireContext());
+        Log.e("check0", IdGenerator.generateNextShopId(requireContext()));
+        Log.e("check1", IdGenerator.generateNextShopId(requireContext()));
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

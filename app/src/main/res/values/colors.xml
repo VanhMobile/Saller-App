@@ -11,4 +11,5 @@
     <color name="background_home">#D3D3D3</color>
     <color name="line_light">#F5FEFA</color>
     <color name="edt_login_color_hint">#3C3C3C</color>
+    <color name="error_color">#FF3232</color>
 </resources>

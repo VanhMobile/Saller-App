@@ -115,29 +115,6 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_3sdp"
                     android:fontFamily="@font/inter"
-                    android:text="Mã khách hàng"
-                    android:textSize="@dimen/_10sdp" />
-
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/edt_add_product"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="100"
-                    android:maxLines="1"
-                    android:padding="@dimen/_10sdp"
-                    android:paddingHorizontal="20dp"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_3sdp"
-                    android:fontFamily="@font/inter"
                     android:text="Số điện thoại"
                     android:textSize="@dimen/_10sdp" />
 
@@ -202,7 +179,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_70sdp"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/inter_bold"
                     android:padding="@dimen/_10sdp"
