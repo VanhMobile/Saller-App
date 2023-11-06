@@ -22,6 +22,8 @@ public class RequestPermissions {
 
     private static boolean isRequestPermission = false;
 
+    // hàm check permissions nhiều quyền
+
     public static boolean requestReadImgGalleryCamera(Context context){
         Dexter.withContext(context)
                 .withPermissions(

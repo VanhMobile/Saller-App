@@ -3,16 +3,16 @@ package com.example.sallerapp.model;
 public class Employee {
     private String imgPath;
     private String name;
-    private String email;
+    private String idEmployee;
     private String numberPhone;
     private String address;
     private String password;
     private String idShop;
 
-    public Employee( String imgPath, String name, String email, String numberPhone, String address, String password, String idShop) {
+    public Employee( String imgPath, String name, String idEmployee, String numberPhone, String address, String password, String idShop) {
         this.imgPath = imgPath;
         this.name = name;
-        this.email = email;
+        this.idEmployee = idEmployee;
         this.numberPhone = numberPhone;
         this.address = address;
         this.password = password;
@@ -47,12 +47,12 @@ public class Employee {
         this.imgPath = imgPath;
     }
 
-    public String getEmail() {
-        return email;
+    public String getIdEmployee() {
+        return idEmployee;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setIdEmployee(String idEmployee) {
+        this.idEmployee = idEmployee;
     }
 
     public String getNumberPhone() {
