@@ -9,6 +9,22 @@ public class CategoryCustomer {
         this.note = note;
     }
 
+    public String getNameCategory() {
+        return nameCategory;
+    }
+
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public CategoryCustomer() {
 
     }
