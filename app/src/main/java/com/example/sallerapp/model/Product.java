@@ -44,7 +44,7 @@ public class Product {
             , int retailPrice
             , int wholeSalePrice
             , int quantity
-            , String properties
+            , String properties // đông nghĩa vs attribute
             , String date
             , String note
             , ArrayList<String> listBill) {

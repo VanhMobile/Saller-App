@@ -49,6 +49,7 @@ public class HomeFragment extends Fragment {
         RequestPermissions.requestReadImgGalleryCamera(requireContext());
         Log.e("check0", IdGenerator.generateNextShopId(requireContext()));
         Log.e("check1", IdGenerator.generateNextShopId(requireContext()));
+
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

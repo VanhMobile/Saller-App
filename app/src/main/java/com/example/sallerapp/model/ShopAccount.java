@@ -8,6 +8,14 @@ public class ShopAccount {
     private String shopName;
     private String password;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public ShopAccount(String shopId, String address, String email, String numberPhone, String shopName, String password) {
         this.shopId = shopId;
         this.address = address;
