@@ -68,12 +68,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerListProducts"
-        android:padding="@dimen/_10sdp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_list_products"
+        android:padding="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSearchProduct" />
+        app:layout_constraintTop_toBottomOf="@+id/edtSearchProduct"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_list_products" />
 </androidx.constraintlayout.widget.ConstraintLayout>

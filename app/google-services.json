@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "982878672148",
+    "firebase_url": "https://sellerapp-1fa04-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sellerapp-1fa04",
+    "storage_bucket": "sellerapp-1fa04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982878672148:android:d84f632ce054e673f25e01",
+        "android_client_info": {
+          "package_name": "com.example.du_an_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiMWt8kob0NipmqCbetNEhJRqpZc4bpVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982878672148:android:314ea624f4d585e9f25e01",
+        "android_client_info": {
+          "package_name": "com.example.sallerapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiMWt8kob0NipmqCbetNEhJRqpZc4bpVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,5 @@
 package com.example.sallerapp.controller.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,19 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sallerapp.R;
-import com.example.sallerapp.controller.view.EmployeeActivity;
-import com.example.sallerapp.databinding.FragmentListEmployeeBinding;
+import com.example.sallerapp.databinding.FragmentListCategoryCustomerBinding;
+import com.example.sallerapp.funtions.MyFragment;
 
+public class ListCategoryCustomerFragment extends Fragment {
 
-public class ListEmployeeFragment extends Fragment {
+    private FragmentListCategoryCustomerBinding cateCusBinding;
 
-    private FragmentListEmployeeBinding employBinding;
-
-
-    public ListEmployeeFragment() {
+    public ListCategoryCustomerFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,16 +31,19 @@ public class ListEmployeeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        employBinding = FragmentListEmployeeBinding.inflate(inflater,container,false);
+        cateCusBinding = FragmentListCategoryCustomerBinding.inflate(inflater,container,false);
         initView();
-        return employBinding.getRoot();
+        return cateCusBinding.getRoot();
     }
 
     private void initView() {
-        employBinding.btnAddEmployee.setOnClickListener(new View.OnClickListener() {
+        cateCusBinding.addCateCus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireContext(), EmployeeActivity.class));
+                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
+                        , R.id.fragmentCustomer
+                        , new AddCategoryCustomerFragment()
+                        , true);
             }
         });
     }

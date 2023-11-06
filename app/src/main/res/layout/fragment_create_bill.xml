@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_toolbar"
+        android:layout_height="@dimen/_45sdp"
         android:background="@color/line"
         android:gravity="center_vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
                 android:layout_marginTop="@dimen/_16sdp"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tvAddProduct"
@@ -79,7 +79,7 @@
                 android:textColor="@color/line"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+               app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/view"
