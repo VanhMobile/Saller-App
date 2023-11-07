@@ -224,7 +224,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/inter_bold"
                 android:padding="@dimen/_4sdp"
-                android:drawableStart="@drawable/icon_add_circle_green"
+                android:drawableStart="@drawable/icon_loading"
                 android:drawablePadding="@dimen/_8sdp"
                 android:text="Lịch sử giao dịch"
                 android:textColor="@color/line"

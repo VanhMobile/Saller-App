@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.example.sallerapp.R;
 import com.example.sallerapp.controller.view.EmployeeActivity;
 import com.example.sallerapp.databinding.FragmentListEmployeeBinding;
+import com.google.android.gms.ads.AdRequest;
 
 
 public class ListEmployeeFragment extends Fragment {
@@ -41,6 +42,8 @@ public class ListEmployeeFragment extends Fragment {
     }
 
     private void initView() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        employBinding.adView.loadAd(adRequest);
         employBinding.btnAddEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

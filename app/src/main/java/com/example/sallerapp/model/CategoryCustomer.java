@@ -5,12 +5,9 @@ public class CategoryCustomer {
     private String nameCategory;
     private String note;
 
-    public CategoryCustomer(String idCategory, String nameCategory, String note) {
-        this.idCategory = idCategory;
-        this.nameCategory = nameCategory;
-        this.note = note;
-    }
+    public CategoryCustomer(){
 
+    }
     public String getIdCategory() {
         return idCategory;
     }

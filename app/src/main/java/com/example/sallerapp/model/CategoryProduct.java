@@ -6,12 +6,6 @@ public class CategoryProduct {
     private String nameCategory;
     private String note;
 
-    public CategoryProduct(String idCategory, String nameCategory, String note) {
-        this.idCategory = idCategory;
-        this.nameCategory = nameCategory;
-        this.note = note;
-    }
-
     public CategoryProduct(){
 
     }

@@ -8,20 +8,6 @@ public class Customer {
     private String customerType;
     private String note;
 
-    public Customer(String customerId
-            , String customerName
-            , String address
-            , String numberPhone
-            , String customerType
-            , String note) {
-        this.customerId = customerId;
-        this.customerName = customerName;
-        this.address = address;
-        this.numberPhone = numberPhone;
-        this.customerType = customerType;
-        this.note = note;
-    }
-
     public String getCustomerId() {
         return customerId;
     }

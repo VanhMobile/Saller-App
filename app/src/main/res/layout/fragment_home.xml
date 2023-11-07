@@ -47,6 +47,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <LinearLayout
@@ -189,6 +190,14 @@
                     android:layout_marginTop="@dimen/_10sdp" />
             </LinearLayout>
 
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-5261855707351600/9062425237"></com.google.android.gms.ads.AdView>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -299,6 +308,16 @@
                         android:textSize="@dimen/_11ssp" />
                 </RelativeLayout>
             </LinearLayout>
+
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView2"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-5261855707351600/9062425237">
+            </com.google.android.gms.ads.AdView>
 
             <include
                 android:id="@+id/shortcut"
