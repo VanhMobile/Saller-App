@@ -8,15 +8,14 @@ public class Employee {
     private String address;
     private String password;
     private String idShop;
+    private String note;
 
-    public Employee( String imgPath, String name, String idEmployee, String numberPhone, String address, String password, String idShop) {
-        this.imgPath = imgPath;
-        this.name = name;
-        this.idEmployee = idEmployee;
-        this.numberPhone = numberPhone;
-        this.address = address;
-        this.password = password;
-        this.idShop = idShop;
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getName() {

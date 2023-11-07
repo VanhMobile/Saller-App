@@ -16,15 +16,6 @@ public class ShopAccount {
         this.password = password;
     }
 
-    public ShopAccount(String shopId, String address, String email, String numberPhone, String shopName, String password) {
-        this.shopId = shopId;
-        this.address = address;
-        this.email = email;
-        this.numberPhone = numberPhone;
-        this.shopName = shopName;
-        this.password = password;
-    }
-
     public ShopAccount() {
 
     }

@@ -12,6 +12,7 @@ import com.example.sallerapp.R;
 import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.databinding.FragmentListCustomersBinding;
 import com.example.sallerapp.funtions.MyFragment;
+import com.google.android.gms.ads.AdRequest;
 
 
 public class Fragment_list_customers extends Fragment {
@@ -27,6 +28,8 @@ public class Fragment_list_customers extends Fragment {
     }
 
     private void initView() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        listCustomerBinding.adView.loadAd(adRequest);
         listCustomerBinding.addCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
