@@ -3,9 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="@dimen/_5sdp"
+    android:id="@+id/attPro"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <TextView
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_10ssp"
@@ -16,6 +18,7 @@
         android:fontFamily="@font/inter_light"
         />
     <TextView
+        android:id="@+id/quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/_10ssp"

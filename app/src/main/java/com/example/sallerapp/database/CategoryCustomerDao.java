@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.CategoryCustomer;
+import com.example.sallerapp.model.CategoryProduct;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 public class CategoryCustomerDao {
 
     private static String TAG = CategoryCustomerDao.class.getSimpleName();
-    private static ArrayList<CategoryCustomer> categoryCustomers = new ArrayList<>();
 
     //thêm một danh mục khách hàng trong db
     public static void insertCategoryCustomer(CategoryCustomer categoryCustomer, String idShopAccount) {
@@ -28,7 +28,8 @@ public class CategoryCustomerDao {
                 .setValue(categoryCustomer);
     }
 
-    public static ArrayList<CategoryCustomer> getCategoryCustomers(String idShopAccount){
+    public static void getCategoryCustomers(String idShopAccount,GetData data){
+        ArrayList<CategoryCustomer> categoryCustomers = new ArrayList<>();
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         db.child(idShopAccount)
                 .child("CategoryCustomers")
@@ -40,6 +41,7 @@ public class CategoryCustomerDao {
                                 CategoryCustomer categoryCustomer = dataSnapshot.getValue(CategoryCustomer.class);
                                 Log.e(TAG,categoryCustomer.getIdCategory());
                             }
+                            data.getData(categoryCustomers);
                         }else{
                             Log.e(TAG,"Ko có dữ liệu ở trong CategoryCustomers");
                         }
@@ -50,6 +52,9 @@ public class CategoryCustomerDao {
                         Log.e(TAG,"Ko thể đọc dữ liệu: " + error.toString());
                     }
                 });
-        return categoryCustomers;
+    }
+
+    public interface GetData{
+        void getData(ArrayList<CategoryCustomer> categoryCustomers);
     }
 }

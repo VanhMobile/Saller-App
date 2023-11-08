@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/catePro"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/NameCategoryProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Loại 1"
+        android:fontFamily="@font/inter_light"
+        android:padding="@dimen/_5sdp"/>
+</LinearLayout>

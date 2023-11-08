@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.sallerapp.model.CategoryProduct;
 import com.example.sallerapp.model.ShopAccount;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,8 +15,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class AccountDao {
-
-    private static ArrayList<ShopAccount> shopAccounts = new ArrayList<>();
     private static String TAG = AccountDao.class.getSimpleName();
 
 
@@ -27,8 +26,9 @@ public class AccountDao {
 
 
     // lấy list account shop
-    public static ArrayList<ShopAccount> GetShopAccounts(){
+    public static void GetShopAccounts(GetData data){
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        ArrayList<ShopAccount> shopAccounts = new ArrayList<>();
         db.child("ShopAccount").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -40,6 +40,8 @@ public class AccountDao {
                         shopAccounts.add(shopAccount);
                         Log.e(TAG,shopAccount.getShopId());
                     }
+
+                    data.getData(shopAccounts);
 
                 }else{
                     // snap ko có dữ liệu
@@ -53,6 +55,9 @@ public class AccountDao {
                 Log.e(TAG,"không thể đọc dữ liệu");
             }
         });
-        return shopAccounts;
+    }
+
+    public interface GetData{
+        void getData(ArrayList<ShopAccount> shopAccounts);
     }
 }

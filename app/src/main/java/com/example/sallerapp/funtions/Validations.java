@@ -142,12 +142,12 @@ public class Validations {
                 try {
                     int quantity = Integer.parseInt(charSequence.toString().trim());
                     if (quantity <= 0) {
-                        editText.setError("Số lượng không thể âm");
+                        editText.setError("Dữ liệu không thể âm");
                     } else {
                         editText.setError(null);
                     }
                 } catch (Exception e) {
-                    editText.setError("Số lượng không thể là ký tự");
+                    editText.setError("Dự liệu không thể là ký tự");
                 }
             }
 
@@ -163,13 +163,13 @@ public class Validations {
         try {
             int quantity = Integer.parseInt(editText.getText().toString().trim());
             if (quantity <= 0) {
-                editText.setError("Số lượng không thể âm");
+                editText.setError("Dữ liệu không thể âm");
                 return false;
             } else {
                 editText.setError(null);
             }
         } catch (Exception e) {
-            editText.setError("Số lượng không thể là ký tự");
+            editText.setError("Dữ liệu không thể là ký tự");
             return false;
         }
         return true;
