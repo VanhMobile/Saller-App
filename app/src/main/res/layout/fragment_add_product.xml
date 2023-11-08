@@ -248,7 +248,7 @@
                 android:drawableEnd="@drawable/icon_triangle_down"
                 android:fontFamily="@font/inter_light"
                 android:padding="@dimen/_6sdp"
-                android:text="Hàng bán chạy"
+                android:text="Chọn loại hàng hóa"
                 android:textColor="@color/black" />
 
             <LinearLayout
@@ -297,7 +297,8 @@
                     android:paddingHorizontal="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     tools:listitem="@layout/item_attribute_product"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="@dimen/_90sdp"/>
+
             </LinearLayout>
 
             <TextView
