@@ -65,6 +65,15 @@
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingHorizontal="@dimen/_10sdp">
 
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-5261855707351600/9062425237"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

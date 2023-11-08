@@ -12,6 +12,8 @@ public class IdGenerator {
     private static int countBill = 0;
     private static int countCus = 0;
 
+    // hàm tạo id shop tự động dùng biến count cho id tặng tự động , dùng sharedperferences để lưu trữ.
+
     public static String generateNextShopId(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         count = sharedPreferences.getInt(SHOP_ID_KEY, 0);

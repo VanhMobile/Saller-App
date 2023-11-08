@@ -37,6 +37,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <TextView
+        android:id="@+id/tvAddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edt_add_bill"
+        android:drawableStart="@drawable/icon_add_circle_green"
+        android:drawablePadding="@dimen/_7sdp"
+        android:fontFamily="@font/inter_bold"
+        android:padding="@dimen/_8sdp"
+        android:text="Thêm hàng"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textColor="@color/line"
+        android:textSize="@dimen/_11ssp"
+        app:layout_constraintEnd_toEndOf="@+id/search_pro_dialog"
+        app:layout_constraintStart_toStartOf="@+id/search_pro_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/search_pro_dialog" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reyAddProDialog"
         android:layout_width="match_parent"
@@ -45,7 +62,7 @@
         android:paddingVertical="@dimen/_10sdp"
         app:layout_constraintBottom_toTopOf="@+id/view5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_pro_dialog" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddProduct" />
 
     <View
         android:id="@+id/view5"

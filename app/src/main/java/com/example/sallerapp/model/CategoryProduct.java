@@ -1,15 +1,21 @@
 package com.example.sallerapp.model;
 
 public class CategoryProduct {
+
+    private String idCategory;
     private String nameCategory;
     private String note;
 
-    public CategoryProduct(String nameCategory, String note) {
-        this.nameCategory = nameCategory;
-        this.note = note;
-    }
-    public CategoryProduct() {
+    public CategoryProduct(){
 
+    }
+
+    public String getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(String idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getNameCategory() {

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.sallerapp.controller.fragment.AccountFragment;
 import com.example.sallerapp.controller.fragment.AddProductFragment;
 import com.example.sallerapp.controller.fragment.Fragment_list_bill;
 import com.example.sallerapp.controller.fragment.HomeFragment;
@@ -14,6 +15,7 @@ import com.example.sallerapp.controller.fragment.ListEmployeeFragment;
 import com.example.sallerapp.controller.fragment.ListProductsFragment;
 import com.example.sallerapp.databinding.ActivityMainBinding;
 import com.example.sallerapp.funtions.MyFragment;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
-
         initView();
     }
 
@@ -61,7 +62,10 @@ public class MainActivity extends AppCompatActivity {
                             , new ListProductsFragment()
                             , false);
                 } else if (item.getItemId() == R.id.bottomNavAccount) {
-                    
+                    MyFragment.replaceFragment(MainActivity.this.getSupportFragmentManager()
+                            , R.id.fragmentContainer
+                            , new AccountFragment()
+                            , false);
                 }
                 return true;
             }
