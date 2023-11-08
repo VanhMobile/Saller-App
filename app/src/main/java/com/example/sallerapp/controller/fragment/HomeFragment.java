@@ -14,8 +14,11 @@ import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.EmployeeActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.FragmentHomeBinding;
+import com.example.sallerapp.desgin_pattern.build_pantter.ProductBuilder;
 import com.example.sallerapp.funtions.RequestPermissions;
+import com.example.sallerapp.model.Product;
 import com.google.android.gms.ads.AdRequest;
 
 
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView() {
+
 
         AdRequest adRequest = new AdRequest.Builder().build();
         homeBinding.adView.loadAd(adRequest);

@@ -3,6 +3,10 @@ package com.example.sallerapp.desgin_pattern.build_pantter;
 import com.example.sallerapp.model.Product;
 
 public class ProductBuilder {
+
+    public ProductBuilder(){
+
+    }
     private Product product = new Product();
 
     public ProductBuilder addImgPath(String imgPath){
