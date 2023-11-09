@@ -1,8 +1,11 @@
 package com.example.sallerapp.model;
 
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product {
+public class Product implements Serializable {
     private String imgPath;
     private String productId;
     private String productName;
@@ -105,5 +108,11 @@ public class Product {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.getProductName() +" "+ this.getCate();
     }
 }
