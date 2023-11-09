@@ -48,6 +48,11 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder addCategory(String cate){
+        product.setCate(cate);
+        return this;
+    }
+
     public ProductBuilder addDate(String date){
         product.setDate(date);
         return this;
