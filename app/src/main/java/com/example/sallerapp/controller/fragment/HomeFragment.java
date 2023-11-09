@@ -57,6 +57,10 @@ public class HomeFragment extends Fragment{
 
     private void initView() {
 
+        Product product = new ProductBuilder().addId("SP23").addProductName("tu").build();
+
+
+
 
         AdRequest adRequest = new AdRequest.Builder().build();
         homeBinding.adView.loadAd(adRequest);
