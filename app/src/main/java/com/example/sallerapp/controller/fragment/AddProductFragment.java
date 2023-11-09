@@ -196,6 +196,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
         });
     }
 
+    // hàm đưa sp lên database
     private void insertProd() {
         int count = 0;
         if (Validations.isEmptyPress(productBinding.edtProductId)){
@@ -237,6 +238,11 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             count ++;
         }
 
+        if (productBinding.tvCategoryProduct.getText().toString().equals("Chọn loại hàng hóa")){
+            Toast.makeText(requireActivity(),"Loại sản phận rỗng",Toast.LENGTH_SHORT).show();
+            count++;
+        }
+
         if (count != 0){
             return;
         }
@@ -269,6 +275,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
         }
     }
 
+    // tạo hàm tạo cho sp vs 4 trường hợp
     private void createPro(String imgPath) {
        if (attributeProducts.isEmpty()){
            String idPro = productBinding.edtProductId.getText().toString();
@@ -280,7 +287,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
            String categoryPro = productBinding.tvCategoryProduct.getText().toString();
            String dateTime = productBinding.date.getText().toString();
            String note = productBinding.edtNote.getText().toString();
-
            Product product = new ProductBuilder()
                    .addImgPath(imgPath)
                    .addId(idPro)
@@ -306,7 +312,10 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                String categoryPro = productBinding.tvCategoryProduct.getText().toString();
                String dateTime = productBinding.date.getText().toString();
                String note = productBinding.edtNote.getText().toString();
-
+               if (categoryPro.equals("Chọn loại hàng hóa")){
+                   Toast.makeText(requireActivity(),"Loại sản phận rỗng",Toast.LENGTH_SHORT).show();
+                   return;
+               }
                Product product = new ProductBuilder()
                        .addImgPath(imgPath)
                        .addId(idPro)
@@ -325,6 +334,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
        }
     }
 
+    // thêm xong xóa bỏ data
     private void clearData() {
         productBinding.edtProductId.setText("");
         productBinding.edtProductId.clearFocus();
@@ -342,6 +352,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
         attributeProductAdapter.notifyDataSetChanged();
     }
 
+    // dialog lấy tg tùy chọn
     private void datePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 requireContext(),
@@ -365,6 +376,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
         datePickerDialog.show();
     }
 
+    // dialog thêm thuộc tính cho sản phẩm
     private void bottomSheetAtt() {
         DialogAttributeProductBinding attributeProductBinding = DialogAttributeProductBinding.inflate(getLayoutInflater());
         Dialog dialogAtt = new Dialog(requireContext());
@@ -404,6 +416,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
         dialogAtt.show();
     }
 
+    // chọn loại sản phẩm
     private void showDiaLogCategory() {
         BottomDialogCategoryProductBinding categoryProductBinding = BottomDialogCategoryProductBinding.inflate(getLayoutInflater());
         BottomSheetDialog cateProDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
@@ -437,6 +450,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
         cateProDialog.show();
     }
 
+    // dialog chọn ảnh từ cam hay thư viện
     private void showDialog() {
         BottomDialogCameraBinding cameraBinding = BottomDialogCameraBinding.inflate(getLayoutInflater());
         dialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
@@ -459,6 +473,8 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
 
         dialog.show();
     }
+
+    // sử lý lấy ảnh ra
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -482,6 +498,8 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         }
     }
+
+    // xóa thuộc tính sản phẩm
     @Override
     public void delete(AttributeProduct attributeProduct) {
         attributeProducts.remove(attributeProduct);

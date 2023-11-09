@@ -4,19 +4,38 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sallerapp.R;
+import com.example.sallerapp.adapter.CateProductDialogAdapter;
+import com.example.sallerapp.adapter.ListProductAdapter;
+import com.example.sallerapp.controller.view.DetailProductActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.CategoryProductDao;
+import com.example.sallerapp.database.ProductDao;
+import com.example.sallerapp.databinding.BottomDialogFilterProBinding;
 import com.example.sallerapp.databinding.FragmentListProductsBinding;
+import com.example.sallerapp.model.CategoryProduct;
+import com.example.sallerapp.model.Product;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class ListProductsFragment extends Fragment {
 
     private FragmentListProductsBinding productsBinding;
+
+    ListProductAdapter productAdapter;
 
     public ListProductsFragment() {
         // Required empty public constructor
@@ -51,5 +70,86 @@ public class ListProductsFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        ProductDao.getProducts("Shop_1", new ProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<Product> products) {
+                productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
+                    @Override
+                    public void clickBtnAdd(Product product) {
+
+                    }
+
+                    @Override
+                    public void clickItem(Product product) {
+                        Intent intent = new Intent(requireContext(), DetailProductActivity.class);
+                        intent.putExtra("product",product);
+                        startActivity(intent);
+                    }
+                });
+
+                productsBinding.recyclerListProducts.setAdapter(productAdapter);
+                productsBinding.recyclerListProducts.setLayoutManager(new LinearLayoutManager(requireContext()));
+                productsBinding.edtSearchProduct.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        productAdapter.filter(charSequence.toString());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+
+                productsBinding.tvFilter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showDiaLogCatePro(products);
+                    }
+                });
+            }
+        });
+    }
+
+    private void showDiaLogCatePro(ArrayList<Product> products) {
+        BottomDialogFilterProBinding filterProBinding = BottomDialogFilterProBinding.inflate(getLayoutInflater());
+        BottomSheetDialog bottomFilter= new BottomSheetDialog(requireContext(),R.style.BottomSheetDialogThem);
+        bottomFilter.setContentView(filterProBinding.getRoot());
+
+        filterProBinding.filterAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                productAdapter.setData(products);
+                productsBinding.tvFilter.setText("Tất cả");
+                bottomFilter.dismiss();
+            }
+        });
+
+        CategoryProductDao.getCategoryProduct("Shop_1", new CategoryProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<CategoryProduct> categoryProducts) {
+                CateProductDialogAdapter adapter = new CateProductDialogAdapter(categoryProducts, new CateProductDialogAdapter.Click() {
+                    @Override
+                    public void click(String nameCatePro) {
+                       ArrayList<Product> filterList = (ArrayList<Product>)  products.stream()
+                               .filter(item -> item.getCate().equals(nameCatePro))
+                               .collect(Collectors.toList());
+                       productAdapter.setData(filterList);
+                       productsBinding.tvFilter.setText(nameCatePro);
+                       bottomFilter.dismiss();
+                    }
+                });
+                filterProBinding.reyCateProductDialog.setAdapter(adapter);
+                filterProBinding.reyCateProductDialog.setLayoutManager(new LinearLayoutManager(requireContext()));
+            }
+        });
+
+        bottomFilter.show();
     }
 }
