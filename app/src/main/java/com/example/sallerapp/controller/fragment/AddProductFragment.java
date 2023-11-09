@@ -4,6 +4,7 @@ import static android.app.Activity.RESULT_OK;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -11,12 +12,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,21 +33,31 @@ import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.AttributeProductAdapter;
 import com.example.sallerapp.adapter.CateProductDialogAdapter;
-import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.database.CategoryProductDao;
+import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.BottomDialogCameraBinding;
 import com.example.sallerapp.databinding.BottomDialogCategoryProductBinding;
 import com.example.sallerapp.databinding.DialogAttributeProductBinding;
 import com.example.sallerapp.databinding.FragmentAddProductBinding;
+import com.example.sallerapp.desgin_pattern.build_pantter.ProductBuilder;
+import com.example.sallerapp.funtions.FirebaseUtil;
+import com.example.sallerapp.funtions.MyDialog;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.funtions.RequestPermissions;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.AttributeProduct;
-import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.CategoryProduct;
+import com.example.sallerapp.model.Product;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,10 +68,17 @@ import java.util.Date;
 public class AddProductFragment extends Fragment implements AttributeProductAdapter.Click {
 
     private FragmentAddProductBinding productBinding;
+    private static final String TAG = AddProductFragment.class.getSimpleName();
     Bitmap imageBitmap;
     BottomSheetDialog dialog;
     ArrayList<AttributeProduct> attributeProducts ;
     AttributeProductAdapter attributeProductAdapter;
+
+    Date today = new Date();
+    // Định dạng ngày
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+    ProgressDialog progressDialog;
 
 
     public AddProductFragment() {
@@ -103,13 +125,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         });
 
-        Validations.isEmpty(productBinding.edtProductId);
-        Validations.isEmpty(productBinding.edtNameProduct);
-        Validations.isQuantity(productBinding.edtProductCost);
-        Validations.isQuantity(productBinding.edtRetailProduct);
-        Validations.isQuantity(productBinding.edtWholeSalePriceProduct);
-        Validations.isQuantity(productBinding.edtQuantityProduct);
-
         productBinding.btnAddAttPro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,9 +146,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         });
 
-        Date today = new Date();
-        // Định dạng ngày
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         productBinding.date.setText(dateFormat.format(today));
 
         productBinding.btnBack.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +155,191 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                 requireActivity().finish();
             }
         });
+
+        ProductDao.getProducts("Shop_1", new ProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<Product> products) {
+                productBinding.edtProductId.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        products.forEach(o -> {
+                            String[] id = o.getProductId().split("_");
+                            if (id[0].equals(charSequence.toString())){
+                                productBinding.edtProductId.setError("ID sản phẩm không thể trùng");
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+            }
+        });
+        productBinding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertProd();
+            }
+        });
+        productBinding.imgSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertProd();
+            }
+        });
+    }
+
+    private void insertProd() {
+        int count = 0;
+        if (Validations.isEmptyPress(productBinding.edtProductId)){
+            count ++;
+        }
+
+        if (Validations.isEmptyPress(productBinding.edtNameProduct)){
+            count ++;
+        }
+        if(!Validations.isEmptyPress(productBinding.edtProductCost)){
+            if (!Validations.isQuantityPress(productBinding.edtProductCost)){
+                count ++;
+            }
+        }else {
+            count ++;
+        }
+
+        if(!Validations.isEmptyPress(productBinding.edtRetailProduct)){
+            if (!Validations.isQuantityPress(productBinding.edtRetailProduct)){
+                count ++;
+            }
+        }else {
+            count ++;
+        }
+
+        if(!Validations.isEmptyPress(productBinding.edtWholeSalePriceProduct)){
+            if (!Validations.isQuantityPress(productBinding.edtWholeSalePriceProduct)){
+                count ++;
+            }
+        }else {
+            count ++;
+        }
+
+        if(!Validations.isEmptyPress(productBinding.edtQuantityProduct)){
+            if (!Validations.isQuantityPress(productBinding.edtQuantityProduct)){
+                count ++;
+            }
+        }else {
+            count ++;
+        }
+
+        if (count != 0){
+            return;
+        }
+
+        if (imageBitmap != null){
+            StorageReference sdb = FirebaseStorage.getInstance().getReference().child(productBinding.edtProductId.getText().toString());
+            ByteArrayOutputStream ops = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG,100,ops);
+            byte[] imgData = ops.toByteArray();
+
+            UploadTask uploadTask = sdb.putBytes(imgData);
+            MyDialog.showProgressDialog("Đang tải lên...", requireContext());
+            uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    MyDialog.dismissProgressDialog();
+                    sdb.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String imgUrl = uri.toString();
+                            createPro(imgUrl);
+                        }
+                    });
+                }
+            });
+
+        }else {
+            createPro("");
+            Toast.makeText(requireContext(),"Thêm sản phẩm thành công",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void createPro(String imgPath) {
+       if (attributeProducts.isEmpty()){
+           String idPro = productBinding.edtProductId.getText().toString();
+           String namePro = productBinding.edtNameProduct.getText().toString();
+           int cost = Integer.parseInt(productBinding.edtProductCost.getText().toString());
+           int retailPrice = Integer.parseInt(productBinding.edtRetailProduct.getText().toString());
+           int wholeSalePrice = Integer.parseInt(productBinding.edtWholeSalePriceProduct.getText().toString());
+           int quantity = Integer.parseInt(productBinding.edtQuantityProduct.getText().toString());
+           String categoryPro = productBinding.tvCategoryProduct.getText().toString();
+           String dateTime = productBinding.date.getText().toString();
+           String note = productBinding.edtNote.getText().toString();
+
+           Product product = new ProductBuilder()
+                   .addImgPath(imgPath)
+                   .addId(idPro)
+                   .addProductName(namePro)
+                   .addCost(cost)
+                   .addRetailPrice(retailPrice)
+                   .addWholeSalePrice(wholeSalePrice)
+                   .addQuantity(quantity)
+                   .addCategory(categoryPro)
+                   .addDate(dateTime)
+                   .addNote(note)
+                   .build();
+           ProductDao.insertProduct(product, "Shop_1");
+           clearData();
+       }else {
+           for (int i = 0; i < attributeProducts.size(); i++){
+               String idPro = productBinding.edtProductId.getText().toString() + "_BT_"+i;
+               String namePro = productBinding.edtNameProduct.getText().toString()+ " " + attributeProducts.get(i).getAttribute();
+               int cost = Integer.parseInt(productBinding.edtProductCost.getText().toString());
+               int retailPrice = Integer.parseInt(productBinding.edtRetailProduct.getText().toString());
+               int wholeSalePrice = Integer.parseInt(productBinding.edtWholeSalePriceProduct.getText().toString());
+               int quantity = Integer.parseInt(productBinding.edtQuantityProduct.getText().toString());
+               String categoryPro = productBinding.tvCategoryProduct.getText().toString();
+               String dateTime = productBinding.date.getText().toString();
+               String note = productBinding.edtNote.getText().toString();
+
+               Product product = new ProductBuilder()
+                       .addImgPath(imgPath)
+                       .addId(idPro)
+                       .addProductName(namePro)
+                       .addCost(cost)
+                       .addRetailPrice(retailPrice)
+                       .addWholeSalePrice(wholeSalePrice)
+                       .addQuantity(quantity)
+                       .addCategory(categoryPro)
+                       .addDate(dateTime)
+                       .addNote(note)
+                       .build();
+               ProductDao.insertProduct(product, "Shop_1");
+           }
+           clearData();
+       }
+    }
+
+    private void clearData() {
+        productBinding.edtProductId.setText("");
+        productBinding.edtProductId.clearFocus();
+        productBinding.edtNameProduct.setText("");
+        productBinding.edtProductCost.setText("");
+        productBinding.edtRetailProduct.setText("");
+        productBinding.edtWholeSalePriceProduct.setText("");
+        productBinding.edtQuantityProduct.setText("");
+        productBinding.tvCategoryProduct.setText("Chọn loại hang hóa");
+        productBinding.addImgProduct.setVisibility(View.VISIBLE);
+        productBinding.imgProduct.setVisibility(View.GONE);
+        productBinding.date.setText(dateFormat.format(today));
+        productBinding.edtNote.setText("");
+        attributeProducts.clear();
+        attributeProductAdapter.notifyDataSetChanged();
     }
 
     private void datePickerDialog() {
@@ -219,7 +416,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                         , new AddCategoryProductFragment()
                         , true);
                 cateProDialog.dismiss();
-
             }
         });
 
@@ -263,7 +459,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
 
         dialog.show();
     }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -287,7 +482,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         }
     }
-
     @Override
     public void delete(AttributeProduct attributeProduct) {
         attributeProducts.remove(attributeProduct);

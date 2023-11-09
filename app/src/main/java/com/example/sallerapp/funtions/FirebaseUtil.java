@@ -18,10 +18,10 @@ import java.io.ByteArrayOutputStream;
 public class FirebaseUtil {
 
     private static String TAG = FirebaseUtil.class.getSimpleName();
+    private static String path;
 
-    public static void upLoadImg(Bitmap bitmap, String imgName){
+    public static String upLoadImg(Bitmap bitmap, String imgName){
         StorageReference sdb = FirebaseStorage.getInstance().getReference();
-
         ByteArrayOutputStream ops = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,ops);
         byte[] imgData = ops.toByteArray();
@@ -33,8 +33,7 @@ public class FirebaseUtil {
                         sdb.child(imgName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                String imgUrl = uri.toString();
-                                Log.d(TAG, "Upload successful. Image URL: " + imgUrl);
+                                path = uri.getPath().toString();
                             }
                         });
                     }
@@ -52,6 +51,7 @@ public class FirebaseUtil {
                         Log.d(TAG, "Upload is " + progress + "% done");
                     }
                 });
+        return path;
     }
 
 }
