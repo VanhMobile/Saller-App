@@ -10,11 +10,21 @@ public class Product {
     private int retailPrice;
     private int wholeSalePrice;
     private int quantity;
+
+    private String cate;
     private String properties;
     private String date;
     private String note;
 
     public Product() {
+    }
+
+    public String getCate() {
+        return cate;
+    }
+
+    public void setCate(String cate) {
+        this.cate = cate;
     }
 
     public String getImgPath() {
