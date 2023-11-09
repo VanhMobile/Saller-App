@@ -14,12 +14,22 @@ import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.EmployeeActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.CategoryProductDao;
+import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.FragmentHomeBinding;
-import com.example.sallerapp.funtions.RequestPermissions;
+import com.example.sallerapp.desgin_pattern.build_pantter.CategoryProductBuilder;
+import com.example.sallerapp.desgin_pattern.build_pantter.ProductBuilder;
 import com.example.sallerapp.funtions.IdGenerator;
+import com.example.sallerapp.funtions.RequestPermissions;
+import com.example.sallerapp.model.CategoryProduct;
+import com.example.sallerapp.model.Product;
+import com.google.android.gms.ads.AdRequest;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment{
 
     private FragmentHomeBinding homeBinding;
 
@@ -46,9 +56,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView() {
-        RequestPermissions.requestReadImgGalleryCamera(requireContext());
-        Log.e("check0", IdGenerator.generateNextShopId(requireContext()));
-        Log.e("check1", IdGenerator.generateNextShopId(requireContext()));
+
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+        homeBinding.adView.loadAd(adRequest);
+        homeBinding.adView2.loadAd(adRequest);
 
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.sallerapp.model.Bill;
+import com.example.sallerapp.model.CategoryProduct;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,8 +18,6 @@ public class BillDao {
 
     private static String TAG = BillDao.class.getSimpleName();
 
-    private static ArrayList<Bill> bills = new ArrayList<>();
-
     // thêm một hóa đơn vào db
     public static void insertBill(Bill bill, String idShopAccount){
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
@@ -29,8 +28,9 @@ public class BillDao {
         Log.e(TAG,"Thêm sản phẩm thành công");
     }
 
-    public static ArrayList<Bill> GetBills(String idShopAccount){
+    public static void GetBills(String idShopAccount, GetData data){
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        ArrayList<Bill> bills = new ArrayList<>();
         db.child(idShopAccount)
                 .child("Bills")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -42,6 +42,7 @@ public class BillDao {
                                 bills.add(bill);
                                 Log.e(TAG,bill.getBillId());
                             }
+                            data.getData(bills);
                         }else{
                             Log.e(TAG,"Ko có dữ liệu ở trong bills");
                         }
@@ -52,8 +53,9 @@ public class BillDao {
                         Log.e(TAG,"Ko thể đọc dữ liệu: " + error.toString());
                     }
                 });
-        return bills;
     }
 
-
+    public interface GetData{
+        void getData(ArrayList<Bill> bills);
+    }
 }

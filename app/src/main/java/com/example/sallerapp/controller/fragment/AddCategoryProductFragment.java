@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sallerapp.R;
+import com.example.sallerapp.databinding.FragmentAddCategoryProductBinding;
+import com.google.android.gms.ads.AdRequest;
 
 
 public class AddCategoryProductFragment extends Fragment {
 
-
-
+    private FragmentAddCategoryProductBinding categoryProductBinding;
     public AddCategoryProductFragment() {
         // Required empty public constructor
     }
@@ -32,6 +33,13 @@ public class AddCategoryProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_category_product, container, false);
+        categoryProductBinding = FragmentAddCategoryProductBinding.inflate(inflater,container,false);
+        initView();
+        return categoryProductBinding.getRoot();
+    }
+
+    private void initView() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        categoryProductBinding.adView.loadAd(adRequest);
     }
 }

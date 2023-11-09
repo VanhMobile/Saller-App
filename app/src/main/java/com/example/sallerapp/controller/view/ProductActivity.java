@@ -21,22 +21,29 @@ public class ProductActivity extends AppCompatActivity {
 
     private void initView() {
         Intent intent = getIntent();
-        String message = intent.getStringExtra("product");
-        if (message != null){
-            switch (message){
-                case "addProduct":
-                    MyFragment.replaceFragment(ProductActivity.this.getSupportFragmentManager()
-                            , R.id.fragmentAddPro
-                            , new AddProductFragment()
-                            , true);
-                    break;
-                case "categoryProduct":
-                    MyFragment.replaceFragment(ProductActivity.this.getSupportFragmentManager()
-                            , R.id.fragmentAddPro
-                            , new CategoryProductFragment()
-                            , true);
-                    break;
+        if (intent != null){
+            String message = intent.getStringExtra("product");
+            if (message != null){
+                switch (message){
+                    case "addProduct":
+                        MyFragment.replaceFragment(ProductActivity.this.getSupportFragmentManager()
+                                , R.id.fragmentAddPro
+                                , new AddProductFragment()
+                                , true);
+                        break;
+                    case "categoryProduct":
+                        MyFragment.replaceFragment(ProductActivity.this.getSupportFragmentManager()
+                                , R.id.fragmentAddPro
+                                , new CategoryProductFragment()
+                                , true);
+                        break;
+                }
             }
+        }else{
+            MyFragment.replaceFragment(ProductActivity.this.getSupportFragmentManager()
+                    , R.id.fragmentAddPro
+                    , new AddProductFragment()
+                    , true);
         }
     }
 }

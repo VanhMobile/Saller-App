@@ -15,6 +15,7 @@ import com.example.sallerapp.controller.fragment.ListEmployeeFragment;
 import com.example.sallerapp.controller.fragment.ListProductsFragment;
 import com.example.sallerapp.databinding.ActivityMainBinding;
 import com.example.sallerapp.funtions.MyFragment;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
-
         initView();
     }
 

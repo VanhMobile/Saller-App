@@ -18,41 +18,10 @@ import java.io.ByteArrayOutputStream;
 public class FirebaseUtil {
 
     private static String TAG = FirebaseUtil.class.getSimpleName();
+    private static String path;
 
-    public static void upLoadImgGallery(Uri filePath, String imgName) {
+    public static String upLoadImg(Bitmap bitmap, String imgName){
         StorageReference sdb = FirebaseStorage.getInstance().getReference();
-        sdb.child(imgName).putFile(filePath)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        sdb.child(imgName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String imgUrl = uri.toString();
-                                Log.d(TAG, "Upload successful. Image URL: " + imgUrl);
-                            }
-                        });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG,"Lỗi : " + e.toString());
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        double progress = (100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount());
-                        Log.d(TAG, "Upload is " + progress + "% done");
-                    }
-                });
-    }
-
-
-    public static void upLoadImgCamera(Bitmap bitmap, String imgName){
-        StorageReference sdb = FirebaseStorage.getInstance().getReference();
-
         ByteArrayOutputStream ops = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,ops);
         byte[] imgData = ops.toByteArray();
@@ -64,8 +33,7 @@ public class FirebaseUtil {
                         sdb.child(imgName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                String imgUrl = uri.toString();
-                                Log.d(TAG, "Upload successful. Image URL: " + imgUrl);
+                                path = uri.getPath().toString();
                             }
                         });
                     }
@@ -83,6 +51,7 @@ public class FirebaseUtil {
                         Log.d(TAG, "Upload is " + progress + "% done");
                     }
                 });
+        return path;
     }
 
 }

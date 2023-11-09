@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class CustomerDao {
     // thêm một Khách hàng vào db
     private static String TAG = CustomerDao.class.getSimpleName();
-    private static ArrayList<Customer> customers = new ArrayList<>();
     public static void insertCustomer(com.example.sallerapp.model.Customer customer, String idShopAccount) {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         db.child(idShopAccount)
@@ -26,7 +25,8 @@ public class CustomerDao {
     }
 
     // đọc dữ liệu sản phẩm của một xuống
-    public static ArrayList<Customer> getCustomers(String idShopAccount){
+    public static void getCustomers(String idShopAccount, GetData data){
+        ArrayList<Customer> customers = new ArrayList<>();
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         db.child(idShopAccount).child("Customers").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -39,6 +39,7 @@ public class CustomerDao {
                         customers.add(customer);
                         Log.e(TAG,customer.getCustomerId());
                     }
+                    data.getData(customers);
                 } else {
                     // snap ko có dữ liệu
                     Log.e(TAG,"Không có dữ liệu trong customers");
@@ -51,7 +52,9 @@ public class CustomerDao {
                 Log.e(TAG,"Không đọc được dữ liệu từ database: "+ error.toString());
             }
         });
+    }
 
-        return customers;
+    public interface GetData{
+        void getData(ArrayList<Customer> customers);
     }
 }

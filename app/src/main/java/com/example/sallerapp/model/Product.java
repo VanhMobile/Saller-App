@@ -1,8 +1,11 @@
 package com.example.sallerapp.model;
 
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Product {
+public class Product implements Serializable {
     private String imgPath;
     private String productId;
     private String productName;
@@ -10,58 +13,21 @@ public class Product {
     private int retailPrice;
     private int wholeSalePrice;
     private int quantity;
+
+    private String cate;
     private String properties;
     private String date;
     private String note;
-    private ArrayList<String> listBill;
-
-    public Product(String imgPath
-            , String productId
-            , String productName
-            , int cost
-            , int retailPrice
-            , int wholeSalePrice
-            , int quantity
-            , String properties
-            , String date
-            , String note) {
-        this.imgPath = imgPath;
-        this.productId = productId;
-        this.productName = productName;
-        this.cost = cost;
-        this.retailPrice = retailPrice;
-        this.wholeSalePrice = wholeSalePrice;
-        this.quantity = quantity;
-        this.properties = properties;
-        this.date = date;
-        this.note = note;
-    }
-
-    public Product(String imgPath
-            , String productId
-            , String productName
-            , int cost
-            , int retailPrice
-            , int wholeSalePrice
-            , int quantity
-            , String properties // đông nghĩa vs attribute
-            , String date
-            , String note
-            , ArrayList<String> listBill) {
-        this.imgPath = imgPath;
-        this.productId = productId;
-        this.productName = productName;
-        this.cost = cost;
-        this.retailPrice = retailPrice;
-        this.wholeSalePrice = wholeSalePrice;
-        this.quantity = quantity;
-        this.properties = properties;
-        this.date = date;
-        this.note = note;
-        this.listBill = listBill;
-    }
 
     public Product() {
+    }
+
+    public String getCate() {
+        return cate;
+    }
+
+    public void setCate(String cate) {
+        this.cate = cate;
     }
 
     public String getImgPath() {
@@ -142,5 +108,11 @@ public class Product {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.getProductName() +" "+ this.getCate();
     }
 }
