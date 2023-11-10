@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.sallerapp.MainActivity;
@@ -55,9 +56,12 @@ public class Fragment_list_customers extends Fragment {
                 customerArrayList.addAll(customers);
                 listTemp = customers;
                 adapter = new ListCustomerAdapter(customerArrayList);
-                Log.e(TAG, adapter + "\n" + customerArrayList.size() );
+                LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
+                        layoutManager.getOrientation());
+                listCustomerBinding.recyclerViewListCustomer.addItemDecoration(dividerItemDecoration);
                 listCustomerBinding.recyclerViewListCustomer.setAdapter(adapter);
-                listCustomerBinding.recyclerViewListCustomer.setLayoutManager(new LinearLayoutManager(requireContext()));
+                listCustomerBinding.recyclerViewListCustomer.setLayoutManager(layoutManager);
             }
         });
 

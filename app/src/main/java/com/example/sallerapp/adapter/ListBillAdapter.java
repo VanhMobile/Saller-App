@@ -32,7 +32,7 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Bill bill = billArrayList.get(position);
         holder.itemListBillBinding.idBill.setText(bill.getBillId());
-        holder.itemListBillBinding.customerName.setText("test");
+        holder.itemListBillBinding.customerName.setText(bill.getCustomer().getCustomerName());
         holder.itemListBillBinding.priceBill.setText(MoneyFormat.moneyFormat(bill.getSumPrice()));
 
         // thắc mắc ngày tạo bill ?
