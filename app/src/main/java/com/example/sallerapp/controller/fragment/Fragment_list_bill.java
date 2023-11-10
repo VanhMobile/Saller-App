@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.sallerapp.adapter.ListBillAdapter;
@@ -55,8 +56,13 @@ public class Fragment_list_bill extends Fragment {
                 billArrayList = bills;
 
                 adapter = new ListBillAdapter(billArrayList);
+                // Áp dụng DividerItemDecoration cho RecyclerView
+                LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
+                        layoutManager.getOrientation());
+                binding.recyclerViewListBill.addItemDecoration(dividerItemDecoration);
                 binding.recyclerViewListBill.setAdapter(adapter);
-                binding.recyclerViewListBill.setLayoutManager(new LinearLayoutManager(requireContext()));
+                binding.recyclerViewListBill.setLayoutManager(layoutManager);
             }
         });
 

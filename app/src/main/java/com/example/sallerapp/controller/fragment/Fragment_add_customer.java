@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.example.sallerapp.R;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.databinding.FragmentAddCustomerBinding;
+import com.example.sallerapp.desgin_pattern.build_pantter.CustomerBuilder;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.Customer;
 import com.google.android.gms.ads.AdRequest;
@@ -40,21 +41,12 @@ public class Fragment_add_customer extends Fragment {
         binding.btnAddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if (Validations.isPhoneNumberPress(binding.CustomerPhoneNumber)){
-                    CustomerDao.insertCustomer(getCustomr(),"Shop_1");
-                //}
+                if (Validations.isPhoneNumberPress(binding.CustomerPhoneNumber)){
+                    //CustomerDao.insertCustomer(getCustomr(),"Shop_1");
+                    Customer customer = new CustomerBuilder().build();
+                }
             }
         });
     }
 
-    private Customer getCustomr(){
-        Customer customer = new Customer();
-        customer.setCustomerId("0002");
-        customer.setCustomerName(binding.CustomerName.getText().toString());
-        customer.setAddress(binding.CustomerAddress.getText().toString());
-        customer.setNumberPhone(binding.CustomerPhoneNumber.getText().toString());
-        customer.setCustomerType("khách hàng mới");
-        customer.setNote(binding.CustomerAddNote.getText().toString());
-        return  customer;
-    }
 }
