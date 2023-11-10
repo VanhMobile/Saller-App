@@ -308,7 +308,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                int cost = Integer.parseInt(productBinding.edtProductCost.getText().toString());
                int retailPrice = Integer.parseInt(productBinding.edtRetailProduct.getText().toString());
                int wholeSalePrice = Integer.parseInt(productBinding.edtWholeSalePriceProduct.getText().toString());
-               int quantity = Integer.parseInt(productBinding.edtQuantityProduct.getText().toString());
+               int quantity = attributeProducts.get(i).getQuantity();
                String categoryPro = productBinding.tvCategoryProduct.getText().toString();
                String dateTime = productBinding.date.getText().toString();
                String note = productBinding.edtNote.getText().toString();
