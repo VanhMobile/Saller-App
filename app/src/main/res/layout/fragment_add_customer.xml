@@ -84,6 +84,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/CustomerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -106,6 +107,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/CustomerAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -128,6 +130,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/CustomerPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -171,6 +174,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/CustomerAddNote"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
                     android:layout_gravity="center"
@@ -185,6 +189,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAddCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_20sdp"

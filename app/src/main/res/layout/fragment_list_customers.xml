@@ -48,6 +48,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/edtSearchCustomer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
@@ -66,6 +67,7 @@
             ads:adUnitId="ca-app-pub-5261855707351600/9062425237"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewListCustomer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/_10sdp" />
