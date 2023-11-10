@@ -13,6 +13,16 @@ public class Bill {
     private String note;
     private String idAccount;
 
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getIdAccount() {
         return idAccount;
     }
