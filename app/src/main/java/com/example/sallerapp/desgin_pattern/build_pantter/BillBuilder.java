@@ -54,6 +54,11 @@ public class BillBuilder {
         return this;
     }
 
+    public BillBuilder addDate(String date){
+        bill.setDate(date);
+        return this;
+    }
+
     public Bill build(){
         return bill;
     }
