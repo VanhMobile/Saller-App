@@ -38,7 +38,7 @@ public interface ICategoryProduct{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CategoryProduct categoryProduct = categoryProductList.get(position);
-        holder.binding.NameCategoryProduct.setText("Name category product : " +categoryProduct.getNameCategory());
+        holder.binding.NameCategoryProduct.setText( categoryProduct.getNameCategory());
     }
 
     @Override

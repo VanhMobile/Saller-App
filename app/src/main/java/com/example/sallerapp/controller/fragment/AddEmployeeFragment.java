@@ -1,5 +1,6 @@
 package com.example.sallerapp.controller.fragment;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,12 +11,18 @@ import android.view.ViewGroup;
 
 import com.example.sallerapp.R;
 import com.example.sallerapp.databinding.FragmentAddEmployeeBinding;
+import com.example.sallerapp.model.Employee;
 import com.google.android.gms.ads.AdRequest;
+
+import java.util.ArrayList;
 
 
 public class AddEmployeeFragment extends Fragment {
 
     private FragmentAddEmployeeBinding employeeBinding;
+    Bitmap bitmap;
+    ArrayList<Employee> employeeArrayList;
+
 
     public AddEmployeeFragment() {
         // Required empty public constructor
