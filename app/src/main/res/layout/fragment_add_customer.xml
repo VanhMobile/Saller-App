@@ -200,6 +200,7 @@
                     android:padding="@dimen/_10sdp"
                     android:text="Lưu"
                     android:textColor="@color/white"
+                    android:layout_marginBottom="@dimen/_20sdp"
                     android:textSize="@dimen/_15sdp" />
             </LinearLayout>
 

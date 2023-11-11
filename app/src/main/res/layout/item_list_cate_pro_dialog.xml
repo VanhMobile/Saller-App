@@ -11,5 +11,6 @@
         android:textColor="@color/black"
         android:text="Loại 1"
         android:fontFamily="@font/inter_light"
-        android:padding="@dimen/_5sdp"/>
+        android:paddingVertical="@dimen/_5sdp"
+        />
 </LinearLayout>

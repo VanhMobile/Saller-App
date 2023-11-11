@@ -19,6 +19,7 @@ import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.FragmentHomeBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.CategoryProductBuilder;
 import com.example.sallerapp.desgin_pattern.build_pantter.ProductBuilder;
+import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
 import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.RequestPermissions;
 import com.example.sallerapp.model.CategoryProduct;
@@ -61,6 +62,15 @@ public class HomeFragment extends Fragment{
         AdRequest adRequest = new AdRequest.Builder().build();
         homeBinding.adView.loadAd(adRequest);
         homeBinding.adView2.loadAd(adRequest);
+
+        CartShopSingle cartShopSingle = CartShopSingle.getInstance();
+
+        if (cartShopSingle.getCartShops().size() == 0){
+            homeBinding.cartSize.setVisibility(View.GONE);
+        }else{
+            homeBinding.cartSize.setVisibility(View.VISIBLE);
+            homeBinding.cartSize.setText(cartShopSingle.getCartShops().size() + "");
+        }
 
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override

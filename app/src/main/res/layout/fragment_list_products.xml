@@ -63,6 +63,8 @@
         android:background="@drawable/edt_add_product"
         android:textSize="@dimen/_13ssp"
         android:padding="@dimen/_9sdp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:hint="Tìm kiếm sản phẩm"
         android:fontFamily="@font/inter_light"
         android:layout_height="wrap_content"
