@@ -21,9 +21,13 @@ import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.ListProductAdapter;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.database.ProductDao;
+import com.example.sallerapp.databinding.BottomDialogPaymentMotherBinding;
+import com.example.sallerapp.databinding.BottomDialogPriceListBinding;
+import com.example.sallerapp.databinding.DialogAddCustomerBinding;
 import com.example.sallerapp.databinding.DialogAddProductBinding;
 import com.example.sallerapp.databinding.FragmentCreateBillBinding;
 import com.example.sallerapp.model.Product;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -61,6 +65,78 @@ public class CreateBillFragment extends Fragment {
                 ShowDiaLogAddPro();
             }
         });
+
+        createBillBinding.tablePrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDiaLogTablePrice();
+            }
+        });
+
+        createBillBinding.payMethods.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDiaLogPayMethod();
+            }
+        });
+
+        createBillBinding.addCusTomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialogAddCustomer();
+            }
+        });
+    }
+
+    private void showDialogAddCustomer() {
+        DialogAddCustomerBinding addCustomerBinding = DialogAddCustomerBinding.inflate(getLayoutInflater());
+
+    }
+
+
+    private void showDiaLogPayMethod() {
+        BottomDialogPaymentMotherBinding paymentMotherBinding = BottomDialogPaymentMotherBinding.inflate(getLayoutInflater());
+        BottomSheetDialog payMethodDialog = new BottomSheetDialog(requireContext(),R.style.BottomSheetDialogThem);
+        payMethodDialog.setContentView(paymentMotherBinding.getRoot());
+        paymentMotherBinding.btnPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createBillBinding.payMethods.setText("Tiền mặt");
+                payMethodDialog.dismiss();
+            }
+        });
+
+        paymentMotherBinding.btnBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createBillBinding.payMethods.setText("Chuyển khoản");
+                payMethodDialog.dismiss();
+            }
+        });
+
+        payMethodDialog.show();
+    }
+
+    private void showDiaLogTablePrice() {
+        BottomDialogPriceListBinding priceListBinding = BottomDialogPriceListBinding.inflate(getLayoutInflater());
+        BottomSheetDialog priceListDialog = new BottomSheetDialog(requireContext(),R.style.BottomSheetDialogThem);
+        priceListDialog.setContentView(priceListBinding.getRoot());
+        priceListBinding.btnRetailPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createBillBinding.tablePrice.setText("Giá bán lẻ");
+                priceListDialog.dismiss();
+            }
+        });
+
+        priceListBinding.btnDealerPrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createBillBinding.tablePrice.setText("Giá bán sỉ");
+                priceListDialog.dismiss();
+            }
+        });
+        priceListDialog.show();
     }
 
     private void ShowDiaLogAddPro() {
@@ -120,6 +196,8 @@ public class CreateBillFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
 
         addProductBinding.saveDialog.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -39,6 +39,7 @@ public class CategoryCustomerDao {
                         if (snapshot.exists()){
                             for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                                 CategoryCustomer categoryCustomer = dataSnapshot.getValue(CategoryCustomer.class);
+                                categoryCustomers.add(categoryCustomer);
                                 Log.e(TAG,categoryCustomer.getIdCategory());
                             }
                             data.getData(categoryCustomers);

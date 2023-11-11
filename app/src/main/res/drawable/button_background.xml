@@ -2,13 +2,6 @@
 <!-- res/drawable/login_button_background.xml -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- State when Button is pressed -->
-    <item android:state_pressed="true">
-        <shape>
-            <solid android:color="#FF5722"/> <!-- Background color when pressed -->
-            <corners android:radius="8dp"/> <!-- Rounded corners -->
-        </shape>
-    </item>
-    <!-- Default state -->
     <item>
         <shape>
             <solid android:color="@color/line"/> <!-- Background color when not pressed -->

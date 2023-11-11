@@ -5,10 +5,18 @@ public class Employee {
     private String name;
     private String idEmployee;
     private String numberPhone;
-    private String address;
+    private String email;
     private String password;
     private String idShop;
     private String note;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getNote() {
         return note;
@@ -62,13 +70,7 @@ public class Employee {
         this.numberPhone = numberPhone;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getPassword() {
         return password;
