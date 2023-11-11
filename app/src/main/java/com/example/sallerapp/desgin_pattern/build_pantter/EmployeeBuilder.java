@@ -25,8 +25,8 @@ public class EmployeeBuilder {
         return this;
     }
 
-    public EmployeeBuilder addAddress(String address){
-        employee.setAddress(address);
+    public EmployeeBuilder addEmail(String email){
+        employee.setEmail(email);
         return this;
     }
 
