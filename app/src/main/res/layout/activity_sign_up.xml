@@ -89,7 +89,7 @@
             android:layout_marginStart="@dimen/_2sdp"
             android:src="@drawable/icon_password"/>
         <EditText
-            android:id="@+id/confPass"
+            android:id="@+id/confirmPass"
             android:backgroundTint="@android:color/transparent"
             android:layout_width="match_parent"
             android:hint="Confirm password"
