@@ -3,10 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:paddingBottom="@dimen/_10sdp"
+    android:padding="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_10sdp"
     android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/avtCustomer"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_gravity="center"
@@ -20,6 +22,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/customerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
@@ -27,12 +30,14 @@
             android:textSize="@dimen/_15ssp" />
 
         <TextView
+            android:id="@+id/phoneNumberCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="sdt : 013456789"
             android:textSize="@dimen/_10ssp" />
 
         <TextView
+            android:id="@+id/addressCustomer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Địa chỉ: Phúc thọ - Hà Nội"
@@ -40,8 +45,9 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/iconCall"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_35sdp"
         android:layout_marginEnd="@dimen/_5sdp"
-        android:src="@drawable/icon_phone"/>
+        android:src="@drawable/icon_phone" />
 </LinearLayout>

@@ -32,11 +32,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:textSize="@dimen/_12ssp"
-            android:text="Thêm hàng hóa"/>
+            android:text="Thêm loại hàng hóa"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reyProductDialog"
+        android:id="@+id/reyCateProductDialog"
         android:padding="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"/>

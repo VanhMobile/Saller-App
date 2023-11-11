@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "982878672148",
+    "firebase_url": "https://sellerapp-1fa04-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sellerapp-1fa04",
+    "storage_bucket": "sellerapp-1fa04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982878672148:android:d84f632ce054e673f25e01",
+        "android_client_info": {
+          "package_name": "com.example.du_an_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982878672148-5c70kojdfbo9p51ikg2uj7k3igbhk6ok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.du_an_1",
+            "certificate_hash": "3e0da9dfbab469b50edc759149a679a6790a5c63"
+          }
+        },
+        {
+          "client_id": "982878672148-db9ed14r6u404s2ppsflp83cr7op13i0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.du_an_1",
+            "certificate_hash": "c0d719c1465c9f90b7efa673e67d1bc89635b076"
+          }
+        },
+        {
+          "client_id": "982878672148-kamdmq7g1gophe41jlma24ujkm2f63m8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.du_an_1",
+            "certificate_hash": "04ebaf5a78f2312c664399797af25f192f7123e1"
+          }
+        },
+        {
+          "client_id": "982878672148-vv56nrc3gomk9maeee6oojq3nb240d1g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.du_an_1",
+            "certificate_hash": "adf0829caa8ec946080020e4e600f09b90cf8974"
+          }
+        },
+        {
+          "client_id": "982878672148-uhc13ioupreefjh8c3hfa92lcbdk2pea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiMWt8kob0NipmqCbetNEhJRqpZc4bpVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982878672148-uhc13ioupreefjh8c3hfa92lcbdk2pea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5261855707351600~3458992185"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982878672148:android:314ea624f4d585e9f25e01",
+        "android_client_info": {
+          "package_name": "com.example.sallerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982878672148-1go30a42mum0klnmpgkglce1nf9piqlu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sallerapp",
+            "certificate_hash": "04ebaf5a78f2312c664399797af25f192f7123e1"
+          }
+        },
+        {
+          "client_id": "982878672148-buqf7sbfl8u6jssjr1cludvp8nn0ppsp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sallerapp",
+            "certificate_hash": "0c36d972fca3e12827953d13442b5afcb3969972"
+          }
+        },
+        {
+          "client_id": "982878672148-ci3sottpe261kcdvppmuo77q2nq7aihk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sallerapp",
+            "certificate_hash": "c0d719c1465c9f90b7efa673e67d1bc89635b076"
+          }
+        },
+        {
+          "client_id": "982878672148-erke62aht3fv6iccjegjasd7espv1g3u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sallerapp",
+            "certificate_hash": "adf0829caa8ec946080020e4e600f09b90cf8974"
+          }
+        },
+        {
+          "client_id": "982878672148-sn3q2dgeie0frt0gd1vn0c1qairicg4l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sallerapp",
+            "certificate_hash": "3e0da9dfbab469b50edc759149a679a6790a5c63"
+          }
+        },
+        {
+          "client_id": "982878672148-uhc13ioupreefjh8c3hfa92lcbdk2pea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiMWt8kob0NipmqCbetNEhJRqpZc4bpVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982878672148-uhc13ioupreefjh8c3hfa92lcbdk2pea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-5261855707351600~4014112688"
+    }
+  ],
+  "configuration_version": "1"
+}

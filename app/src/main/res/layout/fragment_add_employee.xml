@@ -48,6 +48,15 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5261855707351600/9062425237"/>
+
         <LinearLayout
             android:id="@+id/addImgProduct"
             android:layout_width="@dimen/_80sdp"
@@ -94,6 +103,7 @@
             android:textSize="@dimen/_10ssp" />
 
         <EditText
+            android:id="@+id/edtNameEmployee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
@@ -115,6 +125,7 @@
             android:textSize="@dimen/_10ssp" />
 
         <EditText
+            android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
@@ -136,6 +147,7 @@
             android:textSize="@dimen/_10ssp" />
 
         <EditText
+            android:id="@+id/edtsdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
@@ -157,6 +169,7 @@
             android:textSize="@dimen/_10ssp" />
 
         <EditText
+            android:id="@+id/edtPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
@@ -178,6 +191,7 @@
             android:textSize="@dimen/_10ssp" />
 
         <EditText
+            android:id="@+id/edtNote"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
             android:layout_marginStart="@dimen/_10sdp"
@@ -191,6 +205,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSaveEm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
