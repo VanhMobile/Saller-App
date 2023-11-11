@@ -1,5 +1,6 @@
 package com.example.sallerapp.database;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,9 @@ import java.util.concurrent.CompletableFuture;
 public class CategoryProductDao {
 
     private static String TAG = CategoryProductDao.class.getSimpleName();
+
+    public CategoryProductDao(Context requireContext) {
+    }
 
     // thêm một loại sản phảm vào trong db
     public static void insertCategoryProduct(CategoryProduct categoryProduct, String idShopAccount) {

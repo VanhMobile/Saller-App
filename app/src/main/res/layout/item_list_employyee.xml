@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/imgPath"
         android:layout_width="@dimen/_35sdp"
         android:layout_height="@dimen/_55sdp"
         android:layout_gravity="center"
@@ -24,12 +25,14 @@
             android:layout_weight="1"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/nameEmployee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.Nguyen Van Viet"
                 android:textSize="@dimen/_13ssp"
                 android:fontFamily="@font/inter_light"/>
             <TextView
+                android:id="@+id/roleEmployee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_gray"
@@ -37,6 +40,7 @@
                 android:fontFamily="@font/inter_light"
                 android:text="Chức vụ : nhân viên"/>
             <TextView
+                android:id="@+id/sdtEmployee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_gray"
@@ -44,6 +48,7 @@
                 android:fontFamily="@font/inter_light"
                 android:text="Số điện thoại : 0312312312"/>
             <TextView
+                android:id="@+id/emailEmployee"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_gray"

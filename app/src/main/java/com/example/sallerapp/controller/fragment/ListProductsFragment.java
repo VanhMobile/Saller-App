@@ -148,12 +148,12 @@ public class ListProductsFragment extends Fragment {
                 CateProductDialogAdapter adapter = new CateProductDialogAdapter(categoryProducts, new CateProductDialogAdapter.Click() {
                     @Override
                     public void click(String nameCatePro) {
-                       ArrayList<Product> filterList = (ArrayList<Product>)  products.stream()
-                               .filter(item -> item.getCate().equals(nameCatePro))
-                               .collect(Collectors.toList());
-                       productAdapter.setData(filterList);
-                       productsBinding.tvFilter.setText(nameCatePro);
-                       bottomFilter.dismiss();
+                        ArrayList<Product> filterList = (ArrayList<Product>)  products.stream()
+                                .filter(item -> item.getCate().equals(nameCatePro))
+                                .collect(Collectors.toList());
+                        productAdapter.setData(filterList);
+                        productsBinding.tvFilter.setText(nameCatePro);
+                        bottomFilter.dismiss();
                     }
                 });
                 filterProBinding.reyCateProductDialog.setAdapter(adapter);

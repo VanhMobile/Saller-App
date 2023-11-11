@@ -51,12 +51,12 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false);
-
         initView();
         return homeBinding.getRoot();
     }
 
     private void initView() {
+
 
 
         AdRequest adRequest = new AdRequest.Builder().build();

@@ -16,8 +16,14 @@ import java.util.List;
 public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProductAdapter.ViewHolder>{
 
 private List<CategoryProduct> categoryProductList;
-private ICATEGORYPRODUCT linstener;
-public interface ICATEGORYPRODUCT{
+
+    public CategoryProductAdapter(List<CategoryProduct> categoryProductList) {
+        this.categoryProductList = categoryProductList;
+
+    }
+
+    private CategoryProduct linstener;
+public interface ICategoryProduct{
     void click (CategoryProduct categoryProduct);
     void update (CategoryProduct categoryProduct);
 }
@@ -32,7 +38,7 @@ public interface ICATEGORYPRODUCT{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CategoryProduct categoryProduct = categoryProductList.get(position);
-        holder.binding.NameCategoryProduct.setText("Name category product : " +categoryProduct.getNameCategory());
+        holder.binding.NameCategoryProduct.setText( categoryProduct.getNameCategory());
     }
 
     @Override
