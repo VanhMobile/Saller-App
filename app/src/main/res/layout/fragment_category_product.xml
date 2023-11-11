@@ -47,6 +47,7 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/edtSearchCatePro"
             android:background="@drawable/edt_add_product"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"

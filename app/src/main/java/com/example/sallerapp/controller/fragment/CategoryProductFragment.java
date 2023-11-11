@@ -69,6 +69,7 @@ public class CategoryProductFragment extends Fragment {
 
         categoryProductList = new ArrayList<>();
 
+
         CategoryProductDao.getCategoryProduct("Shop_1", new CategoryProductDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryProduct> categoryProducts) {
