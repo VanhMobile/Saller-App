@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -55,13 +56,34 @@ public class Fragment_list_customers extends Fragment {
             public void getData(ArrayList<Customer> customers) {
                 customerArrayList.addAll(customers);
                 listTemp = customers;
-                adapter = new ListCustomerAdapter(customerArrayList);
-                LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
-                        layoutManager.getOrientation());
-                listCustomerBinding.recyclerViewListCustomer.addItemDecoration(dividerItemDecoration);
-                listCustomerBinding.recyclerViewListCustomer.setAdapter(adapter);
-                listCustomerBinding.recyclerViewListCustomer.setLayoutManager(layoutManager);
+                if (isAdded()){
+                    adapter = new ListCustomerAdapter(customerArrayList);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
+                            DividerItemDecoration.VERTICAL);
+                    listCustomerBinding.recyclerViewListCustomer.addItemDecoration(dividerItemDecoration);
+                    listCustomerBinding.recyclerViewListCustomer.setAdapter(adapter);
+                    listCustomerBinding.recyclerViewListCustomer.setLayoutManager(layoutManager);
+                    adapter.setDATA(customerArrayList);
+                    listCustomerBinding.edtSearchCustomer.addTextChangedListener(new TextWatcher() {
+                        //ArrayList<Customer> listTemp = customerArrayList;
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @SuppressLint("NotifyDataSetChanged")
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            adapter.filterListCustomer(charSequence.toString().toLowerCase());
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+                }
             }
         });
 
@@ -84,29 +106,6 @@ public class Fragment_list_customers extends Fragment {
             }
         });
 
-        listCustomerBinding.edtSearchCustomer.addTextChangedListener(new TextWatcher() {
-            //ArrayList<Customer> listTemp = customerArrayList;
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            }
-
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                customerArrayList.clear();
-                for (Customer customer: listTemp) {
-                    if (customer.getCustomerName().contains(charSequence)){
-                        customerArrayList.add(customer);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 }

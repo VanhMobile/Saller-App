@@ -2,6 +2,8 @@ package com.example.sallerapp.controller.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +65,24 @@ public class Fragment_list_bill extends Fragment {
                 binding.recyclerViewListBill.addItemDecoration(dividerItemDecoration);
                 binding.recyclerViewListBill.setAdapter(adapter);
                 binding.recyclerViewListBill.setLayoutManager(layoutManager);
+                adapter.setDATA(billArrayList);
+
+                binding.searchView.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        adapter.filterBill(charSequence.toString());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
             }
         });
 

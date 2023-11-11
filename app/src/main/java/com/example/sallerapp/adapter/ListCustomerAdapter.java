@@ -1,8 +1,11 @@
 package com.example.sallerapp.adapter;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +20,8 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
     private final String TAG = ListCustomerAdapter.class.getSimpleName();
 
     private ArrayList<Customer> customerArrayList;
+
+    private ArrayList<Customer> filterCustomerList;
 
     public ListCustomerAdapter(ArrayList<Customer> customerArrayList) {
         this.customerArrayList = customerArrayList;
@@ -49,4 +54,27 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
             this.itemListCustomerBinding = itemListCustomerBinding;
         }
     }
+
+    public void setDATA(ArrayList<Customer> list) {
+        this.customerArrayList = new ArrayList<>(list);
+        this.filterCustomerList = new ArrayList<>(list);
+        notifyDataSetChanged();
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterListCustomer(String character){
+        customerArrayList.clear();
+        if (character.isEmpty()) {
+            customerArrayList.addAll(filterCustomerList);
+        } else{
+            filterCustomerList.forEach(item -> {
+                if (item.getCustomerName().toLowerCase().contains(character)){
+                    customerArrayList.add(item);
+                }
+            });
+        }
+        notifyDataSetChanged();
+    }
+
 }

@@ -1,11 +1,11 @@
 package com.example.sallerapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.example.sallerapp.databinding.ItemListBillBinding;
 import com.example.sallerapp.funtions.MoneyFormat;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHolder>{
 
     private ArrayList<Bill> billArrayList;
+    private ArrayList<Bill> filterList;
 
     public ListBillAdapter(ArrayList<Bill> billArrayList) {
         this.billArrayList = billArrayList;
@@ -43,12 +44,35 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
         return billArrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ItemListBillBinding itemListBillBinding;
+
         public ViewHolder(@NonNull ItemListBillBinding itemListBillBinding) {
             super(itemListBillBinding.getRoot());
             this.itemListBillBinding = itemListBillBinding;
         }
+    }
+
+    public void setDATA(ArrayList<Bill> list){
+        this.filterList = new ArrayList<>(list);
+        this.billArrayList = new ArrayList<>(list);
+        notifyDataSetChanged();
+    }
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterBill(String character) {
+        billArrayList.clear();
+        if (character.isEmpty()) billArrayList.addAll(filterList);
+        else {
+            filterList.forEach(item -> {
+                if (item.getBillId().contains(character)) {
+                    billArrayList.add(item);
+                }
+            });
+            notifyDataSetChanged();
+        }
+
     }
 }
