@@ -1,87 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/edt_add_product"
-    android:elevation="@dimen/_8sdp"
-    android:layout_marginTop="@dimen/_60sdp"
-    android:layout_marginHorizontal="@dimen/_20sdp"
-    android:backgroundTint="@color/line_light"
-    android:layout_marginBottom="@dimen/_80sdp"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:fontFamily="@font/inter_bold"
-        android:gravity="center_horizontal"
-        android:text="Hàng hóa"
-        android:textSize="@dimen/_15ssp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/search_pro_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_height="match_parent"
         android:background="@drawable/edt_add_product"
-        android:hint="Tìm hàng hóa của bạn"
-        android:padding="@dimen/_10sdp"
-        android:textColorHint="@color/dark_gray"
-        android:textSize="@dimen/_10ssp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/tvAddProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edt_add_bill"
-        android:drawableStart="@drawable/icon_add_circle_green"
-        android:drawablePadding="@dimen/_7sdp"
-        android:fontFamily="@font/inter_bold"
-        android:padding="@dimen/_8sdp"
-        android:text="Thêm hàng"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:textColor="@color/line"
-        android:textSize="@dimen/_11ssp"
-        app:layout_constraintEnd_toEndOf="@+id/search_pro_dialog"
-        app:layout_constraintStart_toStartOf="@+id/search_pro_dialog"
-        app:layout_constraintTop_toBottomOf="@+id/search_pro_dialog" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reyAddProDialog"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingHorizontal="@dimen/_15sdp"
-        android:paddingVertical="@dimen/_10sdp"
-        app:layout_constraintBottom_toTopOf="@+id/view5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddProduct" />
-
-    <View
-        android:id="@+id/view5"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_1sdp"
-        android:background="@color/dark_gray"
-        app:layout_constraintBottom_toTopOf="@+id/saveDialog"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/saveDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_light"
-        android:gravity="center_horizontal"
-        android:padding="@dimen/_10sdp"
-        android:text="Hoàn thành"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15ssp"
+        android:elevation="@dimen/_8sdp"
+        android:backgroundTint="@color/line_light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_80sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/inter_bold"
+            android:gravity="center_horizontal"
+            android:text="Hàng hóa"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/search_pro_dialog"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:background="@drawable/edt_add_product"
+            android:hint="Tìm hàng hóa của bạn"
+            android:padding="@dimen/_10sdp"
+            android:textColorHint="@color/dark_gray"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/tvAddProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/edt_add_bill"
+            android:drawableStart="@drawable/icon_add_circle_green"
+            android:drawablePadding="@dimen/_7sdp"
+            android:fontFamily="@font/inter_bold"
+            android:padding="@dimen/_8sdp"
+            android:text="Thêm hàng"
+            android:textColor="@color/line"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="@+id/search_pro_dialog"
+            app:layout_constraintStart_toStartOf="@+id/search_pro_dialog"
+            app:layout_constraintTop_toBottomOf="@+id/search_pro_dialog" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reyAddProDialog"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:listitem="@layout/item_list_products"
+            android:paddingVertical="@dimen/_10sdp"
+            app:layout_constraintBottom_toTopOf="@+id/view5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddProduct" />
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/dark_gray"
+            app:layout_constraintBottom_toTopOf="@+id/saveDialog"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/saveDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_light"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/_10sdp"
+            android:text="Hoàn thành"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
