@@ -18,14 +18,18 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.example.sallerapp.R;
+import com.example.sallerapp.adapter.ListCustomerAdapter;
 import com.example.sallerapp.adapter.ListProductAdapter;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.BottomDialogPaymentMotherBinding;
 import com.example.sallerapp.databinding.BottomDialogPriceListBinding;
 import com.example.sallerapp.databinding.DialogAddCustomerBinding;
 import com.example.sallerapp.databinding.DialogAddProductBinding;
 import com.example.sallerapp.databinding.FragmentCreateBillBinding;
+import com.example.sallerapp.funtions.MyFragment;
+import com.example.sallerapp.model.Customer;
 import com.example.sallerapp.model.Product;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -35,6 +39,7 @@ public class CreateBillFragment extends Fragment {
 
     private FragmentCreateBillBinding createBillBinding;
     ListProductAdapter productAdapter;
+    ListCustomerAdapter customerAdapter;
 
     public CreateBillFragment() {
         // Required empty public constructor
@@ -90,7 +95,60 @@ public class CreateBillFragment extends Fragment {
 
     private void showDialogAddCustomer() {
         DialogAddCustomerBinding addCustomerBinding = DialogAddCustomerBinding.inflate(getLayoutInflater());
+        Dialog dialog = new Dialog(requireContext());
+        dialog.setContentView(addCustomerBinding.getRoot());
+        dialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.MATCH_PARENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        addCustomerBinding.saveDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
 
+        CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
+            @Override
+            public void getData(ArrayList<Customer> customers) {
+                customerAdapter = new ListCustomerAdapter(customers);
+                addCustomerBinding.reyCustomerDialog.setAdapter(customerAdapter);
+                DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL);
+                addCustomerBinding.reyCustomerDialog.addItemDecoration(itemDecoration);
+                if (isAdded()){
+                    addCustomerBinding.reyCustomerDialog.setLayoutManager(new LinearLayoutManager(requireActivity()));
+                }
+                customerAdapter.setDATA(customers);
+
+                addCustomerBinding.searchCustomerDialog.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        customerAdapter.filterListCustomer(charSequence.toString().toLowerCase());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable editable) {
+
+                    }
+                });
+            }
+        });
+
+        addCustomerBinding.tvAddCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
+                        , R.id.fragmentBill
+                        , new Fragment_add_customer()
+                        , true);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
 
@@ -210,5 +268,6 @@ public class CreateBillFragment extends Fragment {
     }
 
     private void addCartShop(Product product) {
+
     }
 }
