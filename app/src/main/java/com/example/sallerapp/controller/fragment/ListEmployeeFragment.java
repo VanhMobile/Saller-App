@@ -28,7 +28,6 @@ public class ListEmployeeFragment extends Fragment {
 
 
     private ListEmployeeAdapter adapter;
-    private List<Employee> employeeList;
 
     public ListEmployeeFragment() {
         // Required empty public constructor
@@ -55,11 +54,9 @@ public class ListEmployeeFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         employBinding.adView.loadAd(adRequest);
 
-        employeeList = new ArrayList<>();
         EmployeeDao.getEmployees("Shop_1", new EmployeeDao.GetData() {
             @Override
             public void getData(ArrayList<Employee> employees) {
-                employeeList = employees ;
                 adapter = new ListEmployeeAdapter(employees);
                 employBinding.rcvEmployee.setAdapter(adapter);
                 employBinding.rcvEmployee.setLayoutManager(new LinearLayoutManager(getContext()));

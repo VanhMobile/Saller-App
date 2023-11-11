@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -76,7 +77,8 @@ public class CategoryProductFragment extends Fragment {
                 adapter = new CategoryProductAdapter(categoryProductList);
                 cateProBinding.rcvCategoryProduct.setAdapter(adapter);
                 cateProBinding.rcvCategoryProduct.setLayoutManager(new LinearLayoutManager(requireContext()));
-
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+                cateProBinding.rcvCategoryProduct.addItemDecoration(dividerItemDecoration);
             }
         });
 

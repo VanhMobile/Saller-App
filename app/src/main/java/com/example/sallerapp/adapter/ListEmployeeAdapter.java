@@ -37,10 +37,9 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHodel holder, int position) {
     Employee employee = employeeList.get(position);
-//    holder.binding.nameEmployee.setText(employee.getName());
-//    holder.binding.sdtEmployee.setText(employee.getNumberPhone());
-
-
+    int index = position + 1;
+    holder.binding.nameEmployee.setText(index+". "+employee.getName());
+    holder.binding.sdtEmployee.setText("Sđt: "+employee.getNumberPhone());
     }
 
     @Override

@@ -51,15 +51,11 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false);
-
         initView();
         return homeBinding.getRoot();
     }
 
     private void initView() {
-
-        Product product = new ProductBuilder().addId("SP23").addProductName("tu").build();
-
 
 
 
