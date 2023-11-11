@@ -183,7 +183,7 @@ public class AddEmployeeFragment extends Fragment {
                 .addNumberPhone(sdt)
                 .addPassword(pass)
                 .addImgPath(imPath)
-                .build();git
+                .build();
         EmployeeDao.insertEmployee(employee , "Shop_1");
         clearData();
     }
