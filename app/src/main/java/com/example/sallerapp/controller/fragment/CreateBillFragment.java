@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.example.sallerapp.R;
+import com.example.sallerapp.adapter.CartShopAdapter;
 import com.example.sallerapp.adapter.ListCustomerAdapter;
 import com.example.sallerapp.adapter.ListProductAdapter;
 import com.example.sallerapp.controller.view.ProductActivity;
@@ -28,7 +29,10 @@ import com.example.sallerapp.databinding.BottomDialogPriceListBinding;
 import com.example.sallerapp.databinding.DialogAddCustomerBinding;
 import com.example.sallerapp.databinding.DialogAddProductBinding;
 import com.example.sallerapp.databinding.FragmentCreateBillBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
+import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.funtions.MyFragment;
+import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.Customer;
 import com.example.sallerapp.model.Product;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -40,6 +44,8 @@ public class CreateBillFragment extends Fragment {
     private FragmentCreateBillBinding createBillBinding;
     ListProductAdapter productAdapter;
     ListCustomerAdapter customerAdapter;
+
+    CartShopAdapter cartShopAdapter;
 
     public CreateBillFragment() {
         // Required empty public constructor
@@ -64,12 +70,49 @@ public class CreateBillFragment extends Fragment {
     }
 
     private void initView() {
+        cartShopAdapter = new CartShopAdapter(CartShopSingle.getInstance().getCartShops(), "Giá bán lẻ", new CartShopAdapter.Click() {
+            @Override
+            public void up(CartShop cartShop, String typeBill) {
+                int quantity = cartShop.getQuantity();
+                if (quantity > cartShop.getProduct().getQuantity()){
+                    quantity = 1;
+                }else {
+                    quantity++;
+                }
+                cartShop.setQuantity(quantity);
+                cartShopAdapter.notifyDataSetChanged();
+                UpdateQuantityAndPrice(typeBill);
+            }
+
+            @Override
+            public void down(CartShop cartShop, String typeBill) {
+                int quantity = cartShop.getQuantity();
+                if (quantity == 1){;
+                    ArrayList<CartShop> cartShopArrayList = CartShopSingle.getInstance().getCartShops();
+                    cartShopArrayList.remove(cartShop);
+                    CartShopSingle.getInstance().setCartShops(cartShopArrayList);
+                }else{
+                    quantity--;
+                }
+                cartShop.setQuantity(quantity);
+                cartShopAdapter.notifyDataSetChanged();
+                UpdateQuantityAndPrice(typeBill);
+            }
+        });
+        UpdateQuantityAndPrice("Giá bán lẻ");
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL);
+        createBillBinding.recyclerViewProductBill.addItemDecoration(itemDecoration);
+        createBillBinding.recyclerViewProductBill.setAdapter(cartShopAdapter);
+        createBillBinding.recyclerViewProductBill.setLayoutManager(new LinearLayoutManager(requireContext()));
+
         createBillBinding.tvAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ShowDiaLogAddPro();
             }
         });
+
+
 
         createBillBinding.tablePrice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +226,9 @@ public class CreateBillFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createBillBinding.tablePrice.setText("Giá bán lẻ");
+                cartShopAdapter.setTypeBill("Giá bán lẻ");
+                int SumPrice = CartShopSingle.getInstance().SumPrice("Giá bán lẻ");
+                createBillBinding.sumPrice.setText(MoneyFormat.moneyFormat(SumPrice));
                 priceListDialog.dismiss();
             }
         });
@@ -191,10 +237,20 @@ public class CreateBillFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createBillBinding.tablePrice.setText("Giá bán sỉ");
+                cartShopAdapter.setTypeBill("Giá bán sỉ");
+                int SumPrice = CartShopSingle.getInstance().SumPrice("Giá bán sỉ");
+                createBillBinding.sumPrice.setText(MoneyFormat.moneyFormat(SumPrice));
                 priceListDialog.dismiss();
             }
         });
         priceListDialog.show();
+    }
+
+    private void UpdateQuantityAndPrice(String typeBill){
+        int sumQuantity = CartShopSingle.getInstance().SumQuantity();
+        createBillBinding.quantityProduct.setText(sumQuantity+"");
+        int SumPrice = CartShopSingle.getInstance().SumPrice(typeBill);
+        createBillBinding.sumPrice.setText(MoneyFormat.moneyFormat(SumPrice));
     }
 
     private void ShowDiaLogAddPro() {
@@ -210,12 +266,17 @@ public class CreateBillFragment extends Fragment {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
                     @Override
                     public void clickBtnAdd(Product product) {
-                        addCartShop(product);
+                        ArrayList<CartShop> cartShops = CartShopSingle.getInstance().getCartShops();
+                        cartShops.add(new CartShop(product,1));
+                        CartShopSingle.getInstance().setCartShops(cartShops);
+                        cartShopAdapter.notifyDataSetChanged();
+                        UpdateQuantityAndPrice(createBillBinding.tablePrice.getText().toString());
+
                     }
 
                     @Override
                     public void clickItem(Product product) {
-                        addCartShop(product);
+
 
                     }
                 });
@@ -265,9 +326,5 @@ public class CreateBillFragment extends Fragment {
         });
 
         dialog.show();
-    }
-
-    private void addCartShop(Product product) {
-
     }
 }

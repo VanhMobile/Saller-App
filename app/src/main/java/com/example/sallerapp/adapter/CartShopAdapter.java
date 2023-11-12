@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.sallerapp.R;
 import com.example.sallerapp.databinding.ItemProductBillBinding;
+import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.model.CartShop;
 
 import java.util.ArrayList;
@@ -18,12 +19,21 @@ import java.util.ArrayList;
 public class CartShopAdapter extends RecyclerView.Adapter<CartShopAdapter.ViewHolder> {
 
     private ArrayList<CartShop> cartShops;
-
     private String typeBill;
+    private Click click;
 
-    public CartShopAdapter(ArrayList<CartShop> cartShops, String typeBill) {
+    public CartShopAdapter(ArrayList<CartShop> cartShops, String typeBill, Click click) {
         this.cartShops = cartShops;
         this.typeBill = typeBill;
+        this.click = click;
+    }
+    public void setTypeBill(String typeBill) {
+        this.typeBill = typeBill;
+        notifyDataSetChanged();
+    }
+
+    public String getTypeBill() {
+        return typeBill;
     }
 
     @NonNull
@@ -44,8 +54,30 @@ public class CartShopAdapter extends RecyclerView.Adapter<CartShopAdapter.ViewHo
         int index = position + 1;
         holder.binding.nameProduct.setText(index + ". " + cartShop.getProduct().getProductName());
         if (typeBill.equals("Giá bán lẻ")){
-
+            holder.binding.priceProduct.setText(MoneyFormat.moneyFormat(cartShop.getProduct().getRetailPrice()));
+        }else {
+            holder.binding.priceProduct.setText(MoneyFormat.moneyFormat(cartShop.getProduct().getWholeSalePrice()));
         }
+
+        holder.binding.quantity.setText(cartShop.getQuantity() +"");
+        holder.binding.up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.up(cartShop,getTypeBill());
+            }
+        });
+
+        holder.binding.down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.down(cartShop,getTypeBill());
+            }
+        });
+    }
+
+    public interface Click{
+        void up(CartShop cartShop,String typeBill);
+        void down(CartShop cartShop,String typeBill);
     }
 
     @Override
