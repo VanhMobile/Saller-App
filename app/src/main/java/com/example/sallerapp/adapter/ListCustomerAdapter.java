@@ -47,14 +47,14 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
         holder.itemListCustomerBinding.iconCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                click.clickBtnCall(customer);
             }
         });
 
         holder.itemListCustomerBinding.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                click.clickItem(customer);
             }
         });
     }
