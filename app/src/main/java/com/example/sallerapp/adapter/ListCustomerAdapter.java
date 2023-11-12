@@ -23,10 +23,12 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
 
     private ArrayList<Customer> filterCustomerList;
 
+    Click click;
 
 
-    public ListCustomerAdapter(ArrayList<Customer> customerArrayList) {
+    public ListCustomerAdapter(ArrayList<Customer> customerArrayList, Click click) {
         this.customerArrayList = customerArrayList;
+        this.click = click;
     }
 
     @NonNull
@@ -42,6 +44,19 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
         holder.itemListCustomerBinding.customerName.setText(customer.getCustomerName());
         holder.itemListCustomerBinding.phoneNumberCustomer.setText(customer.getNumberPhone());
         holder.itemListCustomerBinding.addressCustomer.setText(customer.getAddress());
+        holder.itemListCustomerBinding.iconCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        holder.itemListCustomerBinding.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
@@ -63,6 +78,10 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
         notifyDataSetChanged();
     }
 
+    public interface Click{
+        void clickBtnCall(Customer customer);
+        void clickItem(Customer customer);
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     public void filterListCustomer(String character){
