@@ -40,6 +40,7 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
     int index = position + 1;
     holder.binding.nameEmployee.setText(index+". "+employee.getName());
     holder.binding.sdtEmployee.setText("Sđt: "+employee.getNumberPhone());
+    holder.binding.emailEmployee.setText(employee.getEmail());
     }
 
     @Override
