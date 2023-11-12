@@ -1,12 +1,9 @@
 package com.example.sallerapp.controller.fragment;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -14,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
-import com.example.sallerapp.adapter.ListCustomerAdapter;
-import com.example.sallerapp.adapter.ListTypeCustomerAdapter;
+import com.example.sallerapp.adapter.ListTypeCustomerDialogAdapter;
 import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.database.CustomerDao;
@@ -25,7 +20,6 @@ import com.example.sallerapp.databinding.BottomDialogCustomerTypeBinding;
 import com.example.sallerapp.databinding.FragmentAddCustomerBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.CustomerBuilder;
 import com.example.sallerapp.funtions.IdGenerator;
-import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.Customer;
 import com.google.android.gms.ads.AdRequest;
@@ -39,7 +33,7 @@ public class Fragment_add_customer extends Fragment {
 
     private FragmentAddCustomerBinding binding;
     private ArrayList<Customer> customerArrayList = new ArrayList<>();
-    private ListTypeCustomerAdapter adapter;
+    private ListTypeCustomerDialogAdapter adapter;
 
 
     @Override
@@ -93,11 +87,11 @@ public class Fragment_add_customer extends Fragment {
                     public void getData(ArrayList<Customer> customers) {
                         customerArrayList = customers;
                         if (isAdded()){
-                            adapter = new ListTypeCustomerAdapter
+                            adapter = new ListTypeCustomerDialogAdapter
                                     (getUniqueCustomerTypes(customerArrayList), requireContext());
                             typeBinding.rcvTyeCustomer.setAdapter(adapter);
                             typeBinding.rcvTyeCustomer.setLayoutManager(new LinearLayoutManager(requireContext()));
-                            adapter.setOnItemClickListener(new ListTypeCustomerAdapter.OnItemClickListener() {
+                            adapter.setOnItemClickListener(new ListTypeCustomerDialogAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(String customerType) {
                                     // Gọi dialog mới và gán giá trị vào widget

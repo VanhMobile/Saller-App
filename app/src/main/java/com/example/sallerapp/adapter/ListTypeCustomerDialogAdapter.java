@@ -9,12 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sallerapp.databinding.ItemListCateProDialogBinding;
-import com.example.sallerapp.databinding.ItemListCustomerBinding;
 
 
 import java.util.ArrayList;
 
-public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustomerAdapter.ViewHolder>{
+public class ListTypeCustomerDialogAdapter extends RecyclerView.Adapter<ListTypeCustomerDialogAdapter.ViewHolder>{
 
 
     private ArrayList<String> customerArrayList;
@@ -22,7 +21,7 @@ public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustom
 
     private OnItemClickListener onItemClickListener;
 
-    public ListTypeCustomerAdapter(ArrayList<String> customerArrayList, Context context) {
+    public ListTypeCustomerDialogAdapter(ArrayList<String> customerArrayList, Context context) {
         this.customerArrayList = customerArrayList;
         this.context = context;
     }
@@ -31,7 +30,7 @@ public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustom
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemListCateProDialogBinding itemListCustomerBinding = ItemListCateProDialogBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
-        return new ListTypeCustomerAdapter.ViewHolder(itemListCustomerBinding);
+        return new ListTypeCustomerDialogAdapter.ViewHolder(itemListCustomerBinding);
     }
 
     @Override
