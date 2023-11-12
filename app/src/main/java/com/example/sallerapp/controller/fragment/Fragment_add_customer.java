@@ -130,7 +130,7 @@ public class Fragment_add_customer extends Fragment {
         if (!Validations.isEmptyPress(binding.CustomerName) &&
                 !Validations.isEmptyPress(binding.CustomerAddress) &&
                 Validations.isPhoneNumberPress(binding.CustomerPhoneNumber) &&
-                !binding.CustomerType.getText().equals("Loại khách hàng")){
+                !binding.CustomerType.getText().toString().equals("Loại khách hàng")){
 
             CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
                 @Override

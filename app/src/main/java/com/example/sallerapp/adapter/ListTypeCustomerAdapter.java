@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sallerapp.databinding.ItemListCateProDialogBinding;
 import com.example.sallerapp.databinding.ItemListCustomerBinding;
 
 
@@ -28,18 +30,14 @@ public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustom
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemListCustomerBinding itemListCustomerBinding = ItemListCustomerBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        ItemListCateProDialogBinding itemListCustomerBinding = ItemListCateProDialogBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
         return new ListTypeCustomerAdapter.ViewHolder(itemListCustomerBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String customer = customerArrayList.get(position);
-        holder.itemListCustomerBinding.addressCustomer.setVisibility(View.GONE);
-        holder.itemListCustomerBinding.avtCustomer.setVisibility(View.GONE);
-        holder.itemListCustomerBinding.phoneNumberCustomer.setVisibility(View.GONE);
-        holder.itemListCustomerBinding.iconCall.setVisibility(View.GONE);
-        holder.itemListCustomerBinding.customerName.setText(customer);
+        holder.itemListCustomerBinding.NameCategoryProduct.setText(customer);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +59,8 @@ public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustom
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private ItemListCustomerBinding itemListCustomerBinding;
-        public ViewHolder(@NonNull ItemListCustomerBinding itemListCustomerBinding) {
+        private ItemListCateProDialogBinding itemListCustomerBinding;
+        public ViewHolder(@NonNull ItemListCateProDialogBinding itemListCustomerBinding) {
             super(itemListCustomerBinding.getRoot());
             this.itemListCustomerBinding = itemListCustomerBinding;
         }
