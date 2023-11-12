@@ -111,6 +111,13 @@ public class Fragment_add_customer extends Fragment {
                     }
                 });
 
+                binding.btnSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        inSertCustomer();
+                    }
+                });
+
 
 
                 customerDialog.show();
@@ -120,14 +127,10 @@ public class Fragment_add_customer extends Fragment {
     }
 
     private void inSertCustomer() {
-        int cout = 0;
-        Validations.isEmpty(binding.CustomerName);
-        Validations.isEmpty(binding.CustomerAddress);
-        Validations.isPhoneNumber(binding.CustomerPhoneNumber);
-
         if (!Validations.isEmptyPress(binding.CustomerName) &&
                 !Validations.isEmptyPress(binding.CustomerAddress) &&
-                !Validations.isPhoneNumberPress(binding.CustomerPhoneNumber)){
+                Validations.isPhoneNumberPress(binding.CustomerPhoneNumber) &&
+                !binding.CustomerType.getText().equals("Loại khách hàng")){
 
             CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
                 @Override
@@ -141,7 +144,8 @@ public class Fragment_add_customer extends Fragment {
                             .addNote(binding.CustomerAddNote.getText().toString()).build();
 
                     CustomerDao.insertCustomer(customer,"Shop_1");
-
+                    Toast.makeText(getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
+                    clearData();
                 }
             });
 
@@ -163,6 +167,14 @@ public class Fragment_add_customer extends Fragment {
         }
 
         return uniqueCustomerTypes;
+    }
+
+    public void clearData(){
+        binding.CustomerAddress.setText("");
+        binding.CustomerPhoneNumber.setText("");
+        binding.CustomerName.setText("");
+        binding.CustomerType.setText("Loại khách hàng");
+        binding.CustomerAddNote.setText("");
     }
 
 
