@@ -1,5 +1,7 @@
 package com.example.sallerapp.controller.fragment;
 
+import static com.example.sallerapp.database.BillDao.insertBill;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,7 @@ import com.example.sallerapp.adapter.CartShopAdapter;
 import com.example.sallerapp.adapter.ListCustomerAdapter;
 import com.example.sallerapp.adapter.ListProductAdapter;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.BillDao;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.BottomDialogPaymentMotherBinding;
@@ -31,23 +35,31 @@ import com.example.sallerapp.databinding.BottomDialogPriceListBinding;
 import com.example.sallerapp.databinding.DialogAddCustomerBinding;
 import com.example.sallerapp.databinding.DialogAddProductBinding;
 import com.example.sallerapp.databinding.FragmentCreateBillBinding;
+import com.example.sallerapp.desgin_pattern.build_pantter.BillBuilder;
 import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
+import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.funtions.MyFragment;
+import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.Customer;
 import com.example.sallerapp.model.Product;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreateBillFragment extends Fragment {
 
     private FragmentCreateBillBinding createBillBinding;
     ListProductAdapter productAdapter;
     ListCustomerAdapter customerAdapter;
-
     CartShopAdapter cartShopAdapter;
+    Customer cus;
+    Date today = new Date();
+    // Định dạng ngày
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CreateBillFragment() {
         // Required empty public constructor
@@ -74,30 +86,20 @@ public class CreateBillFragment extends Fragment {
     private void initView() {
         cartShopAdapter = new CartShopAdapter(CartShopSingle.getInstance().getCartShops(), "Giá bán lẻ", new CartShopAdapter.Click() {
             @Override
-            public void up(CartShop cartShop, String typeBill) {
-                int quantity = cartShop.getQuantity();
-                if (quantity > cartShop.getProduct().getQuantity()){
-                    quantity = 1;
-                }else {
-                    quantity++;
-                }
-                cartShop.setQuantity(quantity);
-                cartShopAdapter.notifyDataSetChanged();
+            public void up(Product product, String typeBill) {
+                ArrayList<Product> cartData = CartShopSingle.getInstance().getProducts();
+                cartData.add(product);
+                CartShopSingle.getInstance().setProducts(cartData);
+                cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
                 UpdateQuantityAndPrice(typeBill);
             }
 
             @Override
-            public void down(CartShop cartShop, String typeBill) {
-                int quantity = cartShop.getQuantity();
-                if (quantity == 1){;
-                    ArrayList<CartShop> cartShopArrayList = CartShopSingle.getInstance().getCartShops();
-                    cartShopArrayList.remove(cartShop);
-                    CartShopSingle.getInstance().setCartShops(cartShopArrayList);
-                }else{
-                    quantity--;
-                }
-                cartShop.setQuantity(quantity);
-                cartShopAdapter.notifyDataSetChanged();
+            public void down(Product product, String typeBill) {
+                ArrayList<Product> cartData = CartShopSingle.getInstance().getProducts();
+                cartData.remove(product);
+                CartShopSingle.getInstance().setProducts(cartData);
+                cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
                 UpdateQuantityAndPrice(typeBill);
             }
         });
@@ -113,8 +115,6 @@ public class CreateBillFragment extends Fragment {
                 ShowDiaLogAddPro();
             }
         });
-
-
 
         createBillBinding.tablePrice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +136,59 @@ public class CreateBillFragment extends Fragment {
                 showDialogAddCustomer();
             }
         });
+
+        createBillBinding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertBill();
+            }
+        });
+    }
+
+    private void insertBill() {
+        if (CartShopSingle.getInstance().getCartShops().size() == 0
+                && createBillBinding.nameCustomer.getText().toString().equals("Tên khách hàng")
+                && createBillBinding.numberPhoneCustomer.getText().toString().equals("số điện thoại")){
+            Log.e("ko tạo vì lỗi","retunr");
+            return;
+        }
+
+        BillDao.GetBills("Shop_1", new BillDao.GetData() {
+            @Override
+            public void getData(ArrayList<Bill> bills) {
+                String id = IdGenerator.generateNextShopId(bills.size(),"HD_");
+                Bill bill = new BillBuilder()
+                        .addId(id)
+                        .addCustomer(cus)
+                        .addBillType(createBillBinding.tablePrice.getText().toString())
+                        .addPayMethod(createBillBinding.payMethods.getText().toString())
+                        .addProducts(CartShopSingle.getInstance().getCartShops())
+                        .addQuantity(CartShopSingle.getInstance().SumQuantity())
+                        .addTotalPrice(CartShopSingle.getInstance().SumPrice(createBillBinding.tablePrice.getText().toString()))
+                        .addDate(dateFormat.format(today))
+                        .addNote(createBillBinding.edtNote.getText().toString())
+                        .addIdAccount("Shop_1")
+                        .build();
+
+                BillDao.insertBill(bill,"Shop_1");
+                if (isAdded()){
+                    Toast.makeText(requireContext(),"Tạo hóa đơn thành công",Toast.LENGTH_SHORT);
+                }
+                clearData();
+            }
+        });
+    }
+
+    private void clearData() {
+        ArrayList<Product> cartData = new ArrayList<>();
+        CartShopSingle.getInstance().setProducts(cartData);
+        cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
+        UpdateQuantityAndPrice("Giá bán lẻ");
+        createBillBinding.numberPhoneCustomer.setText("số điện thoại");
+        createBillBinding.nameCustomer.setText("Tên khách hàng");
+        createBillBinding.tablePrice.setText("Giá bán lẻ");
+        createBillBinding.payMethods.setText("Tiền mặt");
+        createBillBinding.edtNote.setText("");
     }
 
     private void showDialogAddCustomer() {
@@ -176,6 +229,7 @@ public class CreateBillFragment extends Fragment {
                     public void clickItem(Customer customer) {
                         createBillBinding.nameCustomer.setText(customer.getCustomerName());
                         createBillBinding.numberPhoneCustomer.setText(customer.getNumberPhone());
+                        cus = customer;
                         dialog.dismiss();
                     }
                 });
@@ -292,10 +346,10 @@ public class CreateBillFragment extends Fragment {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
                     @Override
                     public void clickBtnAdd(Product product) {
-                        ArrayList<CartShop> cartShops = CartShopSingle.getInstance().getCartShops();
-                        cartShops.add(new CartShop(product,1));
-                        CartShopSingle.getInstance().setCartShops(cartShops);
-                        cartShopAdapter.notifyDataSetChanged();
+                        ArrayList<Product> dataCart = CartShopSingle.getInstance().getProducts();
+                        dataCart.add(product);
+                        CartShopSingle.getInstance().setProducts(dataCart);
+                        cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
                         UpdateQuantityAndPrice(createBillBinding.tablePrice.getText().toString());
 
                     }

@@ -40,13 +40,11 @@ public class AccountDao {
                         shopAccounts.add(shopAccount);
                         Log.e(TAG,shopAccount.getShopId());
                     }
-
-                    data.getData(shopAccounts);
-
                 }else{
                     // snap ko có dữ liệu
                     Log.e(TAG,"không có dữ liệu trong ShopAccount");
                 }
+                data.getData(shopAccounts);
             }
 
             @Override

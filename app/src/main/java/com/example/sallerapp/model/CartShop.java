@@ -11,6 +11,10 @@ public class CartShop {
         this.quantity = quantity;
     }
 
+    public CartShop() {
+
+    }
+
     public Product getProduct() {
         return product;
     }
@@ -27,16 +31,4 @@ public class CartShop {
         this.quantity = quantity;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        CartShop cartShop = (CartShop) obj;
-        return this .getProduct().getProductId().equals(cartShop.getProduct().getProductId());
-    }
-    @Override
-    public int hashCode() {
-        int result = this.getProduct().getProductId().hashCode();
-        return result;
-    }
 }

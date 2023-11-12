@@ -65,11 +65,11 @@ public class HomeFragment extends Fragment{
 
         CartShopSingle cartShopSingle = CartShopSingle.getInstance();
 
-        if (cartShopSingle.getCartShops().size() == 0){
+        if (cartShopSingle.getProducts().size() == 0){
             homeBinding.cartSize.setVisibility(View.GONE);
         }else{
             homeBinding.cartSize.setVisibility(View.VISIBLE);
-            homeBinding.cartSize.setText(cartShopSingle.getCartShops().size() + "");
+            homeBinding.cartSize.setText(cartShopSingle.getProducts().size() + "");
         }
 
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {

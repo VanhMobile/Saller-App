@@ -45,10 +45,10 @@ public class EmployeeDao {
                         employees.add(employee);
                         Log.e(TAG,employee.getIdEmployee());
                     }
-                    data.getData(employees);
                 }else{
                     Log.e(TAG,"không có dữ liệu trong Employees");
                 }
+                data.getData(employees);
             }
 
             @Override

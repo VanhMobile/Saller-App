@@ -12,7 +12,6 @@ public class Bill {
     private int sumPrice;
     private String note;
     private String idAccount;
-
     private String date;
 
     public String getDate() {
