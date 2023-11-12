@@ -64,21 +64,21 @@ public class CartShopAdapter extends RecyclerView.Adapter<CartShopAdapter.ViewHo
         holder.binding.up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click.up(cartShop.getProduct(),getTypeBill());
+                click.up(cartShop,getTypeBill());
             }
         });
 
         holder.binding.down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                click.down(cartShop.getProduct(),getTypeBill());
+                click.down(cartShop,getTypeBill());
             }
         });
     }
 
     public interface Click{
-        void up(Product product, String typeBill);
-        void down(Product product,String typeBill);
+        void up(CartShop cartShop, String typeBill);
+        void down(CartShop cartShop,String typeBill);
     }
 
     public void setData(ArrayList<CartShop> cartShops){

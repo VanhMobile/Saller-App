@@ -4,145 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.view.SignUpActivity"
-    android:orientation="vertical"
+    android:background="@color/line_light"
     android:gravity="center"
-    android:background="@color/line_light">
+    android:orientation="vertical"
+    tools:context=".controller.view.SignUpActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_signup"
         android:fontFamily="@font/inter_bold"
+        android:text="@string/txt_signup"
         android:textSize="@dimen/_25ssp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 
     <LinearLayout
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_2sdp"
-            android:src="@drawable/icon_user"/>
+            android:src="@drawable/icon_user" />
+
         <EditText
             android:id="@+id/userName"
-            android:backgroundTint="@android:color/transparent"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
             android:hint="User name"
-            android:textColorHint="@color/edt_login_color_hint"
             android:paddingStart="@dimen/_8sdp"
-            android:textSize="@dimen/_10ssp"
-            android:layout_height="wrap_content"/>
+            android:textColorHint="@color/edt_login_color_hint"
+            android:textSize="@dimen/_10ssp" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
-        android:layout_marginTop="@dimen/_3sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
-        android:background="@color/line"/>
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@color/line" />
 
 
     <LinearLayout
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_3sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_2sdp"
-            android:src="@drawable/icon_password"/>
+            android:src="@drawable/icon_password" />
+
         <EditText
             android:id="@+id/password"
-            android:backgroundTint="@android:color/transparent"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
             android:hint="password"
-            android:textColorHint="@color/edt_login_color_hint"
             android:paddingStart="@dimen/_8sdp"
-            android:textSize="@dimen/_10ssp"
-            android:layout_height="wrap_content"/>
+            android:textColorHint="@color/edt_login_color_hint"
+            android:textSize="@dimen/_10ssp" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_3sdp"
-        android:background="@color/line"/>
+        android:background="@color/line" />
+
     <LinearLayout
-        android:layout_marginTop="@dimen/_3sdp"
-        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginStart="@dimen/_2sdp"
-            android:src="@drawable/icon_password"/>
+            android:src="@drawable/icon_password" />
+
         <EditText
             android:id="@+id/confirmPass"
-            android:backgroundTint="@android:color/transparent"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
             android:hint="Confirm password"
-            android:textColorHint="@color/edt_login_color_hint"
             android:paddingStart="@dimen/_8sdp"
-            android:textSize="@dimen/_10ssp"
-            android:layout_height="wrap_content"/>
+            android:textColorHint="@color/edt_login_color_hint"
+            android:textSize="@dimen/_10ssp" />
     </LinearLayout>
+
     <View
-        android:layout_marginTop="@dimen/_3sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_1sdp"
         android:layout_marginHorizontal="@dimen/_15sdp"
-        android:background="@color/line"/>
+        android:layout_marginTop="@dimen/_3sdp"
+        android:background="@color/line" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_signup_signup"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/_42sdp"
         android:layout_height="wrap_content"
-        app:cornerRadius="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_42sdp"
+        android:layout_marginTop="@dimen/_11sdp"
+        android:backgroundTint="@color/line"
+        android:fontFamily="@font/inter_light"
         android:padding="@dimen/_8sdp"
         android:text="@string/txt_signup"
-        android:fontFamily="@font/inter_light"
-        android:textStyle="bold"
-        android:textSize="@dimen/_15ssp"
         android:textColor="@color/white"
-        android:backgroundTint="@color/line"
-        android:layout_marginTop="@dimen/_11sdp"/>
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/_8sdp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_signup_login"
-        app:strokeWidth="@dimen/_1sdp"
-        app:strokeColor="@color/line"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/_42sdp"
         android:layout_height="wrap_content"
-        app:cornerRadius="@dimen/_8sdp"
+        android:layout_marginHorizontal="@dimen/_42sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:backgroundTint="@color/white"
         android:fontFamily="@font/inter_light"
+        android:padding="@dimen/_8sdp"
         android:text="@string/txt_login"
+        android:textColor="@color/line"
         android:textSize="@dimen/_15ssp"
         android:textStyle="bold"
-        android:padding="@dimen/_8sdp"
-        android:textColor="@color/line"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="@dimen/_10sdp"/>
+        app:cornerRadius="@dimen/_8sdp"
+        app:strokeColor="@color/line"
+        app:strokeWidth="@dimen/_1sdp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_13sdp"
-        android:text="@string/txt_login_gg"
         android:fontFamily="@font/inter"
+        android:text="@string/txt_login_gg"
         android:textSize="14sp" />
 
     <ImageButton
