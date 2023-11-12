@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.CartShopAdapter;
@@ -152,7 +154,29 @@ public class CreateBillFragment extends Fragment {
         CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
             @Override
             public void getData(ArrayList<Customer> customers) {
-                customerAdapter = new ListCustomerAdapter(customers);
+                customerAdapter = new ListCustomerAdapter(customers, new ListCustomerAdapter.Click() {
+                    @Override
+                    public void clickBtnCall(Customer customer) {
+                        // Tạo một Intent với hành động ACTION_DIAL
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+
+                        // Đặt dữ liệu Uri cho số điện thoại cần gọi
+                        intent.setData(Uri.parse("tel:" + customer.getNumberPhone()));
+
+                        // Kiểm tra xem ứng dụng Gọi điện thoại có sẵn trên thiết bị hay chưa
+                        if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                            // Nếu có, mở ứng dụng Gọi điện thoại
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(requireContext(), "Không tìm thấy ứng dụng phù hợp", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void clickItem(Customer customer) {
+
+                    }
+                });
                 addCustomerBinding.reyCustomerDialog.setAdapter(customerAdapter);
                 DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL);
                 addCustomerBinding.reyCustomerDialog.addItemDecoration(itemDecoration);
