@@ -2,6 +2,7 @@ package com.example.sallerapp.controller.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -57,14 +58,35 @@ public class Fragment_list_customers extends Fragment {
                 customerArrayList.addAll(customers);
                 listTemp = customers;
                 if (isAdded()){
-                    adapter = new ListCustomerAdapter(customerArrayList);
+                    adapter = new ListCustomerAdapter(customerArrayList, new ListCustomerAdapter.Click() {
+                        @Override
+                        public void clickBtnCall(Customer customer) {
+                            // Tạo một Intent với hành động ACTION_DIAL
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+
+                            // Đặt dữ liệu Uri cho số điện thoại cần gọi
+                            intent.setData(Uri.parse("tel:" + customer.getNumberPhone()));
+
+                            // Kiểm tra xem ứng dụng Gọi điện thoại có sẵn trên thiết bị hay chưa
+                            if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                                // Nếu có, mở ứng dụng Gọi điện thoại
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(requireContext(), "Không tìm thấy ứng dụng phù hợp", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void clickItem(Customer customer) {
+
+                        }
+                    });
                     LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
                     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
                             DividerItemDecoration.VERTICAL);
                     listCustomerBinding.recyclerViewListCustomer.addItemDecoration(dividerItemDecoration);
                     listCustomerBinding.recyclerViewListCustomer.setAdapter(adapter);
                     listCustomerBinding.recyclerViewListCustomer.setLayoutManager(layoutManager);
-                    adapter.setDATA(customerArrayList);
                     listCustomerBinding.edtSearchCustomer.addTextChangedListener(new TextWatcher() {
                         //ArrayList<Customer> listTemp = customerArrayList;
                         @Override

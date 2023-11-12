@@ -42,10 +42,10 @@ public class BillDao {
                                 bills.add(bill);
                                 Log.e(TAG,bill.getBillId());
                             }
-                            data.getData(bills);
                         }else{
                             Log.e(TAG,"Ko có dữ liệu ở trong bills");
                         }
+                        data.getData(bills);
                     }
 
                     @Override

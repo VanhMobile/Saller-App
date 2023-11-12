@@ -1,12 +1,9 @@
 package com.example.sallerapp.controller.fragment;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -14,18 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
-import com.example.sallerapp.adapter.ListCustomerAdapter;
-import com.example.sallerapp.adapter.ListTypeCustomerAdapter;
+import com.example.sallerapp.adapter.ListTypeCustomerDialogAdapter;
+import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.CategoryCustomerDao;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.databinding.BottomDialogCustomerTypeBinding;
 import com.example.sallerapp.databinding.FragmentAddCustomerBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.CustomerBuilder;
 import com.example.sallerapp.funtions.IdGenerator;
-import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.funtions.Validations;
+import com.example.sallerapp.model.CategoryCustomer;
 import com.example.sallerapp.model.Customer;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -38,7 +35,7 @@ public class Fragment_add_customer extends Fragment {
 
     private FragmentAddCustomerBinding binding;
     private ArrayList<Customer> customerArrayList = new ArrayList<>();
-    private ListTypeCustomerAdapter adapter;
+    private ListTypeCustomerDialogAdapter adapter;
 
 
     @Override
@@ -62,6 +59,15 @@ public class Fragment_add_customer extends Fragment {
             }
         });
 
+        binding.backFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(),  CustomerActivity.class);
+                intent.putExtra("customer", "listCustomer");
+                startActivity(intent);
+            }
+        });
+
         binding.CustomerType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,22 +84,33 @@ public class Fragment_add_customer extends Fragment {
                     }
                 });
 
-                CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
+                CategoryCustomerDao.getCategoryCustomers("Shop_1", new CategoryCustomerDao.GetData() {
                     @Override
-                    public void getData(ArrayList<Customer> customers) {
-                        customerArrayList = customers;
+                    public void getData(ArrayList<CategoryCustomer> customers) {
+                        ArrayList<CategoryCustomer> categoryCustomers = customers;
                         if (isAdded()){
-                            adapter = new ListTypeCustomerAdapter(getUniqueCustomerTypes(customerArrayList), requireContext());
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-                            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
-                                    DividerItemDecoration.VERTICAL);
-
-                            typeBinding.rcvTyeCustomer.addItemDecoration(dividerItemDecoration);
+                            adapter = new ListTypeCustomerDialogAdapter
+                                    (categoryCustomers, requireContext());
                             typeBinding.rcvTyeCustomer.setAdapter(adapter);
-                            typeBinding.rcvTyeCustomer.setLayoutManager(layoutManager);
+                            typeBinding.rcvTyeCustomer.setLayoutManager(new LinearLayoutManager(requireContext()));
+                            adapter.setOnItemClickListener(new ListTypeCustomerDialogAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(CategoryCustomer customerType) {
+                                    // Gọi dialog mới và gán giá trị vào widget
+                                    binding.CustomerType.setText(customerType.getNameCategory());
+                                    customerDialog.dismiss();
+                                }
+                            });
                         }else {
                             Toast.makeText(getContext(), "Đã xảy ra lỗi ", Toast.LENGTH_SHORT).show();
                         }
+                    }
+                });
+
+                binding.btnSave.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        inSertCustomer();
                     }
                 });
 
@@ -106,20 +123,16 @@ public class Fragment_add_customer extends Fragment {
     }
 
     private void inSertCustomer() {
-        int cout = 0;
-        Validations.isEmpty(binding.CustomerName);
-        Validations.isEmpty(binding.CustomerAddress);
-        Validations.isPhoneNumber(binding.CustomerPhoneNumber);
-
-        if (Validations.isEmptyPress(binding.CustomerName) &&
-                Validations.isEmptyPress(binding.CustomerAddress) &&
-                Validations.isPhoneNumberPress(binding.CustomerPhoneNumber)){
+        if (!Validations.isEmptyPress(binding.CustomerName) &&
+                !Validations.isEmptyPress(binding.CustomerAddress) &&
+                Validations.isPhoneNumberPress(binding.CustomerPhoneNumber) &&
+                !binding.CustomerType.getText().toString().equals("Loại khách hàng")){
 
             CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
                 @Override
                 public void getData(ArrayList<Customer> customers) {
                     Customer customer = new CustomerBuilder()
-                            .addId(IdGenerator.generateNextShopId(customers.size()+1, "customer"))
+                            .addId(IdGenerator.generateNextShopId(customers.size()+1, "KH_"))
                             .addName(binding.CustomerName.getText().toString())
                             .addAddress(binding.CustomerAddress.getText().toString())
                             .addNumberPhone(binding.CustomerPhoneNumber.getText().toString())
@@ -127,12 +140,15 @@ public class Fragment_add_customer extends Fragment {
                             .addNote(binding.CustomerAddNote.getText().toString()).build();
 
                     CustomerDao.insertCustomer(customer,"Shop_1");
+                    Toast.makeText(getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
+                    clearData();
                 }
             });
 
         }
 
     }
+
 
     public ArrayList<String> getUniqueCustomerTypes(ArrayList<Customer> customerArrayList) {
         ArrayList<String> uniqueCustomerTypes = new ArrayList<>();
@@ -147,6 +163,14 @@ public class Fragment_add_customer extends Fragment {
         }
 
         return uniqueCustomerTypes;
+    }
+
+    public void clearData(){
+        binding.CustomerAddress.setText("");
+        binding.CustomerPhoneNumber.setText("");
+        binding.CustomerName.setText("");
+        binding.CustomerType.setText("Loại khách hàng");
+        binding.CustomerAddNote.setText("");
     }
 
 

@@ -42,11 +42,11 @@ public class ProductDao {
                         products.add(product);
                         Log.e(TAG,product.getProductId());
                     }
-                    data.getData(products);
                 } else {
                     // snap ko có dữ liệu
                     Log.e(TAG,"Không có dữ liệu trong products");
                 }
+                data.getData(products);
             }
 
             @Override

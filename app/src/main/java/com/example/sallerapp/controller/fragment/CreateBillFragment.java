@@ -1,9 +1,12 @@
 package com.example.sallerapp.controller.fragment;
 
+import static com.example.sallerapp.database.BillDao.insertBill;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,16 +15,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Toast;
 
+import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.CartShopAdapter;
 import com.example.sallerapp.adapter.ListCustomerAdapter;
 import com.example.sallerapp.adapter.ListProductAdapter;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.BillDao;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.BottomDialogPaymentMotherBinding;
@@ -29,23 +36,31 @@ import com.example.sallerapp.databinding.BottomDialogPriceListBinding;
 import com.example.sallerapp.databinding.DialogAddCustomerBinding;
 import com.example.sallerapp.databinding.DialogAddProductBinding;
 import com.example.sallerapp.databinding.FragmentCreateBillBinding;
+import com.example.sallerapp.desgin_pattern.build_pantter.BillBuilder;
 import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
+import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.funtions.MyFragment;
+import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.Customer;
 import com.example.sallerapp.model.Product;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CreateBillFragment extends Fragment {
 
     private FragmentCreateBillBinding createBillBinding;
     ListProductAdapter productAdapter;
     ListCustomerAdapter customerAdapter;
-
     CartShopAdapter cartShopAdapter;
+    Customer cus;
+    Date today = new Date();
+    // Định dạng ngày
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CreateBillFragment() {
         // Required empty public constructor
@@ -73,34 +88,27 @@ public class CreateBillFragment extends Fragment {
         cartShopAdapter = new CartShopAdapter(CartShopSingle.getInstance().getCartShops(), "Giá bán lẻ", new CartShopAdapter.Click() {
             @Override
             public void up(CartShop cartShop, String typeBill) {
-                int quantity = cartShop.getQuantity();
-                if (quantity > cartShop.getProduct().getQuantity()){
-                    quantity = 1;
-                }else {
-                    quantity++;
+                ArrayList<Product> cartData = CartShopSingle.getInstance().getProducts();
+                if (cartShop.getQuantity() >= cartShop.getProduct().getQuantity()){
+                    return;
                 }
-                cartShop.setQuantity(quantity);
-                cartShopAdapter.notifyDataSetChanged();
+                cartData.add(cartShop.getProduct());
+                CartShopSingle.getInstance().setProducts(cartData);
+                cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
                 UpdateQuantityAndPrice(typeBill);
             }
 
             @Override
             public void down(CartShop cartShop, String typeBill) {
-                int quantity = cartShop.getQuantity();
-                if (quantity == 1){;
-                    ArrayList<CartShop> cartShopArrayList = CartShopSingle.getInstance().getCartShops();
-                    cartShopArrayList.remove(cartShop);
-                    CartShopSingle.getInstance().setCartShops(cartShopArrayList);
-                }else{
-                    quantity--;
-                }
-                cartShop.setQuantity(quantity);
-                cartShopAdapter.notifyDataSetChanged();
+                ArrayList<Product> cartData = CartShopSingle.getInstance().getProducts();
+                cartData.remove(cartShop.getProduct());
+                CartShopSingle.getInstance().setProducts(cartData);
+                cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
                 UpdateQuantityAndPrice(typeBill);
             }
         });
         UpdateQuantityAndPrice("Giá bán lẻ");
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL);
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
         createBillBinding.recyclerViewProductBill.addItemDecoration(itemDecoration);
         createBillBinding.recyclerViewProductBill.setAdapter(cartShopAdapter);
         createBillBinding.recyclerViewProductBill.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -111,8 +119,6 @@ public class CreateBillFragment extends Fragment {
                 ShowDiaLogAddPro();
             }
         });
-
-
 
         createBillBinding.tablePrice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +140,86 @@ public class CreateBillFragment extends Fragment {
                 showDialogAddCustomer();
             }
         });
+
+        createBillBinding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertBill();
+            }
+        });
+
+        createBillBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), MainActivity.class));
+                requireActivity().finish();
+            }
+        });
+
+        createBillBinding.imgSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertBill();
+            }
+        });
+    }
+
+    private void insertBill() {
+        int count = 0;
+        if(cus == null){
+            count ++;
+            Toast.makeText(requireActivity(),"Chưa chọn khách hàng",Toast.LENGTH_SHORT).show();
+        }
+
+        if (CartShopSingle.getInstance().getCartShops().size() == 0){
+            count++;
+            Toast.makeText(requireActivity(),"bạn chưa chọn sản phẩm",Toast.LENGTH_SHORT).show();
+        }
+
+        if (count != 0){
+            return;
+        }
+        BillDao.GetBills("Shop_1", new BillDao.GetData() {
+            @Override
+            public void getData(ArrayList<Bill> bills) {
+                String id = IdGenerator.generateNextShopId(bills.size(),"HD_");
+                Bill bill = new BillBuilder()
+                        .addId(id)
+                        .addCustomer(cus)
+                        .addBillType(createBillBinding.tablePrice.getText().toString())
+                        .addPayMethod(createBillBinding.payMethods.getText().toString())
+                        .addProducts(CartShopSingle.getInstance().getCartShops())
+                        .addQuantity(CartShopSingle.getInstance().SumQuantity())
+                        .addTotalPrice(CartShopSingle.getInstance().SumPrice(createBillBinding.tablePrice.getText().toString()))
+                        .addDate(dateFormat.format(today))
+                        .addNote(createBillBinding.edtNote.getText().toString())
+                        .addIdAccount("Shop_1")
+                        .build();
+                CartShopSingle.getInstance().getCartShops().forEach(o -> {
+                    int quantity = o.getProduct().getQuantity() - o.getQuantity();
+                    Product product = o.getProduct();
+                    product.setQuantity(quantity);
+                    ProductDao.insertProduct(product,"Shop_1");
+                });
+                BillDao.insertBill(bill,"Shop_1");
+                if (isAdded()){
+                    Toast.makeText(requireContext(),"Tạo hóa đơn thành công",Toast.LENGTH_SHORT);
+                }
+                clearData();
+            }
+        });
+    }
+
+    private void clearData() {
+        ArrayList<Product> cartData = new ArrayList<>();
+        CartShopSingle.getInstance().setProducts(cartData);
+        cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
+        UpdateQuantityAndPrice("Giá bán lẻ");
+        createBillBinding.numberPhoneCustomer.setText("số điện thoại");
+        createBillBinding.nameCustomer.setText("Tên khách hàng");
+        createBillBinding.tablePrice.setText("Giá bán lẻ");
+        createBillBinding.payMethods.setText("Tiền mặt");
+        createBillBinding.edtNote.setText("");
     }
 
     private void showDialogAddCustomer() {
@@ -152,11 +238,36 @@ public class CreateBillFragment extends Fragment {
         CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
             @Override
             public void getData(ArrayList<Customer> customers) {
-                customerAdapter = new ListCustomerAdapter(customers);
+                customerAdapter = new ListCustomerAdapter(customers, new ListCustomerAdapter.Click() {
+                    @Override
+                    public void clickBtnCall(Customer customer) {
+                        // Tạo một Intent với hành động ACTION_DIAL
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+
+                        // Đặt dữ liệu Uri cho số điện thoại cần gọi
+                        intent.setData(Uri.parse("tel:" + customer.getNumberPhone()));
+
+                        // Kiểm tra xem ứng dụng Gọi điện thoại có sẵn trên thiết bị hay chưa
+                        if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                            // Nếu có, mở ứng dụng Gọi điện thoại
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(requireContext(), "Không tìm thấy ứng dụng phù hợp", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void clickItem(Customer customer) {
+                        createBillBinding.nameCustomer.setText(customer.getCustomerName());
+                        createBillBinding.numberPhoneCustomer.setText(customer.getNumberPhone());
+                        cus = customer;
+                        dialog.dismiss();
+                    }
+                });
                 addCustomerBinding.reyCustomerDialog.setAdapter(customerAdapter);
-                DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL);
+                DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
                 addCustomerBinding.reyCustomerDialog.addItemDecoration(itemDecoration);
-                if (isAdded()){
+                if (isAdded()) {
                     addCustomerBinding.reyCustomerDialog.setLayoutManager(new LinearLayoutManager(requireActivity()));
                 }
                 customerAdapter.setDATA(customers);
@@ -197,7 +308,7 @@ public class CreateBillFragment extends Fragment {
 
     private void showDiaLogPayMethod() {
         BottomDialogPaymentMotherBinding paymentMotherBinding = BottomDialogPaymentMotherBinding.inflate(getLayoutInflater());
-        BottomSheetDialog payMethodDialog = new BottomSheetDialog(requireContext(),R.style.BottomSheetDialogThem);
+        BottomSheetDialog payMethodDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
         payMethodDialog.setContentView(paymentMotherBinding.getRoot());
         paymentMotherBinding.btnPrice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +331,7 @@ public class CreateBillFragment extends Fragment {
 
     private void showDiaLogTablePrice() {
         BottomDialogPriceListBinding priceListBinding = BottomDialogPriceListBinding.inflate(getLayoutInflater());
-        BottomSheetDialog priceListDialog = new BottomSheetDialog(requireContext(),R.style.BottomSheetDialogThem);
+        BottomSheetDialog priceListDialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
         priceListDialog.setContentView(priceListBinding.getRoot());
         priceListBinding.btnRetailPrice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,9 +357,9 @@ public class CreateBillFragment extends Fragment {
         priceListDialog.show();
     }
 
-    private void UpdateQuantityAndPrice(String typeBill){
+    private void UpdateQuantityAndPrice(String typeBill) {
         int sumQuantity = CartShopSingle.getInstance().SumQuantity();
-        createBillBinding.quantityProduct.setText(sumQuantity+"");
+        createBillBinding.quantityProduct.setText(sumQuantity + "");
         int SumPrice = CartShopSingle.getInstance().SumPrice(typeBill);
         createBillBinding.sumPrice.setText(MoneyFormat.moneyFormat(SumPrice));
     }
@@ -266,10 +377,18 @@ public class CreateBillFragment extends Fragment {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
                     @Override
                     public void clickBtnAdd(Product product) {
-                        ArrayList<CartShop> cartShops = CartShopSingle.getInstance().getCartShops();
-                        cartShops.add(new CartShop(product,1));
-                        CartShopSingle.getInstance().setCartShops(cartShops);
-                        cartShopAdapter.notifyDataSetChanged();
+                        ArrayList<CartShop> shopArrayList = CartShopSingle.getInstance().getCartShops();
+                        for (int i = 0; i < shopArrayList.size(); i++){
+                            if (shopArrayList.get(i).getProduct().getProductId().equals(product.getProductId())){
+                                if (shopArrayList.get(i).getQuantity() >= product.getQuantity()){
+                                    return;
+                                }
+                            }
+                        }
+                        ArrayList<Product> dataCart = CartShopSingle.getInstance().getProducts();
+                        dataCart.add(product);
+                        CartShopSingle.getInstance().setProducts(dataCart);
+                        cartShopAdapter.setData(CartShopSingle.getInstance().getCartShops());
                         UpdateQuantityAndPrice(createBillBinding.tablePrice.getText().toString());
 
                     }
@@ -284,7 +403,7 @@ public class CreateBillFragment extends Fragment {
                 addProductBinding.reyAddProDialog.setAdapter(productAdapter);
                 DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
                 addProductBinding.reyAddProDialog.addItemDecoration(itemDecoration);
-                if (isAdded()){
+                if (isAdded()) {
                     addProductBinding.reyAddProDialog.setLayoutManager(new LinearLayoutManager(requireActivity()));
                 }
 
@@ -315,7 +434,6 @@ public class CreateBillFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
 
 
         addProductBinding.saveDialog.setOnClickListener(new View.OnClickListener() {

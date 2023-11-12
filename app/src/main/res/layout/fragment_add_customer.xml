@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/backFragment"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"
@@ -35,6 +36,7 @@
             android:textSize="@dimen/_15sdp" />
 
         <ImageView
+            android:id="@+id/btnSave"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"
@@ -161,7 +163,8 @@
                     android:drawableEnd="@drawable/icon_triangle_down"
                     android:fontFamily="@font/inter_light"
                     android:padding="@dimen/_10sdp"
-                    android:text="Khác hàng mới"
+                    android:gravity="center_vertical"
+                    android:text="Loại khách hàng"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10ssp" />
 

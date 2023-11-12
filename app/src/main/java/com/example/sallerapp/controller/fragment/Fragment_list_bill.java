@@ -65,7 +65,6 @@ public class Fragment_list_bill extends Fragment {
                 binding.recyclerViewListBill.addItemDecoration(dividerItemDecoration);
                 binding.recyclerViewListBill.setAdapter(adapter);
                 binding.recyclerViewListBill.setLayoutManager(layoutManager);
-                adapter.setDATA(billArrayList);
 
                 binding.searchView.addTextChangedListener(new TextWatcher() {
                     @Override

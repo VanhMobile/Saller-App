@@ -42,10 +42,10 @@ public class CategoryCustomerDao {
                                 categoryCustomers.add(categoryCustomer);
                                 Log.e(TAG,categoryCustomer.getIdCategory());
                             }
-                            data.getData(categoryCustomers);
                         }else{
                             Log.e(TAG,"Ko có dữ liệu ở trong CategoryCustomers");
                         }
+                        data.getData(categoryCustomers);
                     }
 
                     @Override

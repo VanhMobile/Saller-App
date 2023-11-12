@@ -13,6 +13,7 @@ import com.example.sallerapp.R;
 import com.example.sallerapp.databinding.ItemProductBillBinding;
 import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.model.CartShop;
+import com.example.sallerapp.model.Product;
 
 import java.util.ArrayList;
 
@@ -76,8 +77,13 @@ public class CartShopAdapter extends RecyclerView.Adapter<CartShopAdapter.ViewHo
     }
 
     public interface Click{
-        void up(CartShop cartShop,String typeBill);
+        void up(CartShop cartShop, String typeBill);
         void down(CartShop cartShop,String typeBill);
+    }
+
+    public void setData(ArrayList<CartShop> cartShops){
+        this.cartShops = cartShops;
+        notifyDataSetChanged();
     }
 
     @Override

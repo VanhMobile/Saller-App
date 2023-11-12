@@ -39,11 +39,11 @@ public class CustomerDao {
                         customers.add(customer);
                         Log.e(TAG,customer.getCustomerId());
                     }
-                    data.getData(customers);
                 } else {
                     // snap ko có dữ liệu
                     Log.e(TAG,"Không có dữ liệu trong customers");
                 }
+                data.getData(customers);
             }
 
             @Override

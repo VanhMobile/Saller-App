@@ -20,6 +20,7 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
 
     public ListBillAdapter(ArrayList<Bill> billArrayList) {
         this.billArrayList = billArrayList;
+        this.filterList = new ArrayList<>(billArrayList);
     }
 
     @NonNull
@@ -35,6 +36,7 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
         holder.itemListBillBinding.idBill.setText(bill.getBillId());
         holder.itemListBillBinding.customerName.setText(bill.getCustomer().getCustomerName());
         holder.itemListBillBinding.priceBill.setText(MoneyFormat.moneyFormat(bill.getSumPrice()));
+        holder.itemListBillBinding.BillingDate.setText(bill.getDate());
 
         // thắc mắc ngày tạo bill ?
     }
@@ -54,11 +56,6 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
         }
     }
 
-    public void setDATA(ArrayList<Bill> list){
-        this.filterList = new ArrayList<>(list);
-        this.billArrayList = new ArrayList<>(list);
-        notifyDataSetChanged();
-    }
 
 
     @SuppressLint("NotifyDataSetChanged")
@@ -67,7 +64,10 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
         if (character.isEmpty()) billArrayList.addAll(filterList);
         else {
             filterList.forEach(item -> {
-                if (item.getBillId().contains(character)) {
+                if (item.getBillId().contains(character)
+                        || item.getCustomer().getCustomerName().contains(character)
+                        || item.getCustomer().getNumberPhone().contains(character)
+                        || item.getCustomer().getAddress().contains(character) ) {
                     billArrayList.add(item);
                 }
             });

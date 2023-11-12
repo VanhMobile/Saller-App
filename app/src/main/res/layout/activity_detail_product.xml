@@ -170,6 +170,7 @@
                     android:layout_weight="1"
                     />
                 <TextView
+                    android:id="@+id/exportQuantity"
                     android:textSize="@dimen/_10ssp"
                     android:layout_width="wrap_content"
                     android:fontFamily="@font/inter_light"
@@ -244,6 +245,7 @@
                     android:layout_weight="1"
                     />
                 <TextView
+                    android:id="@+id/revenue"
                     android:textSize="@dimen/_10ssp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -267,6 +269,7 @@
                 android:textSize="@dimen/_8ssp"
                 android:layout_gravity="center"/>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/RecycBill"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_list_bill"

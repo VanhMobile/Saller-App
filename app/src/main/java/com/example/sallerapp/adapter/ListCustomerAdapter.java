@@ -1,11 +1,10 @@
 package com.example.sallerapp.adapter;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +22,12 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
 
     private ArrayList<Customer> filterCustomerList;
 
+    Click click;
 
 
-    public ListCustomerAdapter(ArrayList<Customer> customerArrayList) {
+    public ListCustomerAdapter(ArrayList<Customer> customerArrayList, Click click) {
         this.customerArrayList = customerArrayList;
+        this.click = click;
     }
 
     @NonNull
@@ -42,6 +43,19 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
         holder.itemListCustomerBinding.customerName.setText(customer.getCustomerName());
         holder.itemListCustomerBinding.phoneNumberCustomer.setText(customer.getNumberPhone());
         holder.itemListCustomerBinding.addressCustomer.setText(customer.getAddress());
+        holder.itemListCustomerBinding.iconCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.clickBtnCall(customer);
+            }
+        });
+
+        holder.itemListCustomerBinding.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.clickItem(customer);
+            }
+        });
     }
 
     @Override
@@ -63,6 +77,10 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
         notifyDataSetChanged();
     }
 
+    public interface Click{
+        void clickBtnCall(Customer customer);
+        void clickItem(Customer customer);
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     public void filterListCustomer(String character){
