@@ -36,6 +36,7 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
         holder.itemListBillBinding.idBill.setText(bill.getBillId());
         holder.itemListBillBinding.customerName.setText(bill.getCustomer().getCustomerName());
         holder.itemListBillBinding.priceBill.setText(MoneyFormat.moneyFormat(bill.getSumPrice()));
+        holder.itemListBillBinding.BillingDate.setText(bill.getDate());
 
         // thắc mắc ngày tạo bill ?
     }
