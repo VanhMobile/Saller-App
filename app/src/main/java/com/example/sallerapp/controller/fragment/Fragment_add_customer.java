@@ -15,12 +15,14 @@ import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.ListTypeCustomerDialogAdapter;
 import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
+import com.example.sallerapp.database.CategoryCustomerDao;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.databinding.BottomDialogCustomerTypeBinding;
 import com.example.sallerapp.databinding.FragmentAddCustomerBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.CustomerBuilder;
 import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.Validations;
+import com.example.sallerapp.model.CategoryCustomer;
 import com.example.sallerapp.model.Customer;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -82,20 +84,20 @@ public class Fragment_add_customer extends Fragment {
                     }
                 });
 
-                CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
+                CategoryCustomerDao.getCategoryCustomers("Shop_1", new CategoryCustomerDao.GetData() {
                     @Override
-                    public void getData(ArrayList<Customer> customers) {
-                        customerArrayList = customers;
+                    public void getData(ArrayList<CategoryCustomer> customers) {
+                        ArrayList<CategoryCustomer> categoryCustomers = customers;
                         if (isAdded()){
                             adapter = new ListTypeCustomerDialogAdapter
-                                    (getUniqueCustomerTypes(customerArrayList), requireContext());
+                                    (categoryCustomers, requireContext());
                             typeBinding.rcvTyeCustomer.setAdapter(adapter);
                             typeBinding.rcvTyeCustomer.setLayoutManager(new LinearLayoutManager(requireContext()));
                             adapter.setOnItemClickListener(new ListTypeCustomerDialogAdapter.OnItemClickListener() {
                                 @Override
-                                public void onItemClick(String customerType) {
+                                public void onItemClick(CategoryCustomer customerType) {
                                     // Gọi dialog mới và gán giá trị vào widget
-                                    binding.CustomerType.setText(customerType);
+                                    binding.CustomerType.setText(customerType.getNameCategory());
                                     customerDialog.dismiss();
                                 }
                             });
