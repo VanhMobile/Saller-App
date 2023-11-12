@@ -81,6 +81,14 @@ public class ListProductsFragment extends Fragment {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
                     @Override
                     public void clickBtnAdd(Product product) {
+                        ArrayList<CartShop> shopArrayList = CartShopSingle.getInstance().getCartShops();
+                        for (int i = 0; i < shopArrayList.size(); i++){
+                            if (shopArrayList.get(i).getProduct().getProductId().equals(product.getProductId())){
+                                if (shopArrayList.get(i).getQuantity() >= product.getQuantity()){
+                                    return;
+                                }
+                            }
+                        }
                         ArrayList<Product> dataCart = CartShopSingle.getInstance().getProducts();
                         dataCart.add(product);
                         CartShopSingle.getInstance().setProducts(dataCart);

@@ -48,7 +48,10 @@
                     android:id="@+id/customerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Khách lẻ"
+                    android:maxWidth="@dimen/_80sdp"
+                    android:text="NGUYỄN VĂN VIỆT"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textSize="@dimen/_10ssp"
                     android:fontFamily="@font/inter"/>
             </LinearLayout>

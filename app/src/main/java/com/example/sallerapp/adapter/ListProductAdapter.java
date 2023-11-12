@@ -55,6 +55,9 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = filteredList.get(position);
         int index = position + 1;
+        if (product.getQuantity() == 0){
+            holder.productsBinding.btnAddBill.setVisibility(View.GONE);
+        }
         holder.productsBinding.nameProduct.setText(index + "." + product.getProductName());
         holder.productsBinding.costProduct.setText("Giá vốn: " + MoneyFormat.moneyFormat(product.getCost()));
         holder.productsBinding.priceProduct.setText(MoneyFormat.moneyFormat(product.getRetailPrice()));
