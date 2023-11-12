@@ -174,7 +174,9 @@ public class CreateBillFragment extends Fragment {
 
                     @Override
                     public void clickItem(Customer customer) {
-
+                        createBillBinding.nameCustomer.setText(customer.getCustomerName());
+                        createBillBinding.numberPhoneCustomer.setText(customer.getNumberPhone());
+                        dialog.dismiss();
                     }
                 });
                 addCustomerBinding.reyCustomerDialog.setAdapter(customerAdapter);
