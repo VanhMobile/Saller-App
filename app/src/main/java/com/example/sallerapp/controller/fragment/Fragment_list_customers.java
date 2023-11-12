@@ -57,14 +57,23 @@ public class Fragment_list_customers extends Fragment {
                 customerArrayList.addAll(customers);
                 listTemp = customers;
                 if (isAdded()){
-                    adapter = new ListCustomerAdapter(customerArrayList);
+                    adapter = new ListCustomerAdapter(customerArrayList, new ListCustomerAdapter.Click() {
+                        @Override
+                        public void clickBtnCall(Customer customer) {
+
+                        }
+
+                        @Override
+                        public void clickItem(Customer customer) {
+
+                        }
+                    });
                     LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
                     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
                             DividerItemDecoration.VERTICAL);
                     listCustomerBinding.recyclerViewListCustomer.addItemDecoration(dividerItemDecoration);
                     listCustomerBinding.recyclerViewListCustomer.setAdapter(adapter);
                     listCustomerBinding.recyclerViewListCustomer.setLayoutManager(layoutManager);
-                    adapter.setDATA(customerArrayList);
                     listCustomerBinding.edtSearchCustomer.addTextChangedListener(new TextWatcher() {
                         //ArrayList<Customer> listTemp = customerArrayList;
                         @Override

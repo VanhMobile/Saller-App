@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.sallerapp.databinding.ItemListCustomerBinding;
-import com.example.sallerapp.model.Customer;
+
 
 import java.util.ArrayList;
 
 public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustomerAdapter.ViewHolder>{
-    private final String TAG = ListTypeCustomerAdapter.class.getSimpleName();
+
 
     private ArrayList<String> customerArrayList;
     private Context context;
+
+    private OnItemClickListener onItemClickListener;
 
     public ListTypeCustomerAdapter(ArrayList<String> customerArrayList, Context context) {
         this.customerArrayList = customerArrayList;
@@ -44,10 +44,12 @@ public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustom
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                customerArrayList.forEach(item ->{
-
-                        });
-                Toast.makeText(context, holder.itemListCustomerBinding.customerName.getText().toString(), Toast.LENGTH_SHORT).show();
+                if (onItemClickListener != null) {
+                    int position = holder.getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        onItemClickListener.onItemClick(customerArrayList.get(position));
+                    }
+                }
             }
         });
     }
@@ -65,4 +67,13 @@ public class ListTypeCustomerAdapter extends RecyclerView.Adapter<ListTypeCustom
             this.itemListCustomerBinding = itemListCustomerBinding;
         }
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(String customerType);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
 }
