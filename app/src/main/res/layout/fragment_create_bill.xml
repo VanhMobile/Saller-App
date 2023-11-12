@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:fontFamily="@font/inter_light"
-                android:text="Nguyễn Việt Anh"
+                android:text="Tên khách hàng"
                 android:textColor="@color/black"
                 android:layout_marginTop="-5dp"
                 android:textSize="@dimen/_12ssp"
@@ -171,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:fontFamily="@font/inter_light"
-                android:text="0984907397"
+                android:text="số điện thoại"
                 android:textColor="@color/dark_gray"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -179,7 +179,7 @@
 
 
             <TextView
-                android:id="@+id/addEmployee"
+                android:id="@+id/addCusTomer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
@@ -202,7 +202,7 @@
                 android:layout_height="@dimen/_4sdp"
                 android:background="@color/light_gray"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addEmployee" />
+                app:layout_constraintTop_toBottomOf="@+id/addCusTomer" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -232,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="4"
+                android:text="0"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
@@ -248,7 +248,8 @@
                 android:drawablePadding="@dimen/_8sdp"
                 android:fontFamily="@font/inter_light"
                 android:padding="@dimen/_5sdp"
-                android:text="Giá lẻ"
+                android:gravity="center_vertical"
+                android:text="Tiền mặt"
                 android:drawableEnd="@drawable/icon_triangle_down"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -273,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="120.000 đ"
+                android:text="0.000 đ"
                 android:textSize="@dimen/_15ssp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"

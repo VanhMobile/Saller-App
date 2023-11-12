@@ -7,6 +7,7 @@
     tools:context=".controller.fragment.Fragment_add_customer">
 
 
+
     <LinearLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -35,6 +36,7 @@
             android:textSize="@dimen/_15ssp" />
 
         <ImageView
+            android:id="@+id/imgSave"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"

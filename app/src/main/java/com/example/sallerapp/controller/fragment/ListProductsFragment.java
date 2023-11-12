@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.text.Editable;
@@ -22,6 +23,8 @@ import com.example.sallerapp.database.CategoryProductDao;
 import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.BottomDialogFilterProBinding;
 import com.example.sallerapp.databinding.FragmentListProductsBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
+import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.CategoryProduct;
 import com.example.sallerapp.model.Product;
 import com.google.android.gms.ads.AdRequest;
@@ -36,6 +39,7 @@ public class ListProductsFragment extends Fragment {
     private FragmentListProductsBinding productsBinding;
 
     ListProductAdapter productAdapter;
+    ArrayList<CartShop> cartShops;
 
     public ListProductsFragment() {
         // Required empty public constructor
@@ -62,6 +66,7 @@ public class ListProductsFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
 
         productsBinding.adView.loadAd(adRequest);
+        cartShops = CartShopSingle.getInstance().getCartShops();
         productsBinding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +82,8 @@ public class ListProductsFragment extends Fragment {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
                     @Override
                     public void clickBtnAdd(Product product) {
-
+                        cartShops.add(new CartShop(product,1));
+                        CartShopSingle.getInstance().setCartShops(cartShops);
                     }
 
                     @Override
@@ -89,7 +95,12 @@ public class ListProductsFragment extends Fragment {
                 });
 
                 productsBinding.recyclerListProducts.setAdapter(productAdapter);
-                productsBinding.recyclerListProducts.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+                if (isAdded()){
+                    DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+                    productsBinding.recyclerListProducts.addItemDecoration(itemDecoration);
+                    productsBinding.recyclerListProducts.setLayoutManager(new LinearLayoutManager(requireActivity()));
+                }
                 productsBinding.edtSearchProduct.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -137,12 +148,12 @@ public class ListProductsFragment extends Fragment {
                 CateProductDialogAdapter adapter = new CateProductDialogAdapter(categoryProducts, new CateProductDialogAdapter.Click() {
                     @Override
                     public void click(String nameCatePro) {
-                       ArrayList<Product> filterList = (ArrayList<Product>)  products.stream()
-                               .filter(item -> item.getCate().equals(nameCatePro))
-                               .collect(Collectors.toList());
-                       productAdapter.setData(filterList);
-                       productsBinding.tvFilter.setText(nameCatePro);
-                       bottomFilter.dismiss();
+                        ArrayList<Product> filterList = (ArrayList<Product>)  products.stream()
+                                .filter(item -> item.getCate().equals(nameCatePro))
+                                .collect(Collectors.toList());
+                        productAdapter.setData(filterList);
+                        productsBinding.tvFilter.setText(nameCatePro);
+                        bottomFilter.dismiss();
                     }
                 });
                 filterProBinding.reyCateProductDialog.setAdapter(adapter);

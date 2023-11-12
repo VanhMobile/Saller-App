@@ -5,7 +5,7 @@ import com.example.sallerapp.model.ShopAccount;
 public class SingleAccount {
     private static SingleAccount instance;
 
-    private ShopAccount shopAccount;
+    private ShopAccount shopAccount = new ShopAccount();
 
     private static SingleAccount getInstance(){
         if (instance == null){

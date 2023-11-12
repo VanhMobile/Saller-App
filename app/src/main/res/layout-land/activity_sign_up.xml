@@ -127,14 +127,14 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_login_login"
+                android:id="@+id/btn_signup_signup"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="@dimen/_65sdp"
                 android:layout_height="wrap_content"
                 app:cornerRadius="@dimen/_7sdp"
                 android:fontFamily="@font/inter_light"
                 android:textStyle="bold"
-                android:text="@string/txt_login"
+                android:text="@string/txt_signup"
                 android:padding="@dimen/_8sdp"
                 android:textSize="@dimen/_15ssp"
                 android:textColor="@color/white"
@@ -142,7 +142,7 @@
                 android:layout_marginTop="@dimen/_35sdp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_login_signup"
+                android:id="@+id/btn_signup_login"
                 app:strokeWidth="@dimen/_1sdp"
                 app:strokeColor="@color/line"
                 android:layout_width="match_parent"
@@ -152,7 +152,7 @@
                 android:padding="@dimen/_8sdp"
                 android:fontFamily="@font/inter_light"
                 android:textStyle="bold"
-                android:text="@string/txt_signup"
+                android:text="@string/txt_login"
                 android:textSize="@dimen/_15ssp"
                 android:textColor="@color/line"
                 android:backgroundTint="@color/white"
