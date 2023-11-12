@@ -23,6 +23,8 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
 
     private ArrayList<Customer> filterCustomerList;
 
+
+
     public ListCustomerAdapter(ArrayList<Customer> customerArrayList) {
         this.customerArrayList = customerArrayList;
     }

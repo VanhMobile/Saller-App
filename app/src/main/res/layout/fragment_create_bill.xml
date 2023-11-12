@@ -232,7 +232,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:text="4"
+                android:text="0"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
@@ -274,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="120.000 đ"
+                android:text="0.000 đ"
                 android:textSize="@dimen/_15ssp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
