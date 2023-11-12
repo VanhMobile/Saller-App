@@ -64,7 +64,6 @@ public class Fragment_list_customers extends Fragment {
                     listCustomerBinding.recyclerViewListCustomer.addItemDecoration(dividerItemDecoration);
                     listCustomerBinding.recyclerViewListCustomer.setAdapter(adapter);
                     listCustomerBinding.recyclerViewListCustomer.setLayoutManager(layoutManager);
-                    adapter.setDATA(customerArrayList);
                     listCustomerBinding.edtSearchCustomer.addTextChangedListener(new TextWatcher() {
                         //ArrayList<Customer> listTemp = customerArrayList;
                         @Override

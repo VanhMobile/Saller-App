@@ -18,6 +18,7 @@ import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.ListCustomerAdapter;
 import com.example.sallerapp.adapter.ListTypeCustomerAdapter;
+import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.databinding.BottomDialogCustomerTypeBinding;
@@ -62,6 +63,15 @@ public class Fragment_add_customer extends Fragment {
             }
         });
 
+        binding.backFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(),  CustomerActivity.class);
+                intent.putExtra("customer", "listCustomer");
+                startActivity(intent);
+            }
+        });
+
         binding.CustomerType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,14 +93,18 @@ public class Fragment_add_customer extends Fragment {
                     public void getData(ArrayList<Customer> customers) {
                         customerArrayList = customers;
                         if (isAdded()){
-                            adapter = new ListTypeCustomerAdapter(getUniqueCustomerTypes(customerArrayList), requireContext());
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-                            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
-                                    DividerItemDecoration.VERTICAL);
-
-                            typeBinding.rcvTyeCustomer.addItemDecoration(dividerItemDecoration);
+                            adapter = new ListTypeCustomerAdapter
+                                    (getUniqueCustomerTypes(customerArrayList), requireContext());
                             typeBinding.rcvTyeCustomer.setAdapter(adapter);
-                            typeBinding.rcvTyeCustomer.setLayoutManager(layoutManager);
+                            typeBinding.rcvTyeCustomer.setLayoutManager(new LinearLayoutManager(requireContext()));
+                            adapter.setOnItemClickListener(new ListTypeCustomerAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(String customerType) {
+                                    // Gọi dialog mới và gán giá trị vào widget
+                                    binding.CustomerType.setText(customerType);
+                                    customerDialog.dismiss();
+                                }
+                            });
                         }else {
                             Toast.makeText(getContext(), "Đã xảy ra lỗi ", Toast.LENGTH_SHORT).show();
                         }
@@ -133,6 +147,7 @@ public class Fragment_add_customer extends Fragment {
         }
 
     }
+
 
     public ArrayList<String> getUniqueCustomerTypes(ArrayList<Customer> customerArrayList) {
         ArrayList<String> uniqueCustomerTypes = new ArrayList<>();
