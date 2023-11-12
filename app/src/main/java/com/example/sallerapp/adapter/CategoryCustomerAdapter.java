@@ -10,16 +10,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sallerapp.databinding.ItemCategoryCustomerBinding;
 import com.example.sallerapp.model.CategoryCustomer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryCustomerAdapter extends RecyclerView.Adapter<CategoryCustomerAdapter.ViewHolder> {
 
     private List<CategoryCustomer> categoryCustomerList;
+    private List<CategoryCustomer> listFilterCategory;
     private ICATEGORYCUSTOMER linstener;
     public interface ICATEGORYCUSTOMER{
         void click (CategoryCustomer categoryCustomer);
         void update (CategoryCustomer categoryCustomer);
     }
+
+    public CategoryCustomerAdapter(List<CategoryCustomer> categoryCustomerList) {
+        this.categoryCustomerList = categoryCustomerList;
+        this.listFilterCategory = new ArrayList<>(categoryCustomerList);
+    }
+
     @NonNull
     @Override
     public CategoryCustomerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,7 +39,7 @@ public class CategoryCustomerAdapter extends RecyclerView.Adapter<CategoryCustom
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CategoryCustomer categoryCustomer = categoryCustomerList.get(position);
-        holder.binding.NameCategoryCustomer.setText("Name category customer : " +categoryCustomer.getNameCategory());
+        holder.binding.NameCategoryCustomer.setText( (position + 1) + "." + categoryCustomer.getNameCategory());
     }
 
     @Override
@@ -45,5 +53,16 @@ public class CategoryCustomerAdapter extends RecyclerView.Adapter<CategoryCustom
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+    public void filterCategoryCustomer(String character){
+        categoryCustomerList.clear();
+        if (character.isEmpty()) categoryCustomerList.addAll(listFilterCategory);
+        else{
+            listFilterCategory.forEach(item ->{
+                if (item.getNameCategory().contains(character)) categoryCustomerList.add(item);
+            });
+        }
+        notifyDataSetChanged();
     }
 }
