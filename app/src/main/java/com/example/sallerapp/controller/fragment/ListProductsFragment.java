@@ -66,7 +66,6 @@ public class ListProductsFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
 
         productsBinding.adView.loadAd(adRequest);
-        cartShops = CartShopSingle.getInstance().getCartShops();
         productsBinding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +81,9 @@ public class ListProductsFragment extends Fragment {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
                     @Override
                     public void clickBtnAdd(Product product) {
-                        cartShops.add(new CartShop(product,1));
-                        CartShopSingle.getInstance().setCartShops(cartShops);
+                        ArrayList<Product> dataCart = CartShopSingle.getInstance().getProducts();
+                        dataCart.add(product);
+                        CartShopSingle.getInstance().setProducts(dataCart);
                     }
 
                     @Override
