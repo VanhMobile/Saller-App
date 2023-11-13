@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.database.EmployeeDao;
 import com.example.sallerapp.databinding.BottomDialogCameraBinding;
@@ -70,6 +71,12 @@ public class AddEmployeeFragment extends Fragment {
     }
 
     private void initView() {
+        employeeBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), MainActivity.class));
+            }
+        });
         AdRequest adRequest = new AdRequest.Builder().build();
         employeeBinding.adView.loadAd(adRequest);
         employeeBinding.addImgProduct.setOnClickListener(new View.OnClickListener() {
