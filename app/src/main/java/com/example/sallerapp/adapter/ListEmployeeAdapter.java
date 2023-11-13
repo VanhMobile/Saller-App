@@ -35,19 +35,18 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
     @NonNull
     @Override
     public ListEmployeeAdapter.ViewHodel onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       ItemListEmployyeeBinding binding = ItemListEmployyeeBinding.inflate(LayoutInflater.from(parent.getContext()),parent, false);
+        ItemListEmployyeeBinding binding = ItemListEmployyeeBinding.inflate(LayoutInflater.from(parent.getContext()),parent, false);
 
         return new ViewHodel(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHodel holder, int position) {
-    Employee employee = employeeList2.get(position);
-    int index = position + 1;
-    holder.binding.nameEmployee.setText(index+". "+employee.getName());
-    holder.binding.sdtEmployee.setText("Sđt: "+employee.getNumberPhone());
-    holder.binding.emailEmployee.setText("Email: " + employee.getEmail());
-    // gọi ảnh lên adapter
+        Employee employee = employeeList2.get(position);
+        int index = position + 1;
+        holder.binding.nameEmployee.setText(index+". "+employee.getName());
+        holder.binding.sdtEmployee.setText("Sđt: "+employee.getNumberPhone());
+        holder.binding.emailEmployee.setText("Email: " + employee.getEmail());
         Glide.with(holder.binding.imgPath.getContext())
                 .load(employee.getImgPath())
                 .error(R.drawable.product_img)

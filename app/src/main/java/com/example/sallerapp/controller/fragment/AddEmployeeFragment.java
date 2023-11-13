@@ -43,7 +43,6 @@ public class AddEmployeeFragment extends Fragment {
 
     private FragmentAddEmployeeBinding employeeBinding;
     Bitmap bitmap;
-    ArrayList<Employee> employeeArrayList;
     BottomSheetDialog dialog;
     String id;
 
@@ -125,7 +124,6 @@ public class AddEmployeeFragment extends Fragment {
             }
         }
     }
-
     private void showDialog() {
         BottomDialogCameraBinding cameraBinding = BottomDialogCameraBinding.inflate(getLayoutInflater());
         dialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
@@ -229,7 +227,6 @@ public class AddEmployeeFragment extends Fragment {
         String sdt = employeeBinding.edtsdt.getText().toString();
         String pass = employeeBinding.edtPass.getText().toString();
         String note = employeeBinding.edtNote.getText().toString();
-
         Employee employee = new EmployeeBuilder()
                 .addId(id)
                 .addName(name)

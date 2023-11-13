@@ -28,7 +28,7 @@
                 android:fontFamily="@font/inter_bold"
                 android:text="Hóa đơn"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/_15ssp" />
 
             <ImageView
                 android:id="@+id/btnAddBill"

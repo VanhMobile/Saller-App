@@ -38,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         Validations.isEmpty(loginBinding.userName);
         Validations.isPassword(loginBinding.password);
         loginBinding.btnLoginLogin.setOnClickListener(view -> AccountDao.GetShopAccounts(new AccountDao.GetData() {
@@ -115,7 +114,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
 
     }

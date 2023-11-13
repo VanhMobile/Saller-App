@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProductAdapter.ViewHolder>{
 
-private List<CategoryProduct> categoryProductList;
+    private List<CategoryProduct> categoryProductList;
     private List<CategoryProduct> categoryProductList2;
 
 
@@ -27,10 +27,10 @@ private List<CategoryProduct> categoryProductList;
     }
 
     private CategoryProduct linstener;
-public interface ICategoryProduct{
-    void click (CategoryProduct categoryProduct);
-    void update (CategoryProduct categoryProduct);
-}
+    public interface ICategoryProduct{
+        void click (CategoryProduct categoryProduct);
+        void update (CategoryProduct categoryProduct);
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,7 +59,7 @@ public interface ICategoryProduct{
     }
 
     public void TK(String a){
-    categoryProductList2.clear();
+        categoryProductList2.clear();
         if (a.isEmpty()) {
             categoryProductList2.addAll(categoryProductList);
         } else {
