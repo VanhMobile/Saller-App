@@ -8,19 +8,24 @@
     tools:context=".controller.fragment.AddProductFragment">
 
     <RelativeLayout
-        android:id="@+id/rlt1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
+        android:id="@+id/rlt1"
         android:background="@color/line"
         android:gravity="center_vertical">
 
-
+        <ImageView
+            android:id="@+id/img_back_AE"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:src="@drawable/icon_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-
+            android:layout_toEndOf="@+id/img_back_AE"
             android:fontFamily="@font/inter_bold"
             android:text="Thêm nhân viên "
             android:textColor="@color/white"
@@ -38,21 +43,20 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rlt1">
-
+        android:layout_below="@+id/rlt1"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/adView"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
                 ads:adSize="LEADERBOARD"
-                ads:adUnitId="ca-app-pub-5261855707351600/9062425237" />
-
+                ads:adUnitId="ca-app-pub-5261855707351600/9062425237"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -86,13 +90,13 @@
                 </LinearLayout>
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/img_product"
-                    style="@style/img_add"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:background="@drawable/shadow_add_img_r12"
+                    style="@style/img_add"
+                    android:visibility="gone"
                     android:scaleType="fitCenter"
-                    android:visibility="gone" />
+                    android:background="@drawable/shadow_add_img_r12"
+                    android:id="@+id/img_product"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -106,7 +110,6 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <EditText
-                    android:id="@+id/edtNameEmployee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -128,7 +131,6 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <EditText
-                    android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -150,7 +152,6 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <EditText
-                    android:id="@+id/edtsdt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -172,7 +173,6 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <EditText
-                    android:id="@+id/edtPass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -194,7 +194,6 @@
                     android:textSize="@dimen/_10ssp" />
 
                 <EditText
-                    android:id="@+id/edtNote"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_80sdp"
                     android:layout_marginStart="@dimen/_10sdp"
@@ -208,7 +207,6 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSaveEm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_40sdp"

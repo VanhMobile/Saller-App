@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import com.example.sallerapp.database.EmployeeDao;
 import com.example.sallerapp.databinding.BottomDialogCameraBinding;
 import com.example.sallerapp.databinding.FragmentAddEmployeeBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.EmployeeBuilder;
-import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MyDialog;
 import com.example.sallerapp.funtions.RequestPermissions;
 import com.example.sallerapp.funtions.Validations;
@@ -45,7 +43,6 @@ public class AddEmployeeFragment extends Fragment {
     Bitmap bitmap;
     ArrayList<Employee> employeeArrayList;
     BottomSheetDialog dialog;
-    String id;
 
 
     public AddEmployeeFragment() {
@@ -73,6 +70,7 @@ public class AddEmployeeFragment extends Fragment {
     private void initView() {
         AdRequest adRequest = new AdRequest.Builder().build();
         employeeBinding.adView.loadAd(adRequest);
+
         employeeBinding.addImgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,18 +89,109 @@ public class AddEmployeeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 insertEmployee();
-                Log.e("click","nhấn btn");
             }
 
-        });
-        employeeBinding.iconCartShopping.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                insertEmployee();
+            private void insertEmployee() {
+                int count = 0 ;
+                if (Validations.isEmptyPress(employeeBinding.edtNameEmployee)){
+                    count++;
+                }
+                if (!Validations.isEmptyPress(employeeBinding.edtEmail)){
+                    if (!Validations.isEmailPress(employeeBinding.edtEmail)){
+                        count++;
+                    }
+                }else {
+                    count++;
+                }
+
+                if (!Validations.isEmptyPress(employeeBinding.edtsdt)){
+                    if (Validations.isPhoneNumberPress(employeeBinding.edtsdt)){
+                        count++;
+                    }
+                }else {
+                    count++;
+                }
+
+
+                if(!Validations.isEmptyPress(employeeBinding.edtPass)){
+                    if (!Validations.isPasswordPress(employeeBinding.edtPass)){
+                        count ++;
+                    }
+                }else {
+                    count ++;
+                }
+
+                if (count != 0){
+                    return;
+                }
+                if (bitmap != null){
+                    StorageReference sdb = FirebaseStorage.getInstance().getReference();
+                    ByteArrayOutputStream ops = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,ops);
+                    byte[] imgData = ops.toByteArray();
+
+                    UploadTask uploadTask = sdb.putBytes(imgData);
+                    MyDialog.showProgressDialog("Đang tải lên...", requireContext());
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            MyDialog.dismissProgressDialog();
+                            sdb.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String imgUrl = uri.toString();
+                                    createEm(imgUrl);
+                                }
+                            });
+                        }
+                    });
+
+                }else {
+                    createEm("");
+                    Toast.makeText(requireContext(),"Thêm nhân viên thành công",Toast.LENGTH_SHORT).show();
+                }
+
+
+
             }
         });
     }
-    @Override
+
+    // dialog chọn ảnh từ cam hay thư viện
+    private void showDialog() {
+        BottomDialogCameraBinding cameraBinding = BottomDialogCameraBinding.inflate(getLayoutInflater());
+        dialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
+        dialog.setContentView(cameraBinding.getRoot());
+        cameraBinding.btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 100);
+            }
+        });
+
+    }
+    private void createEm(String imPath){
+        String name = employeeBinding.edtNameEmployee.getText().toString();
+        String email = employeeBinding.edtEmail.getText().toString();
+        String sdt = employeeBinding.edtsdt.getText().toString();
+        String pass =  employeeBinding.edtPass.getText().toString();
+        String note = employeeBinding.edtNote.getText().toString();
+
+        Employee  employee = new EmployeeBuilder()
+                .addName(name)
+                .addNumberPhone(sdt)
+                .addPassword(pass)
+                .addImgPath(imPath)
+                .build();
+        EmployeeDao.insertEmployee(employee , "Shop_1");
+        clearData();
+    }
+
+    private void clearData() {
+    }
+
+    // xử lí ảnh lấy ra
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
@@ -124,122 +213,5 @@ public class AddEmployeeFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void showDialog() {
-        BottomDialogCameraBinding cameraBinding = BottomDialogCameraBinding.inflate(getLayoutInflater());
-        dialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
-        dialog.setContentView(cameraBinding.getRoot());
-        cameraBinding.btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 100);
-            }
-        });
-        cameraBinding.btnLibrary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 1000);
-            }
-        });
-        dialog.show();
-    }
-
-    private void clearData() {
-        employeeBinding.edtNameEmployee.setText("");
-        employeeBinding.edtEmail.setText("");
-        employeeBinding.edtPass.setText("");
-        employeeBinding.edtsdt.setText("");
-        employeeBinding.imgProduct.setVisibility(View.GONE);
-        employeeBinding.edtNote.setText("");
-    }
-
-    private void insertEmployee() {
-        EmployeeDao.getEmployees("Shop_1", new EmployeeDao.GetData() {
-            @Override
-            public void getData(ArrayList<Employee> employees) {
-                id = IdGenerator.generateNextShopId(employees.size(), "NV_");
-                int count = 0;
-                if (Validations.isEmptyPress(employeeBinding.edtNameEmployee)) {
-                    count++;
-                }
-                if (!Validations.isEmptyPress(employeeBinding.edtEmail)) {
-                    if (!Validations.isEmailPress(employeeBinding.edtEmail)) {
-                        count++;
-                    }
-                } else {
-                    count++;
-                }
-
-                if (!Validations.isEmptyPress(employeeBinding.edtsdt)) {
-                    if (!Validations.isPhoneNumberPress(employeeBinding.edtsdt)) {
-                        count++;
-                    }
-                } else {
-                    count++;
-                }
-
-
-                if (!Validations.isEmptyPress(employeeBinding.edtPass)) {
-                    if (!Validations.isPasswordPress(employeeBinding.edtPass)) {
-                        count++;
-                    }
-                } else {
-                    count++;
-                }
-
-                if (count != 0) {
-                    return;
-                }
-                if (bitmap != null) {
-                    StorageReference sdb = FirebaseStorage.getInstance().getReference().child(id);
-                    ByteArrayOutputStream ops = new ByteArrayOutputStream();
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, ops);
-                    byte[] imgData = ops.toByteArray();
-
-                    UploadTask uploadTask = sdb.putBytes(imgData);
-                    MyDialog.showProgressDialog("Đang tải lên...", requireContext());
-                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            MyDialog.dismissProgressDialog();
-                            sdb.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    String imgUrl = uri.toString();
-                                    createEm(imgUrl);
-                                }
-                            });
-                        }
-                    });
-
-                } else {
-                    createEm("");
-                    Toast.makeText(requireContext(), "Thêm nhân viên thành công", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void createEm(String imPath) {
-        String name = employeeBinding.edtNameEmployee.getText().toString();
-        String email = employeeBinding.edtEmail.getText().toString();
-        String sdt = employeeBinding.edtsdt.getText().toString();
-        String pass = employeeBinding.edtPass.getText().toString();
-        String note = employeeBinding.edtNote.getText().toString();
-
-        Employee employee = new EmployeeBuilder()
-                .addId(id)
-                .addName(name)
-                .addNumberPhone(sdt)
-                .addPassword(pass)
-                .addEmail(email)
-                .addImgPath(imPath)
-                .addNote(note)
-                .build();
-        EmployeeDao.insertEmployee(employee, "Shop_1");
-        clearData();
     }
 }
