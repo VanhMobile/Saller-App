@@ -124,7 +124,6 @@ public class AddEmployeeFragment extends Fragment {
             }
         }
     }
-
     private void showDialog() {
         BottomDialogCameraBinding cameraBinding = BottomDialogCameraBinding.inflate(getLayoutInflater());
         dialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
