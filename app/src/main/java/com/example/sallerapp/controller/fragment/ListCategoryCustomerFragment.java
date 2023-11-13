@@ -1,5 +1,6 @@
 package com.example.sallerapp.controller.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.CategoryCustomerAdapter;
 import com.example.sallerapp.database.CategoryCustomerDao;
@@ -53,6 +55,14 @@ public class ListCategoryCustomerFragment extends Fragment {
     private void initView() {
         AdRequest adRequest = new AdRequest.Builder().build();
         cateCusBinding.adView.loadAd(adRequest);
+
+        cateCusBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), MainActivity.class));
+                requireActivity().finish();
+            }
+        });
         cateCusBinding.addCateCus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

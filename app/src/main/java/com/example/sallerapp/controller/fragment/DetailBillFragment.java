@@ -1,5 +1,6 @@
 package com.example.sallerapp.controller.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.DetailBillAdapter;
 import com.example.sallerapp.databinding.FragmentDetailBillBinding;
@@ -40,6 +42,13 @@ public class DetailBillFragment extends Fragment {
         for (int i = 0; i < bill.getListProduct().size(); i++){
             cost += (bill.getListProduct().get(i).getProduct().getCost() * bill.getListProduct().get(i).getQuantity());
         }
+        detailBillBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), MainActivity.class));
+                requireActivity().finish();
+            }
+        });
         detailBillBinding.BillId.setText("Mã hóa đơn: " + bill.getBillId());
         detailBillBinding.date.setText(bill.getDate());
         detailBillBinding.quantity.setText(bill.getQuantity()+"");
@@ -53,6 +62,7 @@ public class DetailBillFragment extends Fragment {
         detailBillBinding.typeBill.setText(bill.getBillType());
         DetailBillAdapter billAdapter  = new DetailBillAdapter(bill.getListProduct(), bill.getBillType());
         detailBillBinding.recycBill.setAdapter(billAdapter);
+        detailBillBinding.IdAccount.setText(bill.getIdAccount());
         detailBillBinding.recycBill.setLayoutManager(new LinearLayoutManager(requireActivity()));
     }
 }
