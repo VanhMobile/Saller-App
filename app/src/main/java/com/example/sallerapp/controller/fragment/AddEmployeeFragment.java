@@ -21,6 +21,7 @@ import com.example.sallerapp.database.EmployeeDao;
 import com.example.sallerapp.databinding.BottomDialogCameraBinding;
 import com.example.sallerapp.databinding.FragmentAddEmployeeBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.EmployeeBuilder;
+import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MyDialog;
 import com.example.sallerapp.funtions.RequestPermissions;
 import com.example.sallerapp.funtions.Validations;
@@ -43,6 +44,7 @@ public class AddEmployeeFragment extends Fragment {
     Bitmap bitmap;
     ArrayList<Employee> employeeArrayList;
     BottomSheetDialog dialog;
+    String id;
 
 
     public AddEmployeeFragment() {
@@ -70,7 +72,6 @@ public class AddEmployeeFragment extends Fragment {
     private void initView() {
         AdRequest adRequest = new AdRequest.Builder().build();
         employeeBinding.adView.loadAd(adRequest);
-
         employeeBinding.addImgProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +126,7 @@ public class AddEmployeeFragment extends Fragment {
                     return;
                 }
                 if (bitmap != null){
-                    StorageReference sdb = FirebaseStorage.getInstance().getReference();
+                    StorageReference sdb = FirebaseStorage.getInstance().getReference().child(id);
                     ByteArrayOutputStream ops = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.JPEG,100,ops);
                     byte[] imgData = ops.toByteArray();
@@ -150,9 +151,6 @@ public class AddEmployeeFragment extends Fragment {
                     createEm("");
                     Toast.makeText(requireContext(),"Thêm nhân viên thành công",Toast.LENGTH_SHORT).show();
                 }
-
-
-
             }
         });
     }
@@ -169,26 +167,48 @@ public class AddEmployeeFragment extends Fragment {
                 startActivityForResult(intent, 100);
             }
         });
-
+        cameraBinding.btnLibrary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1000);
+            }
+        });
+        dialog.show();
     }
     private void createEm(String imPath){
-        String name = employeeBinding.edtNameEmployee.getText().toString();
-        String email = employeeBinding.edtEmail.getText().toString();
-        String sdt = employeeBinding.edtsdt.getText().toString();
-        String pass =  employeeBinding.edtPass.getText().toString();
-        String note = employeeBinding.edtNote.getText().toString();
+        EmployeeDao.getEmployees("Shop_1", new EmployeeDao.GetData() {
+            @Override
+            public void getData(ArrayList<Employee> employees) {
+                id = IdGenerator.generateNextShopId(employees.size(),"NV_");
+                String name = employeeBinding.edtNameEmployee.getText().toString();
+                String email = employeeBinding.edtEmail.getText().toString();
+                String sdt = employeeBinding.edtsdt.getText().toString();
+                String pass =  employeeBinding.edtPass.getText().toString();
+                String note = employeeBinding.edtNote.getText().toString();
 
-        Employee  employee = new EmployeeBuilder()
-                .addName(name)
-                .addNumberPhone(sdt)
-                .addPassword(pass)
-                .addImgPath(imPath)
-                .build();
-        EmployeeDao.insertEmployee(employee , "Shop_1");
-        clearData();
+                Employee  employee = new EmployeeBuilder()
+                        .addId(id)
+                        .addName(name)
+                        .addNumberPhone(sdt)
+                        .addPassword(pass)
+                        .addEmail(email)
+                        .addImgPath(imPath)
+                        .addNote(note)
+                        .build();
+                EmployeeDao.insertEmployee(employee , "Shop_1");
+                clearData();
+            }
+        });
     }
 
     private void clearData() {
+        employeeBinding.edtNameEmployee.setText("");
+        employeeBinding.edtEmail.setText("");
+        employeeBinding.edtPass.setText("");
+        employeeBinding.edtsdt.setText("");
+        employeeBinding.imgProduct.setVisibility(View.GONE);
+        employeeBinding.edtNote.setText("");
     }
 
     // xử lí ảnh lấy ra
