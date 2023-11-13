@@ -57,8 +57,6 @@ public class HomeFragment extends Fragment{
 
     private void initView() {
 
-
-
         AdRequest adRequest = new AdRequest.Builder().build();
         homeBinding.adView.loadAd(adRequest);
         homeBinding.adView2.loadAd(adRequest);
@@ -84,7 +82,9 @@ public class HomeFragment extends Fragment{
         homeBinding.iconCartShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireContext(), BillActivity.class));
+                Intent intent = new Intent(requireContext(), BillActivity.class);
+                intent.putExtra("bill", "AddBill");
+                startActivity(intent);
             }
         });
 
