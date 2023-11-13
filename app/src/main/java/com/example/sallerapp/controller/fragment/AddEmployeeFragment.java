@@ -41,7 +41,6 @@ public class AddEmployeeFragment extends Fragment {
 
     private FragmentAddEmployeeBinding employeeBinding;
     Bitmap bitmap;
-    ArrayList<Employee> employeeArrayList;
     BottomSheetDialog dialog;
 
 
