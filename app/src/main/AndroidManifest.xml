@@ -63,6 +63,14 @@
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
+            android:name=".controller.view.GoogleRegisterActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+        <activity
+            android:name=".controller.view.GoogleActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />

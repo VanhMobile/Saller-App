@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,6 +31,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void initView() {
 
+        Validations.isEmpty(signUpBinding.userName);
+        Validations.isPassword(signUpBinding.password);
+        Validations.isPassword(signUpBinding.confirmPass);
         AccountDao.GetShopAccounts(shopAccounts -> signUpBinding.userName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -44,6 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if (o.getShopId().equals(userName)) {
                         signUpBinding.userName.setError("user name đã tồn tại");
                         check++;
+                        return;
                     } else {
                         signUpBinding.userName.setError(null);
                         check =0;
@@ -56,9 +61,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         }));
-        Validations.isEmpty(signUpBinding.userName);
-        Validations.isPassword(signUpBinding.password);
-        Validations.isPassword(signUpBinding.confirmPass);
         signUpBinding.btnSignupSignup.setOnClickListener(v -> {
             int count = 0;
             if (Validations.isEmptyPress(signUpBinding.userName)) {
@@ -94,6 +96,8 @@ public class SignUpActivity extends AppCompatActivity {
             // tạo account ở đây
             String userName = signUpBinding.userName.getText().toString();
             String pass = signUpBinding.password.getText().toString();
+
+            if(check==0){
             ShopAccount shopAccount = new AccountBuilder()
                     .addIdAccount(userName)
                     .addPassword(pass)
@@ -105,7 +109,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             AccountDao.insertShopAccount(shopAccount);
 
-            if(check==0){
                 Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
                 finish();
@@ -117,6 +120,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         });
 
-        signUpBinding.btnSignupLogin.setOnClickListener(v -> startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
+        signUpBinding.btnSignupLogin.setOnClickListener(v ->
+                startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
+
+        signUpBinding.btnGoogle.setOnClickListener(v -> {
+            startActivity(new Intent(SignUpActivity.this, GoogleRegisterActivity.class));
+            Log.d("ACCOUNT",  "Da click gg");
+            finish();
+        });
     }
 }
