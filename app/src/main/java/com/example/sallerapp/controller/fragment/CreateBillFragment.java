@@ -1,7 +1,5 @@
 package com.example.sallerapp.controller.fragment;
 
-import static com.example.sallerapp.database.BillDao.insertBill;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
