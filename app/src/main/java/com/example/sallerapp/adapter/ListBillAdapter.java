@@ -73,6 +73,5 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
             });
             notifyDataSetChanged();
         }
-
     }
 }
