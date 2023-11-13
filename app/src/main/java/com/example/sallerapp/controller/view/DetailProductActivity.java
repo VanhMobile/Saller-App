@@ -88,7 +88,12 @@ public class DetailProductActivity extends AppCompatActivity {
                         }
                     }
                 }
-                ListBillAdapter billAdapter = new ListBillAdapter(data);
+                ListBillAdapter billAdapter = new ListBillAdapter(data, new ListBillAdapter.Click() {
+                    @Override
+                    public void clickItem(Bill bill) {
+
+                    }
+                });
                 DividerItemDecoration itemDecoration = new DividerItemDecoration(DetailProductActivity.this,DividerItemDecoration.VERTICAL);
                 detailProductBinding.RecycBill.addItemDecoration(itemDecoration);
                 detailProductBinding.RecycBill.setAdapter(billAdapter);
