@@ -37,13 +37,14 @@
         </LinearLayout>
 
         <EditText
+            android:id="@+id/searchEm"
             android:background="@drawable/edt_add_product"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"
-            android:hint="Tìm kiếm danh mục sản phẩm"/>
+            android:hint="Tìm kiếm nhân viên"/>
 
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
