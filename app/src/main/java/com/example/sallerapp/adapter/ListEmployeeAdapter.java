@@ -40,6 +40,12 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
     int index = position + 1;
     holder.binding.nameEmployee.setText(index+". "+employee.getName());
     holder.binding.sdtEmployee.setText("Sđt: "+employee.getNumberPhone());
+
+    holder.binding.emailEmployee.setText("Email: " + employee.getEmail());
+        Glide.with(holder.binding.imgPath.getContext())
+                .load(employee.getImgPath())
+                .error(R.drawable.product_img)
+                .into(holder.binding.imgPath);
     }
 
     @Override

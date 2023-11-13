@@ -15,15 +15,6 @@
             android:layout_height="@dimen/_40sdp"
             android:background="@color/line"
             android:orientation="horizontal">
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:src="@drawable/icon_back"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"/>
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

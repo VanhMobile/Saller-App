@@ -90,6 +90,53 @@ public class AddEmployeeFragment extends Fragment {
                 insertEmployee();
             }
 
+        });
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            bitmap = (Bitmap) extras.get("data");
+            employeeBinding.imgProduct.setImageBitmap(bitmap);
+            employeeBinding.addImgProduct.setVisibility(View.GONE);
+            employeeBinding.imgProduct.setVisibility(View.VISIBLE);
+            dialog.dismiss();
+        } else if (requestCode == 1000 && resultCode == RESULT_OK) {
+            Uri uri = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
+                employeeBinding.imgProduct.setImageBitmap(bitmap);
+                employeeBinding.addImgProduct.setVisibility(View.GONE);
+                employeeBinding.imgProduct.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void showDialog() {
+        BottomDialogCameraBinding cameraBinding = BottomDialogCameraBinding.inflate(getLayoutInflater());
+        dialog = new BottomSheetDialog(requireContext(), R.style.BottomSheetDialogThem);
+        dialog.setContentView(cameraBinding.getRoot());
+        cameraBinding.btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 100);
+            }
+        });
+        cameraBinding.btnLibrary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, 1000);
+            }
+        });
+        dialog.show();
+    }
+
+
             private void insertEmployee() {
                 int count = 0 ;
                 if (Validations.isEmptyPress(employeeBinding.edtNameEmployee)){
