@@ -13,10 +13,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.ListBillAdapter;
 import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.database.BillDao;
 import com.example.sallerapp.databinding.FragmentListBillBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.BillSingle;
+import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.Customer;
@@ -57,15 +60,24 @@ public class Fragment_list_bill extends Fragment {
             public void getData(ArrayList<Bill> bills) {
                 billArrayList = bills;
 
-                adapter = new ListBillAdapter(billArrayList);
+                adapter = new ListBillAdapter(billArrayList, new ListBillAdapter.Click() {
+                    @Override
+                    public void clickItem(Bill bill) {
+                        Intent intent = new Intent(requireContext(), BillActivity.class);
+                        intent.putExtra("bill", "detailBill");
+                        BillSingle.getInstance().setBill(bill);
+                        startActivity(intent);
+                    }
+                });
                 // Áp dụng DividerItemDecoration cho RecyclerView
-                LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
-                        layoutManager.getOrientation());
-                binding.recyclerViewListBill.addItemDecoration(dividerItemDecoration);
-                binding.recyclerViewListBill.setAdapter(adapter);
-                binding.recyclerViewListBill.setLayoutManager(layoutManager);
-
+               if (isAdded()){
+                   LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+                   DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
+                           layoutManager.getOrientation());
+                   binding.recyclerViewListBill.addItemDecoration(dividerItemDecoration);
+                   binding.recyclerViewListBill.setAdapter(adapter);
+                   binding.recyclerViewListBill.setLayoutManager(layoutManager);
+               }
                 binding.searchView.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

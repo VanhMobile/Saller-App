@@ -43,15 +43,15 @@ public class AccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("USER_SHOP", Context.MODE_PRIVATE);
-        String loggedInUserName = sharedPreferences.getString("USERNAME", "");
-        accountBinding.afNameShop.setText(loggedInUserName);
-
-        accountBinding.btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getActivity().finish();
-            }
-        });
+//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("USER_SHOP", Context.MODE_PRIVATE);
+//        String loggedInUserName = sharedPreferences.getString("USERNAME", "");
+//        accountBinding.afNameShop.setText(loggedInUserName);
+//
+//        accountBinding.btnLogout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                getActivity().finish();
+//            }
+//        });
     }
 }
