@@ -11,18 +11,14 @@ import com.example.sallerapp.databinding.ItemCategoryProductBinding;
 import com.example.sallerapp.model.CategoryCustomer;
 import com.example.sallerapp.model.CategoryProduct;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProductAdapter.ViewHolder>{
 
 private List<CategoryProduct> categoryProductList;
-    private List<CategoryProduct> categoryProductList2;
-
 
     public CategoryProductAdapter(List<CategoryProduct> categoryProductList) {
         this.categoryProductList = categoryProductList;
-        this.categoryProductList2 = new ArrayList<>(categoryProductList);
 
     }
 
@@ -41,13 +37,13 @@ public interface ICategoryProduct{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        CategoryProduct categoryProduct = categoryProductList2.get(position);
+        CategoryProduct categoryProduct = categoryProductList.get(position);
         holder.binding.NameCategoryProduct.setText( categoryProduct.getNameCategory());
     }
 
     @Override
     public int getItemCount() {
-        return categoryProductList2.size();
+        return categoryProductList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -56,19 +52,5 @@ public interface ICategoryProduct{
             super(binding.getRoot());
             this.binding = binding;
         }
-    }
-
-    public void TK(String a){
-    categoryProductList2.clear();
-        if (a.isEmpty()) {
-            categoryProductList2.addAll(categoryProductList);
-        } else {
-            categoryProductList.forEach(o -> {
-                if (o.getNameCategory().toLowerCase().contains(a.toLowerCase())){
-                    categoryProductList2.add(o);
-                }
-            });
-        }
-        notifyDataSetChanged();
     }
 }
