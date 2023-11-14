@@ -1,6 +1,9 @@
 package com.example.sallerapp.controller.fragment;
 
+
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -92,7 +95,27 @@ public class ListEmployeeFragment extends Fragment {
         EmployeeDao.getEmployees("Shop_1", new EmployeeDao.GetData() {
             @Override
             public void getData(ArrayList<Employee> employees) {
-                adapter = new ListEmployeeAdapter(employees);
+                adapter = new ListEmployeeAdapter(employees,new ListEmployeeAdapter.IListEmployee() {
+                    @Override
+                    public void btnClick(Employee employee) {
+                        String phoneNumber = "tel:" + employee.getNumberPhone();
+
+                        // Tạo Intent với hành động ACTION_CALL
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+
+                        // Đặt dữ liệu URI cho số điện thoại
+                        callIntent.setData(Uri.parse(phoneNumber));
+
+                        // Kiểm tra xem có quyền CALL_PHONE hay không
+                        if (requireActivity().checkSelfPermission(android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                            // Nếu có quyền, bắt đầu Intent
+                            startActivity(callIntent);
+                        } else {
+                            // Nếu không có quyền, yêu cầu quyền từ người dùng
+                            requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, 1);
+                        }
+                    }
+                });
                 employBinding.rcvEmployee.setAdapter(adapter);
                 if (isAdded()){
                     employBinding.rcvEmployee.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -2,6 +2,7 @@ package com.example.sallerapp.controller.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -88,18 +89,21 @@ public class Fragment_list_customers extends Fragment {
                     adapter = new ListCustomerAdapter(customers, new ListCustomerAdapter.Click() {
                         @Override
                         public void clickBtnCall(Customer customer) {
-                            // Tạo một Intent với hành động ACTION_DIAL
-                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            String phoneNumber = "tel:" + customer.getNumberPhone();
 
-                            // Đặt dữ liệu Uri cho số điện thoại cần gọi
-                            intent.setData(Uri.parse("tel:" + customer.getNumberPhone()));
+                            // Tạo Intent với hành động ACTION_CALL
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
 
-                            // Kiểm tra xem ứng dụng Gọi điện thoại có sẵn trên thiết bị hay chưa
-                            if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
-                                // Nếu có, mở ứng dụng Gọi điện thoại
-                                startActivity(intent);
+                            // Đặt dữ liệu URI cho số điện thoại
+                            callIntent.setData(Uri.parse(phoneNumber));
+
+                            // Kiểm tra xem có quyền CALL_PHONE hay không
+                            if (requireActivity().checkSelfPermission(android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                                // Nếu có quyền, bắt đầu Intent
+                                startActivity(callIntent);
                             } else {
-                                Toast.makeText(requireContext(), "Không tìm thấy ứng dụng phù hợp", Toast.LENGTH_SHORT).show();
+                                // Nếu không có quyền, yêu cầu quyền từ người dùng
+                                requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, 1);
                             }
                         }
 
