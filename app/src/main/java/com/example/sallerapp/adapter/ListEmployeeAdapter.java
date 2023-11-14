@@ -21,16 +21,16 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
     private List<Employee> employeeList;
     private List<Employee> employeeList2;
 
-    public ListEmployeeAdapter(List<Employee> employeeList) {
+    IListEmployee click;
 
+    public ListEmployeeAdapter(List<Employee> employeeList,IListEmployee click) {
         this.employeeList = employeeList;
         this.employeeList2 = new ArrayList<>(employeeList);
+        this.click = click;
     }
 
-    private IListEmployee linstener;
     public interface IListEmployee{
-        void click (Employee employee);
-        void update (Employee employee);
+        void btnClick (Employee employee);
     }
     @NonNull
     @Override
@@ -51,6 +51,12 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
                 .load(employee.getImgPath())
                 .error(R.drawable.product_img)
                 .into(holder.binding.imgPath);
+        holder.binding.btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.btnClick(employee);
+            }
+        });
     }
 
     @Override
