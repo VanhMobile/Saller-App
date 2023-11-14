@@ -106,17 +106,15 @@ public class Fragment_add_customer extends Fragment {
                     }
                 });
 
-                binding.btnSave.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        inSertCustomer();
-                    }
-                });
-
-
-
                 customerDialog.show();
 
+            }
+        });
+
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inSertCustomer();
             }
         });
     }

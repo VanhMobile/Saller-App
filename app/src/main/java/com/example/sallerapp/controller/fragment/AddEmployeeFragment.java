@@ -157,6 +157,7 @@ public class AddEmployeeFragment extends Fragment {
         employeeBinding.edtEmail.setText("");
         employeeBinding.edtPass.setText("");
         employeeBinding.edtsdt.setText("");
+        employeeBinding.addImgProduct.setVisibility(View.VISIBLE);
         employeeBinding.imgProduct.setVisibility(View.GONE);
         employeeBinding.edtNote.setText("");
     }
@@ -241,6 +242,7 @@ public class AddEmployeeFragment extends Fragment {
                 .addPassword(pass)
                 .addEmail(email)
                 .addImgPath(imPath)
+                .addIdShop("Shop_1")
                 .addNote(note)
                 .build();
         EmployeeDao.insertEmployee(employee, "Shop_1");
