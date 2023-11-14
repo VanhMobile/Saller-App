@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.example.sallerapp.desgin_pattern.build_pantter.CategoryProductBuilder
 import com.example.sallerapp.desgin_pattern.build_pantter.ProductBuilder;
 import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
 import com.example.sallerapp.funtions.IdGenerator;
+import com.example.sallerapp.funtions.MessengerManager;
 import com.example.sallerapp.funtions.RequestPermissions;
 import com.example.sallerapp.model.CategoryProduct;
 import com.example.sallerapp.model.Product;
@@ -79,6 +81,12 @@ public class HomeFragment extends Fragment{
             }
         });
 
+        homeBinding.help.btnMessenger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MessengerManager.openMessengerWithLink("https://www.facebook.com/messages/148593518345206",requireActivity());
+            }
+        });
         homeBinding.iconCartShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,6 +137,13 @@ public class HomeFragment extends Fragment{
                 Intent intent = new Intent(requireContext(), ProductActivity.class);
                 intent.putExtra("product", "categoryProduct");
                 startActivity(intent);
+            }
+        });
+
+        homeBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                homeBinding.swipeRefresh.setRefreshing(false);
             }
         });
     }

@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/_5sdp"
-            android:src="@drawable/icon_customer" />
+            android:src="@drawable/client"/>
 
         <LinearLayout
             android:id="@+id/layout"

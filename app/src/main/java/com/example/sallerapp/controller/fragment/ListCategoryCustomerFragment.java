@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -73,37 +74,49 @@ public class ListCategoryCustomerFragment extends Fragment {
             }
         });
 
+       reaLoad();
+
+       cateCusBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+           @Override
+           public void onRefresh() {
+               reaLoad();
+               cateCusBinding.swipeRefresh.setRefreshing(false);
+           }
+       });
+    }
+
+    private void reaLoad() {
         CategoryCustomerDao.getCategoryCustomers("Shop_1", new CategoryCustomerDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryCustomer> categoryCustomers) {
                 list = categoryCustomers;
                 adapter = new CategoryCustomerAdapter(list);
-               if (isAdded()){
-                   // Áp dụng DividerItemDecoration cho RecyclerView
-                   LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-                   DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
-                           layoutManager.getOrientation());
-                   cateCusBinding.recListCategoryCus.addItemDecoration(dividerItemDecoration);
-                   cateCusBinding.recListCategoryCus.setAdapter(adapter);
-                   cateCusBinding.recListCategoryCus.setLayoutManager(layoutManager);
+                if (isAdded()){
+                    // Áp dụng DividerItemDecoration cho RecyclerView
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+                    DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(),
+                            layoutManager.getOrientation());
+                    cateCusBinding.recListCategoryCus.addItemDecoration(dividerItemDecoration);
+                    cateCusBinding.recListCategoryCus.setAdapter(adapter);
+                    cateCusBinding.recListCategoryCus.setLayoutManager(layoutManager);
 
-                   cateCusBinding.edtSearch.addTextChangedListener(new TextWatcher() {
-                       @Override
-                       public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    cateCusBinding.edtSearch.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                       }
+                        }
 
-                       @Override
-                       public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                           adapter.filterCategoryCustomer(charSequence.toString());
-                       }
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            adapter.filterCategoryCustomer(charSequence.toString());
+                        }
 
-                       @Override
-                       public void afterTextChanged(Editable editable) {
+                        @Override
+                        public void afterTextChanged(Editable editable) {
 
-                       }
-                   });
-               }
+                        }
+                    });
+                }
             }
         });
     }

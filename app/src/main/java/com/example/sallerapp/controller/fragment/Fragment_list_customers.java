@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
@@ -31,8 +32,6 @@ import java.util.ArrayList;
 public class Fragment_list_customers extends Fragment {
 
     private FragmentListCustomersBinding listCustomerBinding;
-    private ArrayList<Customer> customerArrayList = new ArrayList<>();
-    private ArrayList<Customer> listTemp = new ArrayList<>();
     private ListCustomerAdapter adapter;
 
     private final String TAG = Fragment_list_customers.class.getSimpleName();
@@ -51,14 +50,42 @@ public class Fragment_list_customers extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         listCustomerBinding.adView.loadAd(adRequest);
 
+        reaLoad();
 
+        listCustomerBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reaLoad();
+                listCustomerBinding.swipeRefresh.setRefreshing(false);
+            }
+        });
+        listCustomerBinding.addCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
+                        , R.id.fragmentCustomer
+                        , new Fragment_add_customer()
+                        , true);
+            }
+        });
+
+        listCustomerBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireActivity(), MainActivity.class));
+                requireActivity().finish();
+            }
+        });
+
+
+    }
+
+    private void reaLoad() {
         CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
             @Override
             public void getData(ArrayList<Customer> customers) {
-                customerArrayList.addAll(customers);
-                listTemp = customers;
                 if (isAdded()){
-                    adapter = new ListCustomerAdapter(customerArrayList, new ListCustomerAdapter.Click() {
+                    adapter = new ListCustomerAdapter(customers, new ListCustomerAdapter.Click() {
                         @Override
                         public void clickBtnCall(Customer customer) {
                             // Tạo một Intent với hành động ACTION_DIAL
@@ -108,26 +135,5 @@ public class Fragment_list_customers extends Fragment {
                 }
             }
         });
-
-
-        listCustomerBinding.addCustomer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
-                        , R.id.fragmentCustomer
-                        , new Fragment_add_customer()
-                        , true);
-            }
-        });
-
-        listCustomerBinding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(requireActivity(), MainActivity.class));
-                requireActivity().finish();
-            }
-        });
-
-
     }
 }
