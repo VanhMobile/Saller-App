@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.EmployeeActivity;
+import com.example.sallerapp.controller.view.NetworkChangeActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.database.CategoryProductDao;
 import com.example.sallerapp.database.ProductDao;
@@ -36,7 +37,7 @@ public class HomeFragment extends Fragment{
 
     private FragmentHomeBinding homeBinding;
 
-
+    private NetworkChangeActivity networkChangeActivity;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false);
+        checkNetwork();
         initView();
         return homeBinding.getRoot();
     }
@@ -146,5 +148,9 @@ public class HomeFragment extends Fragment{
                 homeBinding.swipeRefresh.setRefreshing(false);
             }
         });
+    }
+    public void checkNetwork (){
+        networkChangeActivity = new NetworkChangeActivity(getContext());
+        networkChangeActivity.startNetworkListener();
     }
 }
