@@ -187,13 +187,26 @@ public class AddEmployeeFragment extends Fragment {
                     count++;
                 }
 
-
                 if (!Validations.isEmptyPress(employeeBinding.edtPass)) {
                     if (!Validations.isPasswordPress(employeeBinding.edtPass)) {
                         count++;
                     }
                 } else {
                     count++;
+                }
+
+                for (int i = 0; i < employees.size(); i++){
+                    if (employees.get(i).getNumberPhone().equals(employeeBinding.edtsdt.getText().toString().trim())){
+                        count++;
+                        Toast.makeText(requireActivity(),"Số điện thoại đã có",Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                for (int i = 0; i < employees.size(); i++){
+                    if (employees.get(i).getEmail().equals(employeeBinding.edtEmail.getText().toString().trim())){
+                        count++;
+                        Toast.makeText(requireActivity(),"Email đã có",Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 if (count != 0) {
