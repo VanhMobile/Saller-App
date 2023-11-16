@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".controller.fragment.AddProductFragment">
+    tools:context=".controller.view.OtpConfirmActivity">
 
     <LinearLayout
         android:id="@+id/rlt1"
@@ -54,7 +54,7 @@
 
 
         <EditText
-
+            android:id="@+id/edtCheckOTP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
@@ -77,6 +77,7 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"

@@ -5,7 +5,11 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
+    <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -35,7 +39,7 @@
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".controller.view.ConfrimEmailActivity"
+            android:name=".controller.view.ConfirmPasswordActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
@@ -63,14 +67,6 @@
             android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:name=".controller.view.GoogleRegisterActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false" />
-        <activity
-            android:name=".controller.view.GoogleActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
@@ -88,10 +84,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-5261855707351600~4014112688"/>
+            android:value="ca-app-pub-5261855707351600~4014112688" />
     </application>
 
 </manifest>
