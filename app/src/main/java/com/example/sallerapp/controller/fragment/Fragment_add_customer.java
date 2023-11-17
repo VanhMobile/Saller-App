@@ -51,7 +51,6 @@ public class Fragment_add_customer extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         binding.adView.loadAd(adRequest);
 
-
         binding.btnAddCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,17 +106,15 @@ public class Fragment_add_customer extends Fragment {
                     }
                 });
 
-                binding.btnSave.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        inSertCustomer();
-                    }
-                });
-
-
-
                 customerDialog.show();
 
+            }
+        });
+
+        binding.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                inSertCustomer();
             }
         });
     }

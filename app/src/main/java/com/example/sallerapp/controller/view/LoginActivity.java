@@ -55,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
         Validations.isEmpty(loginBinding.userName);
         Validations.isPassword(loginBinding.password);
 
@@ -172,7 +171,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void firebaseAuth(String idToken) {
-
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {

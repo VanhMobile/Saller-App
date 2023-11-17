@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.controller.view.CustomerActivity;
 import com.example.sallerapp.controller.view.EmployeeActivity;
+import com.example.sallerapp.controller.view.NetworkChangeActivity;
 import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.database.CategoryProductDao;
 import com.example.sallerapp.database.ProductDao;
@@ -21,6 +23,7 @@ import com.example.sallerapp.desgin_pattern.build_pantter.CategoryProductBuilder
 import com.example.sallerapp.desgin_pattern.build_pantter.ProductBuilder;
 import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
 import com.example.sallerapp.funtions.IdGenerator;
+import com.example.sallerapp.funtions.MessengerManager;
 import com.example.sallerapp.funtions.RequestPermissions;
 import com.example.sallerapp.model.CategoryProduct;
 import com.example.sallerapp.model.Product;
@@ -34,7 +37,7 @@ public class HomeFragment extends Fragment{
 
     private FragmentHomeBinding homeBinding;
 
-
+    private NetworkChangeActivity networkChangeActivity;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -51,13 +54,12 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false);
+        checkNetwork();
         initView();
         return homeBinding.getRoot();
     }
 
     private void initView() {
-
-
 
         AdRequest adRequest = new AdRequest.Builder().build();
         homeBinding.adView.loadAd(adRequest);
@@ -81,17 +83,27 @@ public class HomeFragment extends Fragment{
             }
         });
 
+        homeBinding.help.btnMessenger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MessengerManager.openMessengerWithLink("https://www.facebook.com/messages/148593518345206",requireActivity());
+            }
+        });
         homeBinding.iconCartShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireContext(), BillActivity.class));
+                Intent intent = new Intent(requireContext(), BillActivity.class);
+                intent.putExtra("bill", "AddBill");
+                startActivity(intent);
             }
         });
 
         homeBinding.shortcut.createBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(requireContext(), BillActivity.class));
+                Intent intent = new Intent(requireContext(), BillActivity.class);
+                intent.putExtra("bill", "AddBill");
+                startActivity(intent);
             }
         });
 
@@ -129,5 +141,16 @@ public class HomeFragment extends Fragment{
                 startActivity(intent);
             }
         });
+
+        homeBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                homeBinding.swipeRefresh.setRefreshing(false);
+            }
+        });
+    }
+    public void checkNetwork (){
+        networkChangeActivity = new NetworkChangeActivity(getContext());
+        networkChangeActivity.startNetworkListener();
     }
 }

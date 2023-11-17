@@ -161,7 +161,6 @@ public class AccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         accountBinding.afNameShop.setText(currentAccount.getShopName());
         accountBinding.afEmailShop.setText(currentAccount.getEmail());
         accountBinding.afPhonenumberShop.setText(currentAccount.getNumberPhone());
