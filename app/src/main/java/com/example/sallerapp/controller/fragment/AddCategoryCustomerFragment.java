@@ -1,5 +1,6 @@
 package com.example.sallerapp.controller.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,14 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.database.CategoryCustomerDao;
 import com.example.sallerapp.databinding.FragmentAddCategoryCustomerBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.CategoryCustomerBuilder;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.CategoryCustomer;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ import java.util.ArrayList;
 public class AddCategoryCustomerFragment extends Fragment {
 
     FragmentAddCategoryCustomerBinding categoryCustomerBinding;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
     public AddCategoryCustomerFragment() {
         // Required empty public constructor
     }
@@ -66,25 +71,23 @@ public class AddCategoryCustomerFragment extends Fragment {
         categoryCustomerBinding.imgBackACP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyFragment.backFragment(requireActivity().getSupportFragmentManager()
-                        , R.id.fragmentCustomer
-                        , new ListCategoryCustomerFragment()
-                        , true);
+               startActivity(new Intent(requireActivity(), MainActivity.class));
+               requireActivity().finish();
             }
         });
     }
 
     private void insertCategory() {
         if (!Validations.isEmptyPress(categoryCustomerBinding.edtCategoryName)){
-            CategoryCustomerDao.getCategoryCustomers("Shop_1", new CategoryCustomerDao.GetData() {
+            CategoryCustomerDao.getCategoryCustomers(shopAccount.getShopId(), new CategoryCustomerDao.GetData() {
                 @Override
                 public void getData(ArrayList<CategoryCustomer> categoryCustomers) {
                     CategoryCustomer categoryCustomer = new CategoryCustomerBuilder()
-                            .addId(IdGenerator.generateNextShopId(categoryCustomers.size() + 1, "LKH_"))
+                            .addId(IdGenerator.generateNextShopId(categoryCustomers.size(), "LKH_"))
                             .addName(categoryCustomerBinding.edtCategoryName.getText().toString())
                             .addNote(categoryCustomerBinding.edtNote.getText().toString()).build();
-                    CategoryCustomerDao.insertCategoryCustomer(categoryCustomer, "Shop_1");
-                    Toast.makeText(getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
+                    CategoryCustomerDao.insertCategoryCustomer(categoryCustomer, shopAccount.getShopId());
+                    Toast.makeText(requireContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
                     clearData();
                 }
             });

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.sallerapp.R;
 import com.example.sallerapp.database.AccountDao;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class NewPassActivity extends AppCompatActivity {
 
     ActivityNewPassBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,60 +64,27 @@ public class NewPassActivity extends AppCompatActivity {
                 if (check != 0) {
                     return;
                 }
-
-                if(check ==0){
-                    newpass();
-                }
-
+                newpass();
 
             }
         });
 
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(NewPassActivity.this,OtpConfirmActivity.class));
+                finish();
+            }
+        });
     }
 
     private void newpass() {
-        SharedPreferences preferences = getSharedPreferences("Phone_OTP", MODE_PRIVATE);
-
-        String phone = preferences.getString("phone", "");
-//        String otp = preferences.getString("otp", "");
-        AccountDao.GetShopAccounts(new AccountDao.GetData() {
-            int count = 0;
-            @Override
-            public void getData(ArrayList<ShopAccount> shopAccounts) {
-                String newpass = binding.edtpass.getText().toString();
-                shopAccounts.forEach(o ->{
-                    if(o.getNumberPhone().equals(phone)){
-                        count = 0;
-                        startActivity(new Intent(NewPassActivity.this, LoginActivity.class));
-
-                        SingleAccount singleAccount = SingleAccount.getInstance();
-                        ShopAccount account = new ShopAccount();
-                        //Set thông tin vào account
-                        account.setPassword(newpass);
-                        account.setNumberPhone(phone);
-                        account.setShopId(o.getShopId());
-                        account.setAddress(o.getAddress());
-                        account.setEmail(o.getEmail());
-                        account.setShopName(o.getShopName());
-
-                        singleAccount.setShopAccount(account);
-
-
-                        ShopAccount shopAccount = new AccountBuilder()
-                                .addIdAccount(o.getShopId())
-                                .addPassword(newpass)
-                                .addNumberPhone(phone)
-                                .addAddress(o.getAddress())
-                                .addShopName(o.getShopName())
-                                .addEmail(o.getEmail())
-                                .build();
-
-                        AccountDao.insertShopAccount(shopAccount);
-                        finish();
-                    }
-                });
-
-            }
-        });
+        ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
+        String pass = binding.edtpass.getText().toString();
+        shopAccount.setPassword(pass);
+        AccountDao.insertShopAccount(shopAccount);
+        Toast.makeText(this,"Đổi mật khẩu thành công",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this,LoginActivity.class));
+        finish();
     }
 }

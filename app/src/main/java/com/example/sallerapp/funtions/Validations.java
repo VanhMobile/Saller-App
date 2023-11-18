@@ -62,7 +62,7 @@ public class Validations {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // nếu sai định dạng mail trả ra một error
-                Regex regex = new Regex("[A-Za-z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)");
+                Regex regex = new Regex("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
                 if (!regex.matches(charSequence.toString())) {
                     editText.setError("Sai định dạng email");
                 } else {
@@ -81,7 +81,7 @@ public class Validations {
     //check đnh dạng khi người dùng nhấn vào button
     public static boolean isEmailPress(EditText editText) {
         // check nếu edt chả ra giá trị sai định dạng thì chả ra error
-        Regex regex = new Regex("[A-Za-z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)");
+        Regex regex = new Regex("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
         if (!regex.matches(editText.getText().toString())) {
             editText.setError("Sai định dạng email");
         } else {

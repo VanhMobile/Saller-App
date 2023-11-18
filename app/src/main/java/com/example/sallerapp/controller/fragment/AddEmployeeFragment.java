@@ -23,11 +23,13 @@ import com.example.sallerapp.database.EmployeeDao;
 import com.example.sallerapp.databinding.BottomDialogCameraBinding;
 import com.example.sallerapp.databinding.FragmentAddEmployeeBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.EmployeeBuilder;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MyDialog;
 import com.example.sallerapp.funtions.RequestPermissions;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.Employee;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -46,6 +48,7 @@ public class AddEmployeeFragment extends Fragment {
     Bitmap bitmap;
     BottomSheetDialog dialog;
     String id;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
 
     public AddEmployeeFragment() {
@@ -163,7 +166,7 @@ public class AddEmployeeFragment extends Fragment {
     }
 
     private void insertEmployee() {
-        EmployeeDao.getEmployees("Shop_1", new EmployeeDao.GetData() {
+        EmployeeDao.getEmployees(shopAccount.getShopId(), new EmployeeDao.GetData() {
             @Override
             public void getData(ArrayList<Employee> employees) {
                 id = IdGenerator.generateNextShopId(employees.size(), "NV_");
@@ -249,16 +252,16 @@ public class AddEmployeeFragment extends Fragment {
         String pass = employeeBinding.edtPass.getText().toString();
         String note = employeeBinding.edtNote.getText().toString();
         Employee employee = new EmployeeBuilder()
-                .addId(id)
+                .addId(id+"_"+shopAccount.getShopId())
                 .addName(name)
                 .addNumberPhone(sdt)
                 .addPassword(pass)
                 .addEmail(email)
                 .addImgPath(imPath)
-                .addIdShop("Shop_1")
+                .addIdShop(shopAccount.getShopId())
                 .addNote(note)
                 .build();
-        EmployeeDao.insertEmployee(employee, "Shop_1");
+        EmployeeDao.insertEmployee(employee, shopAccount.getShopId());
         clearData();
     }
 }

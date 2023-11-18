@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
-            android:hint="User name"
+            android:hint="Email"
             android:paddingStart="@dimen/_8sdp"
             android:textColorHint="@color/edt_login_color_hint"
             android:textSize="@dimen/_10ssp" />

@@ -20,10 +20,12 @@ import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.databinding.BottomDialogCustomerTypeBinding;
 import com.example.sallerapp.databinding.FragmentAddCustomerBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.CustomerBuilder;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.CategoryCustomer;
 import com.example.sallerapp.model.Customer;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -35,6 +37,7 @@ public class Fragment_add_customer extends Fragment {
 
     private FragmentAddCustomerBinding binding;
     private ArrayList<Customer> customerArrayList = new ArrayList<>();
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
     private ListTypeCustomerDialogAdapter adapter;
 
 
@@ -83,7 +86,7 @@ public class Fragment_add_customer extends Fragment {
                     }
                 });
 
-                CategoryCustomerDao.getCategoryCustomers("Shop_1", new CategoryCustomerDao.GetData() {
+                CategoryCustomerDao.getCategoryCustomers(shopAccount.getShopId(), new CategoryCustomerDao.GetData() {
                     @Override
                     public void getData(ArrayList<CategoryCustomer> customers) {
                         ArrayList<CategoryCustomer> categoryCustomers = customers;
@@ -125,7 +128,7 @@ public class Fragment_add_customer extends Fragment {
                 Validations.isPhoneNumberPress(binding.CustomerPhoneNumber) &&
                 !binding.CustomerType.getText().toString().equals("Loại khách hàng")){
 
-            CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
+            CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
                 @Override
                 public void getData(ArrayList<Customer> customers) {
                     Customer customer = new CustomerBuilder()
@@ -136,7 +139,7 @@ public class Fragment_add_customer extends Fragment {
                             .addCustomerType(binding.CustomerType.getText().toString())
                             .addNote(binding.CustomerAddNote.getText().toString()).build();
 
-                    CustomerDao.insertCustomer(customer,"Shop_1");
+                    CustomerDao.insertCustomer(customer,shopAccount.getShopId());
                     Toast.makeText(getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
                     clearData();
                 }

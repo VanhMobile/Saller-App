@@ -15,6 +15,7 @@ import com.example.sallerapp.funtions.Validations;
 public class OtpConfirmActivity extends AppCompatActivity {
 
     ActivityOtpConfirmBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,24 +25,31 @@ public class OtpConfirmActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        SharedPreferences preferences = getSharedPreferences("Phone_OTP", MODE_PRIVATE);
-
-//        String phone = preferences.getString("phone", "");
-        String otp = preferences.getString("otp", "");
+        Intent intent = getIntent();
+        if (intent == null) return;
+        String otp = intent.getStringExtra("otp");
         binding.btnConfirm.setOnClickListener(v -> {
             int check = 0;
-            if(Validations.isEmptyPress(binding.edtCheckOTP)){
+            if (Validations.isEmptyPress(binding.edtCheckOTP)) {
                 check++;
+            }
+            if (check != 0){
                 return;
             }
-            if(check ==0 ){
-                if(binding.edtCheckOTP.getText().toString().equals(otp)){
-//                        Toast.makeText(OtpConfirmActivity.this, "", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(OtpConfirmActivity.this, NewPassActivity.class));
-                    finish();
-                }
+            if (binding.edtCheckOTP.getText().toString().equals(otp)) {
+                startActivity(new Intent(OtpConfirmActivity.this, NewPassActivity.class));
+                finish();
+            }else{
+                Toast.makeText(OtpConfirmActivity.this, "Sai mã xác nhận", Toast.LENGTH_SHORT).show();
             }
+        });
 
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OtpConfirmActivity.this, ConfirmPasswordActivity.class));
+                finish();
+            }
         });
     }
 }
