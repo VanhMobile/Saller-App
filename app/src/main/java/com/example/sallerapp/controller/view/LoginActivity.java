@@ -12,6 +12,7 @@ import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.database.AccountDao;
 import com.example.sallerapp.databinding.ActivityLoginBinding;
+import com.example.sallerapp.desgin_pattern.build_pantter.AccountBuilder;
 import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.ShopAccount;
@@ -55,27 +56,25 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        Validations.isEmpty(loginBinding.userName);
-        Validations.isPassword(loginBinding.password);
 
         loginBinding.btnLoginLogin.setOnClickListener(view -> {
                     int check = 0;
                     if (Validations.isEmptyPress(loginBinding.userName)) {
                         check++;
-                        return;
                     }
 
                     if (!Validations.isEmptyPress(loginBinding.password)) {
                         if (!Validations.isPasswordPress(loginBinding.password)) {
                             check++;
-                            return;
                         }
                     } else {
                         check++;
+                    }
+                    if (check != 0){
                         return;
                     }
                     AccountDao.GetShopAccounts(new AccountDao.GetData() {
-                        int count = 0;
+                        boolean isLogin = false;
 
                         @Override
                         public void getData(ArrayList<ShopAccount> shopAccounts) {
@@ -84,53 +83,19 @@ public class LoginActivity extends AppCompatActivity {
                             String userName = loginBinding.userName.getText().toString();
                             String pass = loginBinding.password.getText().toString();
 
-                            shopAccounts.forEach(o -> {
-
-                                if (o.getShopId().equals(userName)) {
-                                    loginBinding.userName.setError(null);
-                                    count = 0;
-                                } else {
-                                    count=1000;
-                                    return;
-                                }
-                                if (o.getPassword().equals(pass)) {
-                                    loginBinding.password.setError(null);
-                                    count = 0;
-                                } else {
-                                    loginBinding.password.setError("Sai pass");
-                                    count++;
-
-                                }
-                                if(count==1000){
-                                    loginBinding.userName.setError("Tên shop không tồn tại");
-                                }
-                                if (count != 0) {
-//                                    Toast.makeText(LoginActivity.this, "Bạn quên mật khẩu?", Toast.LENGTH_SHORT).show();
-
-                                    return;
-                                }
-
-                                Log.d("COUNT", count + "");
-
-                                if (count == 0) {
-                                    Toast.makeText(LoginActivity.this, "Login thành công", Toast.LENGTH_SHORT).show();
+                            for (ShopAccount item: shopAccounts) {
+                                if (((item.getNumberPhone().equals(userName))|| (item.getEmail().equals(userName)))&&(item.getPassword().equals(pass))){
+                                    SingleAccount.getInstance().setShopAccount(item);
+                                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
-                                    SingleAccount singleAccount = SingleAccount.getInstance();
-                                    ShopAccount account = new ShopAccount();
-                                    //Set thông tin vào account
-                                    account.setShopId(userName);
-                                    account.setShopName(userName);
-                                    account.setPassword(pass);
-                                    account.setNumberPhone(o.getNumberPhone());
-                                    account.setEmail(o.getEmail());
-                                    account.setAddress(o.getAddress());
-
-                                    singleAccount.setShopAccount(account);
                                     finish();
-                                    Log.d("ACCOUNT", account + "");
+                                    isLogin=true;
+                                    break;
                                 }
-                            });
+                            }
+                            if (!isLogin){
+                                Toast.makeText(LoginActivity.this, "Thông tin đăng nhập sai", Toast.LENGTH_SHORT).show();
+                            }
 
                         }
                     });
@@ -147,7 +112,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private void loginGG() {
         Intent intent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
@@ -157,14 +121,13 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RC_SIGN_IN){
+        if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            
-            try{
+            try {
 
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuth(account.getIdToken());
-            }catch (Exception e){
+            } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
@@ -175,32 +138,22 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(task -> {
 
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-
-                        HashMap<String, Object> map = new HashMap<>();
-                        map.put("shopId", user.getUid());
-                        map.put("shopName", user.getDisplayName());
-
-                        database.getReference().child("user").child(user.getUid()).setValue(map);
-
+                        ShopAccount shopAccount = new AccountBuilder()
+                                .addIdAccount(user.getUid())
+                                .addShopName("My Shop")
+                                .addEmail(user.getEmail())
+                                .addNumberPhone(user.getPhoneNumber()+"")
+                                .addPassword("#mBBmyShop123")
+                                .addAddress("")
+                                .build();
+                        AccountDao.insertShopAccount(shopAccount);
+                        SingleAccount.getInstance().setShopAccount(shopAccount);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
-
-                        SingleAccount singleAccount = SingleAccount.getInstance();
-                        ShopAccount account = new ShopAccount();
-                        //Set thông tin vào account
-                        account.setShopId(user.getUid());
-                        account.setShopName(user.getDisplayName());
-                        account.setPassword("#mCTLan2003");
-                        account.setNumberPhone(user.getPhoneNumber());
-                        account.setEmail(user.getEmail());
-                        account.setAddress("");
-
-                        singleAccount.setShopAccount(account);
                         finish();
-                    }
-                    else{
+                    } else {
                         Toast.makeText(LoginActivity.this, "Loi", Toast.LENGTH_SHORT).show();
                     }
                 });

@@ -77,7 +77,9 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
             employeeList2.addAll(employeeList);
         } else {
             employeeList.forEach(o -> {
-                if (o.getName().toLowerCase().contains(a.toLowerCase())){
+                if (o.getName().toLowerCase().contains(a.toLowerCase())
+                        || o.getEmail().toLowerCase().contains(a.toLowerCase())
+                        || o.getNumberPhone().toLowerCase().contains(a.toLowerCase())){
                     employeeList2.add(o);
                 }
             });

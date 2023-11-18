@@ -15,10 +15,12 @@ import com.example.sallerapp.controller.view.ProductActivity;
 import com.example.sallerapp.database.CategoryProductDao;
 import com.example.sallerapp.databinding.FragmentAddCategoryProductBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.CategoryProductBuilder;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.CategoryProduct;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 public class AddCategoryProductFragment extends Fragment {
 
     private FragmentAddCategoryProductBinding categoryProductBinding;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
     public AddCategoryProductFragment() {
         // Required empty public constructor
     }
@@ -88,7 +91,7 @@ public class AddCategoryProductFragment extends Fragment {
             return;
         }
 
-        CategoryProductDao.getCategoryProduct("Shop_1", new CategoryProductDao.GetData() {
+        CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryProduct> categoryProducts) {
                 String id = IdGenerator.generateNextShopId(categoryProducts.size(),"LSP_");
@@ -101,7 +104,7 @@ public class AddCategoryProductFragment extends Fragment {
                         .addNote(note)
                         .build();
 
-                CategoryProductDao.insertCategoryProduct(categoryProduct, "Shop_1");
+                CategoryProductDao.insertCategoryProduct(categoryProduct, shopAccount.getShopId());
                 clearData();
             }
         });

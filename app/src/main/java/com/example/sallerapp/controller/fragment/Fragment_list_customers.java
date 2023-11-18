@@ -23,8 +23,10 @@ import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.ListCustomerAdapter;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.databinding.FragmentListCustomersBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.model.Customer;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
@@ -34,6 +36,7 @@ public class Fragment_list_customers extends Fragment {
 
     private FragmentListCustomersBinding listCustomerBinding;
     private ListCustomerAdapter adapter;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
     private final String TAG = Fragment_list_customers.class.getSimpleName();
 
@@ -82,7 +85,7 @@ public class Fragment_list_customers extends Fragment {
     }
 
     private void reaLoad() {
-        CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
+        CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
             @Override
             public void getData(ArrayList<Customer> customers) {
                 if (isAdded()){

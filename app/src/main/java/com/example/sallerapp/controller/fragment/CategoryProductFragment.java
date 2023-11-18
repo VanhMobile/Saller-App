@@ -21,8 +21,10 @@ import com.example.sallerapp.adapter.CategoryProductAdapter;
 import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.database.CategoryProductDao;
 import com.example.sallerapp.databinding.FragmentCategoryProductBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.model.CategoryProduct;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
@@ -33,9 +35,8 @@ public class CategoryProductFragment extends Fragment {
 
     public static String TAG = CategoryProductFragment.class.getSimpleName();
     private FragmentCategoryProductBinding cateProBinding;
-
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
     private CategoryProductAdapter adapter;
-
     public CategoryProductFragment() {
         // Required empty public constructor
     }
@@ -107,7 +108,7 @@ public class CategoryProductFragment extends Fragment {
     }
 
     private void reaLoad() {
-        CategoryProductDao.getCategoryProduct("Shop_1", new CategoryProductDao.GetData() {
+        CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryProduct> categoryProducts) {
                 Log.e(TAG, "getData: " + categoryProducts.size() );

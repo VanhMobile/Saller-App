@@ -36,6 +36,7 @@ import com.example.sallerapp.databinding.DialogAddProductBinding;
 import com.example.sallerapp.databinding.FragmentCreateBillBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.BillBuilder;
 import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.funtions.MyFragment;
@@ -43,6 +44,7 @@ import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.Customer;
 import com.example.sallerapp.model.Product;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.SimpleDateFormat;
@@ -55,6 +57,7 @@ public class CreateBillFragment extends Fragment {
     ListProductAdapter productAdapter;
     ListCustomerAdapter customerAdapter;
     CartShopAdapter cartShopAdapter;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
     Customer cus;
     Date today = new Date();
     // Định dạng ngày
@@ -177,7 +180,7 @@ public class CreateBillFragment extends Fragment {
         if (count != 0){
             return;
         }
-        BillDao.GetBills("Shop_1", new BillDao.GetData() {
+        BillDao.GetBills(shopAccount.getShopId(), new BillDao.GetData() {
             @Override
             public void getData(ArrayList<Bill> bills) {
                 String id = IdGenerator.generateNextShopId(bills.size(),"HD_");
@@ -191,18 +194,15 @@ public class CreateBillFragment extends Fragment {
                         .addTotalPrice(CartShopSingle.getInstance().SumPrice(createBillBinding.tablePrice.getText().toString()))
                         .addDate(dateFormat.format(today))
                         .addNote(createBillBinding.edtNote.getText().toString())
-                        .addIdAccount("Shop_1")
+                        .addIdAccount(shopAccount.getShopName())
                         .build();
                 CartShopSingle.getInstance().getCartShops().forEach(o -> {
                     int quantity = o.getProduct().getQuantity() - o.getQuantity();
                     Product product = o.getProduct();
                     product.setQuantity(quantity);
-                    ProductDao.insertProduct(product,"Shop_1");
+                    ProductDao.insertProduct(product,shopAccount.getShopId());
                 });
-                BillDao.insertBill(bill,"Shop_1");
-                if (isAdded()){
-                    Toast.makeText(requireContext(),"Tạo hóa đơn thành công",Toast.LENGTH_SHORT);
-                }
+                BillDao.insertBill(bill,shopAccount.getShopId());
                 clearData();
             }
         });
@@ -233,7 +233,7 @@ public class CreateBillFragment extends Fragment {
             }
         });
 
-        CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
+        CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
             @Override
             public void getData(ArrayList<Customer> customers) {
                 customerAdapter = new ListCustomerAdapter(customers, new ListCustomerAdapter.Click() {
@@ -369,7 +369,7 @@ public class CreateBillFragment extends Fragment {
         dialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT
                 , WindowManager.LayoutParams.MATCH_PARENT);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        ProductDao.getProducts("Shop_1", new ProductDao.GetData() {
+        ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
             @Override
             public void getData(ArrayList<Product> products) {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {

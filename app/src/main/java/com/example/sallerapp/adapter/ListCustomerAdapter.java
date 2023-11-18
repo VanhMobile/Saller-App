@@ -89,7 +89,9 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
             customerArrayList.addAll(filterCustomerList);
         } else{
             filterCustomerList.forEach(item -> {
-                if (item.getCustomerName().toLowerCase().contains(character)){
+                if (item.getCustomerName().toLowerCase().contains(character)
+                        || item.getNumberPhone().contains(character)
+                        || item.getAddress().toLowerCase().contains(character)){
                     customerArrayList.add(item);
                 }
             });

@@ -20,11 +20,13 @@ import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.database.BillDao;
 import com.example.sallerapp.databinding.FragmentListBillBinding;
 import com.example.sallerapp.desgin_pattern.single_pantter.BillSingle;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.Customer;
 import com.example.sallerapp.model.Product;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -39,8 +41,8 @@ import java.util.ArrayList;
 public class Fragment_list_bill extends Fragment {
 
     private FragmentListBillBinding binding;
-
     private ListBillAdapter adapter;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class Fragment_list_bill extends Fragment {
     }
 
     private void reaLoad() {
-        BillDao.GetBills("Shop_1", new BillDao.GetData() {
+        BillDao.GetBills(shopAccount.getShopId(), new BillDao.GetData() {
             @Override
             public void getData(ArrayList<Bill> bills) {
                 adapter = new ListBillAdapter(bills, new ListBillAdapter.Click() {

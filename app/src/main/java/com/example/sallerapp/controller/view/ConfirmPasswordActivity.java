@@ -16,8 +16,11 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import com.example.sallerapp.database.AccountDao;
 import com.example.sallerapp.databinding.ActivityConfirmPasswordBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.Validations;
+import com.example.sallerapp.model.ShopAccount;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,24 +41,42 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
 
     private void initView() {
 
-        Validations.isPhoneNumberPress(confirmPasswordBinding.edtPhoneOTP);
+        confirmPasswordBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ConfirmPasswordActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
+
+        Validations.isPhoneNumber(confirmPasswordBinding.edtPhoneOTP);
 
         confirmPasswordBinding.btnSendOTP.setOnClickListener(v -> {
-            int check = 0;
-            if(Validations.isEmptyPress(confirmPasswordBinding.edtPhoneOTP)){
-                check++;
-                return;
-            }
-            if(check ==0 ){
-                if(ContextCompat.checkSelfPermission(ConfirmPasswordActivity.this, android.Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
-                    sendOTP();
-                    startActivity(new Intent(ConfirmPasswordActivity.this, OtpConfirmActivity.class));
-
-                } else{
-                    ActivityCompat.requestPermissions(ConfirmPasswordActivity.this, new String[]{android.Manifest.permission.SEND_SMS}, 100);
+            AccountDao.GetShopAccounts(new AccountDao.GetData() {
+                @Override
+                public void getData(ArrayList<ShopAccount> shopAccounts) {
+                    int check = 0;
+                    if(!Validations.isEmptyPress(confirmPasswordBinding.edtPhoneOTP)){
+                        if (!Validations.isPhoneNumberPress(confirmPasswordBinding.edtPhoneOTP)){
+                            check ++;
+                        }
+                    }else{
+                        check ++;
+                    }
+                    for (ShopAccount item: shopAccounts){
+                        if (item.getNumberPhone().equals(confirmPasswordBinding.edtPhoneOTP.getText().toString())){
+                            if(check ==0 ){
+                                if(ContextCompat.checkSelfPermission(ConfirmPasswordActivity.this, android.Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED){
+                                    sendOTP();
+                                    SingleAccount.getInstance().setShopAccount(item);
+                                } else{
+                                    ActivityCompat.requestPermissions(ConfirmPasswordActivity.this, new String[]{android.Manifest.permission.SEND_SMS}, 100);
+                                }
+                            }
+                        }
+                    }
                 }
-            }
-
+            });
         });
     }
 
@@ -73,21 +94,18 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
     }
 
     private void sendOTP() {
+        int min = 100000;
+        int max = 999999;
         Random random = new Random();
-        int number = random.nextInt(89999)+10000;
-        String otp = String.valueOf(number);
+        int randomNumber = random.nextInt((max - min) + 1) + min;
+        String otp = String.valueOf(randomNumber);
         String phone = confirmPasswordBinding.edtPhoneOTP.getText().toString();
-
         SmsManager smsManager = SmsManager.getDefault();
         ArrayList<String> parts = smsManager.divideMessage(otp + " "+ message);
         String phoneOTP = phone;
         smsManager.sendMultipartTextMessage(phoneOTP, null, parts, null, null);
-
-        SharedPreferences preferences = getApplication().getSharedPreferences("Phone_OTP", Context.MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("phone", phoneOTP);
-        editor.putString("otp", otp);
-        editor.apply();
+        Intent intent = new Intent(ConfirmPasswordActivity.this, OtpConfirmActivity.class);
+        intent.putExtra("otp",otp);
+        startActivity(intent);
     }
 }

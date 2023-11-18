@@ -22,7 +22,9 @@ import com.example.sallerapp.adapter.ListEmployeeAdapter;
 import com.example.sallerapp.controller.view.EmployeeActivity;
 import com.example.sallerapp.database.EmployeeDao;
 import com.example.sallerapp.databinding.FragmentListEmployeeBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.model.Employee;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
@@ -32,9 +34,9 @@ import java.util.List;
 public class ListEmployeeFragment extends Fragment {
 
     private FragmentListEmployeeBinding employBinding;
-
-
     private ListEmployeeAdapter adapter;
+
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
     public ListEmployeeFragment() {
         // Required empty public constructor
@@ -92,7 +94,7 @@ public class ListEmployeeFragment extends Fragment {
     private void reaLoad() {
         AdRequest adRequest = new AdRequest.Builder().build();
         employBinding.adView.loadAd(adRequest);
-        EmployeeDao.getEmployees("Shop_1", new EmployeeDao.GetData() {
+        EmployeeDao.getEmployees(shopAccount.getShopId(), new EmployeeDao.GetData() {
             @Override
             public void getData(ArrayList<Employee> employees) {
                 adapter = new ListEmployeeAdapter(employees,new ListEmployeeAdapter.IListEmployee() {

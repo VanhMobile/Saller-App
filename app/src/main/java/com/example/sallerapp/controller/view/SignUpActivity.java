@@ -17,6 +17,7 @@ import com.example.sallerapp.database.AccountDao;
 import com.example.sallerapp.databinding.ActivitySignUpBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.AccountBuilder;
 import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
+import com.example.sallerapp.funtions.IdGenerator;
 import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,6 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -61,100 +63,88 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
-        Validations.isEmpty(signUpBinding.userName);
+        Validations.isEmail(signUpBinding.userName);
         Validations.isPassword(signUpBinding.password);
         Validations.isPassword(signUpBinding.confirmPass);
-        AccountDao.GetShopAccounts(shopAccounts -> signUpBinding.userName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // check trung user name ko ý là cái user name này có tồn tại chưa
-                String userName = signUpBinding.userName.getText().toString();
-                shopAccounts.forEach(o -> {
-                    if (o.getShopId().equals(userName)) {
-                        signUpBinding.userName.setError("User name đã tồn tại");
-                        check++;
-                        return;
-                    } else {
-                        signUpBinding.userName.setError(null);
-                        check = 0;
-                    }
-                });
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        }));
 
         signUpBinding.btnSignupSignup.setOnClickListener(v -> {
-            int count = 0;
-            if (Validations.isEmptyPress(signUpBinding.userName)) {
-                count++;
-            }
+            AccountDao.GetShopAccounts(new AccountDao.GetData() {
+                @Override
+                public void getData(ArrayList<ShopAccount> shopAccounts) {
+                    int count = 0;
+                    if (!Validations.isEmptyPress(signUpBinding.userName)) {
+                        if (!Validations.isEmailPress(signUpBinding.userName)) {
+                            count++;
+                        }
+                    } else {
+                        count++;
+                    }
 
-            if (!Validations.isEmptyPress(signUpBinding.password)) {
-                if (!Validations.isPasswordPress(signUpBinding.password)) {
-                    count++;
+                    if (!Validations.isEmptyPress(signUpBinding.password)) {
+                        if (!Validations.isPasswordPress(signUpBinding.password)) {
+                            count++;
+                        }
+                    } else {
+                        count++;
+                    }
+
+                    if (!Validations.isEmptyPress(signUpBinding.confirmPass)) {
+                        if (!Validations.isPasswordPress(signUpBinding.confirmPass)) {
+                            count++;
+                        }
+                    } else {
+                        count++;
+                    }
+
+                    if (!signUpBinding.password.getText().toString().equals(signUpBinding.confirmPass.getText().toString())) {
+                        signUpBinding.confirmPass.setError("Không trùng mật khẩu");
+                        count++;
+                    } else {
+                        signUpBinding.confirmPass.setError(null);
+                    }
+
+                    String email = signUpBinding.userName.getText().toString().trim();
+                    for (int i = 0; i < shopAccounts.size(); i++){
+                        if (shopAccounts.get(i).getEmail().equals(email)){
+                            count++;
+                            Toast.makeText(SignUpActivity.this, "Email đã tồn tại",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    if (count != 0) {
+                        return;
+                    }
+
+                    String pass = signUpBinding.password.getText().toString();
+                    String userName = IdGenerator.generateNextShopId(shopAccounts.size(),"Shop_");
+
+                    if (check == 0) {
+                        ShopAccount shopAccount = new AccountBuilder()
+                                .addIdAccount(userName)
+                                .addPassword(pass)
+                                .addShopName("My shop")
+                                .addAddress("")
+                                .addEmail(email)
+                                .addNumberPhone("")
+                                .build();
+
+                        AccountDao.insertShopAccount(shopAccount);
+
+                        Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                        finish();
+                    }
+                    if (check == 1) {
+                        Toast.makeText(SignUpActivity.this, "User name đã tồn tại, hãy thay đổi user ", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            } else {
-                count++;
-            }
-
-            if (!Validations.isEmptyPress(signUpBinding.confirmPass)) {
-                if (!Validations.isPasswordPress(signUpBinding.confirmPass)) {
-                    count++;
-                }
-            } else {
-                count++;
-            }
-            if (!signUpBinding.password.getText().toString().equals(signUpBinding.confirmPass.getText().toString())) {
-                signUpBinding.confirmPass.setError("Không trùng mật khẩu");
-                count++;
-            } else {
-                signUpBinding.confirmPass.setError(null);
-            }
-            if (count != 0) {
-                return;
-            }
-
-
-            // tạo account ở đây
-            String userName = signUpBinding.userName.getText().toString();
-            String pass = signUpBinding.password.getText().toString();
-
-            if (check == 0) {
-                ShopAccount shopAccount = new AccountBuilder()
-                        .addIdAccount(userName)
-                        .addPassword(pass)
-                        .addShopName(userName)
-                        .addAddress("")
-                        .addEmail("")
-                        .addNumberPhone("")
-                        .build();
-
-                AccountDao.insertShopAccount(shopAccount);
-
-                Toast.makeText(SignUpActivity.this, "Tạo tài khoản thành công", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
-                finish();
-            }
-            if (check == 1) {
-                Toast.makeText(SignUpActivity.this, "User name đã tồn tại, hãy thay đổi user ", Toast.LENGTH_SHORT).show();
-            }
-
-
+            });
         });
 
-        signUpBinding.btnSignupLogin.setOnClickListener(v ->
-                startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
-
+        signUpBinding.btnSignupLogin.setOnClickListener(v ->{
+            startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+            finish();
+        });
 
         signUpBinding.btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,38 +185,18 @@ public class SignUpActivity extends AppCompatActivity {
 
                     if(task.isSuccessful()){
                         FirebaseUser user = mAuth.getCurrentUser();
-
-                        HashMap<String, Object> map = new HashMap<>();
-                        map.put("shopId", user.getUid());
-                        map.put("shopName", user.getDisplayName());
-
-                        database.getReference().child("user").child(user.getUid()).setValue(map);
-
-                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                        startActivity(intent);
-
                         ShopAccount shopAccount = new AccountBuilder()
                                 .addIdAccount(user.getUid())
-                                .addPassword(user.getDisplayName())
-                                .addShopName(user.getDisplayName())
+                                .addShopName("My Shop")
+                                .addEmail(user.getEmail())
+                                .addNumberPhone(user.getPhoneNumber()+"")
+                                .addPassword("#mBBmyShop123")
                                 .addAddress("")
-                                .addEmail(user.getDisplayName())
-                                .addNumberPhone(user.getPhoneNumber())
                                 .build();
-
                         AccountDao.insertShopAccount(shopAccount);
-
-                        SingleAccount singleAccount = SingleAccount.getInstance();
-                        ShopAccount account = new ShopAccount();
-                        //Set thông tin vào account
-                        account.setShopId(user.getUid());
-                        account.setShopName(user.getDisplayName());
-                        account.setPassword(user.getDisplayName());
-                        account.setNumberPhone(user.getPhoneNumber());
-                        account.setEmail(user.getEmail());
-                        account.setAddress("");
-
-                        singleAccount.setShopAccount(account);
+                        SingleAccount.getInstance().setShopAccount(shopAccount);
+                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                        startActivity(intent);
                         finish();
                     }
                     else{

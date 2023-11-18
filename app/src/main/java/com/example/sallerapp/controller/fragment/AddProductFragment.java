@@ -40,6 +40,7 @@ import com.example.sallerapp.databinding.BottomDialogCategoryProductBinding;
 import com.example.sallerapp.databinding.DialogAttributeProductBinding;
 import com.example.sallerapp.databinding.FragmentAddProductBinding;
 import com.example.sallerapp.desgin_pattern.build_pantter.ProductBuilder;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.FirebaseUtil;
 import com.example.sallerapp.funtions.MyDialog;
 import com.example.sallerapp.funtions.MyFragment;
@@ -48,6 +49,7 @@ import com.example.sallerapp.funtions.Validations;
 import com.example.sallerapp.model.AttributeProduct;
 import com.example.sallerapp.model.CategoryProduct;
 import com.example.sallerapp.model.Product;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,6 +75,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
     BottomSheetDialog dialog;
     ArrayList<AttributeProduct> attributeProducts ;
     AttributeProductAdapter attributeProductAdapter;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
     Date today = new Date();
     // Định dạng ngày
@@ -156,7 +159,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         });
 
-        ProductDao.getProducts("Shop_1", new ProductDao.GetData() {
+        ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
             @Override
             public void getData(ArrayList<Product> products) {
                 productBinding.edtProductId.addTextChangedListener(new TextWatcher() {
@@ -299,7 +302,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                    .addDate(dateTime)
                    .addNote(note)
                    .build();
-           ProductDao.insertProduct(product, "Shop_1");
+           ProductDao.insertProduct(product, shopAccount.getShopId());
            clearData();
        }else {
            for (int i = 0; i < attributeProducts.size(); i++){
@@ -328,7 +331,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                        .addDate(dateTime)
                        .addNote(note)
                        .build();
-               ProductDao.insertProduct(product, "Shop_1");
+               ProductDao.insertProduct(product, shopAccount.getShopId());
            }
            clearData();
        }
@@ -432,7 +435,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         });
 
-        CategoryProductDao.getCategoryProduct("Shop_1", new CategoryProductDao.GetData() {
+        CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryProduct> categoryProducts) {
                 CateProductDialogAdapter cateProductDialogAdapter = new CateProductDialogAdapter(categoryProducts,

@@ -1,6 +1,8 @@
 package com.example.sallerapp.model;
 
-public class ShopAccount {
+import java.io.Serializable;
+
+public class ShopAccount implements Serializable {
     private String shopId;
     private String address;
     private String email;
