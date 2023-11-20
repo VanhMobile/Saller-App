@@ -73,7 +73,6 @@ public class HomeFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         homeBinding = FragmentHomeBinding.inflate(inflater, container, false);
-        checkNetwork();
         initView();
         return homeBinding.getRoot();
     }
@@ -277,11 +276,5 @@ public class HomeFragment extends Fragment{
         homeBinding.barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         homeBinding.barChart.getXAxis().setGranularity(1f);
         homeBinding.barChart.getXAxis().setGranularityEnabled(true);
-    }
-
-
-    public void checkNetwork (){
-        networkChangeActivity = new NetworkChangeActivity(getContext());
-        networkChangeActivity.startNetworkListener();
     }
 }
