@@ -348,7 +348,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
         productBinding.edtRetailProduct.setText("");
         productBinding.edtWholeSalePriceProduct.setText("");
         productBinding.edtQuantityProduct.setText("");
-        productBinding.tvCategoryProduct.setText("Chọn loại hang hóa");
+        productBinding.tvCategoryProduct.setText("Chọn loại hàng hóa");
         productBinding.addImgProduct.setVisibility(View.VISIBLE);
         productBinding.imgProduct.setVisibility(View.GONE);
         productBinding.date.setText(dateFormat.format(today));
