@@ -3,6 +3,9 @@ package com.example.sallerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -13,6 +16,7 @@ import com.example.sallerapp.controller.fragment.Fragment_list_bill;
 import com.example.sallerapp.controller.fragment.HomeFragment;
 import com.example.sallerapp.controller.fragment.ListEmployeeFragment;
 import com.example.sallerapp.controller.fragment.ListProductsFragment;
+import com.example.sallerapp.controller.view.NetworkChangeActivity;
 import com.example.sallerapp.databinding.ActivityMainBinding;
 import com.example.sallerapp.funtions.MyFragment;
 import com.google.android.gms.ads.MobileAds;
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mainBinding;
     private boolean doubleBackToExitPressedOnce = false;
+
+    BroadcastReceiver networkChange = new NetworkChangeActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,5 +101,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Đăng ký BroadcastReceiver khi activity hoạt động
+        registerReceiver(networkChange, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Hủy đăng ký BroadcastReceiver khi activity không còn hoạt động
+        unregisterReceiver(networkChange);
+    }
 }
