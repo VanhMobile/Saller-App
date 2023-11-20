@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_10sdp"
+    android:background="@drawable/bg_dialog_updata_pas"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cập nhập sản phẩm"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/_20ssp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:paddingTop="@dimen/_10sdp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/black"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/nameProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên sản phẩm"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_light"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/quantityProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Số lượng sản phẩm"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_light"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giá vốn"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_light"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/wholeSalePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giá sỉ"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_light"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/retailPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Giá lẻ"
+            android:textSize="@dimen/_15ssp"
+            android:fontFamily="@font/inter_light"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/btnUpData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20ssp"
+        android:layout_marginEnd="@dimen/_20ssp"
+        android:text="Cập nhập"
+        android:backgroundTint="@color/line"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+
+</LinearLayout>

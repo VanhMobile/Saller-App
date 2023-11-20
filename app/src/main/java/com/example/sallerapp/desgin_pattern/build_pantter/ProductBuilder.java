@@ -14,6 +14,11 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder addStatus(String status){
+        product.setStatus(status);
+        return this;
+    }
+
     public ProductBuilder addId(String id){
         product.setProductId(id);
         return this;
