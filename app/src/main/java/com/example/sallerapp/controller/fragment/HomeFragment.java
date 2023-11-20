@@ -196,7 +196,7 @@ public class HomeFragment extends Fragment{
                 for (Bill bill : bills){
                     totalRevenue += bill.getSumPrice();
                     for (CartShop cartShop: bill.getListProduct()){
-                        totalEx += cartShop.getProduct().getCost();
+                        totalEx += (cartShop.getProduct().getCost() * cartShop.getQuantity());
                     }
                 }
 
@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment{
                 for (Bill bill : bills){
                     totalRevenue += bill.getSumPrice();
                     for (CartShop cartShop: bill.getListProduct()){
-                        totalEx += cartShop.getProduct().getCost();
+                        totalEx += (cartShop.getProduct().getCost() * cartShop.getQuantity());
                     }
                 }
 

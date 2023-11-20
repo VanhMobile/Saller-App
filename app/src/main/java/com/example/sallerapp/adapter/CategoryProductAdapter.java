@@ -39,6 +39,11 @@ public class CategoryProductAdapter extends RecyclerView.Adapter<CategoryProduct
         return new ViewHolder(binding);
     }
 
+    public void setData(List<CategoryProduct> categoryProductList){
+        this.categoryProductList = categoryProductList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CategoryProduct categoryProduct = categoryProductList2.get(position);

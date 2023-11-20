@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sallerapp.databinding.ItemListBillBinding;
 import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.model.Bill;
+import com.example.sallerapp.model.CartShop;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,11 @@ public class ListBillAdapter extends RecyclerView.Adapter<ListBillAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemListBillBinding itemListBillBinding = ItemListBillBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(itemListBillBinding);
+    }
+
+    public void setData(ArrayList<Bill> billArrayList){
+        this.billArrayList = billArrayList;
+        notifyDataSetChanged();
     }
 
     @Override

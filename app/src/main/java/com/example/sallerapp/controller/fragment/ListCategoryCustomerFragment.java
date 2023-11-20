@@ -77,18 +77,6 @@ public class ListCategoryCustomerFragment extends Fragment {
             }
         });
 
-       reaLoad();
-
-       cateCusBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-           @Override
-           public void onRefresh() {
-               reaLoad();
-               cateCusBinding.swipeRefresh.setRefreshing(false);
-           }
-       });
-    }
-
-    private void reaLoad() {
         CategoryCustomerDao.getCategoryCustomers(shopAccount.getShopId(), new CategoryCustomerDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryCustomer> categoryCustomers) {
@@ -120,6 +108,23 @@ public class ListCategoryCustomerFragment extends Fragment {
                         }
                     });
                 }
+            }
+        });
+
+       cateCusBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+           @Override
+           public void onRefresh() {
+               reaLoad();
+               cateCusBinding.swipeRefresh.setRefreshing(false);
+           }
+       });
+    }
+
+    private void reaLoad() {
+        CategoryCustomerDao.getCategoryCustomers(shopAccount.getShopId(), new CategoryCustomerDao.GetData() {
+            @Override
+            public void getData(ArrayList<CategoryCustomer> categoryCustomers) {
+                adapter.setData(categoryCustomers);
             }
         });
     }

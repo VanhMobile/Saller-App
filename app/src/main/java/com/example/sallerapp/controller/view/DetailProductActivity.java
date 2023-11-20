@@ -14,16 +14,18 @@ import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.ListBillAdapter;
 import com.example.sallerapp.database.BillDao;
 import com.example.sallerapp.databinding.ActivityDetailProductBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.MoneyFormat;
 import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.Product;
+import com.example.sallerapp.model.ShopAccount;
 
 import java.util.ArrayList;
 
 public class DetailProductActivity extends AppCompatActivity {
 
     private ActivityDetailProductBinding detailProductBinding;
-
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,7 @@ public class DetailProductActivity extends AppCompatActivity {
     }
 
     private void loadData(Product product) {
-        BillDao.GetBills("Shop_1", new BillDao.GetData() {
+        BillDao.GetBills(shopAccount.getShopId(), new BillDao.GetData() {
             @Override
             public void getData(ArrayList<Bill> bills) {
                 int exportQuantity = 0;

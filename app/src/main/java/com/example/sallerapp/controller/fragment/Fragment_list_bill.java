@@ -55,26 +55,6 @@ public class Fragment_list_bill extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         binding.adView.loadAd(adRequest);
 
-        reaLoad();
-        binding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                reaLoad();
-                binding.swipeRefresh.setRefreshing(false);
-            }
-        });
-
-        binding.btnAddBill.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(requireContext(), BillActivity.class);
-                intent.putExtra("bill", "AddBill");
-                startActivity(intent);
-            }
-        });
-    }
-
-    private void reaLoad() {
         BillDao.GetBills(shopAccount.getShopId(), new BillDao.GetData() {
             @Override
             public void getData(ArrayList<Bill> bills) {
@@ -112,6 +92,31 @@ public class Fragment_list_bill extends Fragment {
 
                     }
                 });
+            }
+        });
+        binding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reaLoad();
+                binding.swipeRefresh.setRefreshing(false);
+            }
+        });
+
+        binding.btnAddBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(requireContext(), BillActivity.class);
+                intent.putExtra("bill", "AddBill");
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void reaLoad() {
+        BillDao.GetBills(shopAccount.getShopId(), new BillDao.GetData() {
+            @Override
+            public void getData(ArrayList<Bill> bills) {
+                adapter.setData(bills);
             }
         });
     }

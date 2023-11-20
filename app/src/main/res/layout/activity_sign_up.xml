@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
-            android:hint="password"
+            android:hint="Password"
             android:paddingStart="@dimen/_8sdp"
             android:textColorHint="@color/edt_login_color_hint"
             android:textSize="@dimen/_10ssp" />

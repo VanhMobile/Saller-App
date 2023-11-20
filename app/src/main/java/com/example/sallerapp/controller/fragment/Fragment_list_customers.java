@@ -54,37 +54,6 @@ public class Fragment_list_customers extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         listCustomerBinding.adView.loadAd(adRequest);
 
-        reaLoad();
-
-        listCustomerBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                reaLoad();
-                listCustomerBinding.swipeRefresh.setRefreshing(false);
-            }
-        });
-        listCustomerBinding.addCustomer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
-                        , R.id.fragmentCustomer
-                        , new Fragment_add_customer()
-                        , true);
-            }
-        });
-
-        listCustomerBinding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(requireActivity(), MainActivity.class));
-                requireActivity().finish();
-            }
-        });
-
-
-    }
-
-    private void reaLoad() {
         CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
             @Override
             public void getData(ArrayList<Customer> customers) {
@@ -142,5 +111,41 @@ public class Fragment_list_customers extends Fragment {
                 }
             }
         });
+
+        listCustomerBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reaLoad();
+                listCustomerBinding.swipeRefresh.setRefreshing(false);
+            }
+        });
+        listCustomerBinding.addCustomer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MyFragment.replaceFragment(requireActivity().getSupportFragmentManager()
+                        , R.id.fragmentCustomer
+                        , new Fragment_add_customer()
+                        , true);
+            }
+        });
+
+        listCustomerBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireActivity(), MainActivity.class));
+                requireActivity().finish();
+            }
+        });
+
+
+    }
+
+    private void reaLoad() {
+       CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
+           @Override
+           public void getData(ArrayList<Customer> customers) {
+               adapter.setDATA(customers);
+           }
+       });
     }
 }

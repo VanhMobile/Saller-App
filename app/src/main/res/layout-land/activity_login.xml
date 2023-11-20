@@ -69,7 +69,7 @@
                     android:layout_marginStart="@dimen/_2sdp"
                     android:src="@drawable/icon_password"/>
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/Password"
                     android:backgroundTint="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:hint="password"

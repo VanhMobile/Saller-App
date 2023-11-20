@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.sallerapp.R;
 import com.example.sallerapp.databinding.ItemListEmployyeeBinding;
+import com.example.sallerapp.model.Bill;
 import com.example.sallerapp.model.CategoryCustomer;
 import com.example.sallerapp.model.Employee;
 
@@ -38,6 +39,11 @@ public class ListEmployeeAdapter extends RecyclerView.Adapter<ListEmployeeAdapte
         ItemListEmployyeeBinding binding = ItemListEmployyeeBinding.inflate(LayoutInflater.from(parent.getContext()),parent, false);
 
         return new ViewHodel(binding);
+    }
+
+    public void setData(List<Employee> employeeList){
+        this.employeeList = employeeList;
+        notifyDataSetChanged();
     }
 
     @Override
