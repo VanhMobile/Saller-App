@@ -372,7 +372,15 @@ public class CreateBillFragment extends Fragment {
         ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
             @Override
             public void getData(ArrayList<Product> products) {
-                productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
+
+                ArrayList<Product> data = new ArrayList<>();
+
+                for (Product product : products){
+                    if (!(product.getQuantity() == 0 || product.getStatus().equals("ẩn"))){
+                        data.add(product);
+                    }
+                }
+                productAdapter = new ListProductAdapter(data, new ListProductAdapter.Click() {
                     @Override
                     public void clickBtnAdd(Product product) {
                         ArrayList<CartShop> shopArrayList = CartShopSingle.getInstance().getCartShops();

@@ -13,13 +13,23 @@ public class Product implements Serializable {
     private int retailPrice;
     private int wholeSalePrice;
     private int quantity;
-
     private String cate;
     private String properties;
     private String date;
+
+    private String status;
+
     private String note;
 
     public Product() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getCate() {

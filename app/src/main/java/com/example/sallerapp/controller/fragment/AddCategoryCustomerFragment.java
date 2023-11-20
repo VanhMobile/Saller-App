@@ -71,8 +71,10 @@ public class AddCategoryCustomerFragment extends Fragment {
         categoryCustomerBinding.imgBackACP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               startActivity(new Intent(requireActivity(), MainActivity.class));
-               requireActivity().finish();
+                MyFragment.backFragment(requireActivity().getSupportFragmentManager()
+                        , R.id.fragmentCustomer
+                        , new ListCategoryCustomerFragment()
+                        , true);
             }
         });
     }

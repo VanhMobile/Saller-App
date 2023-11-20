@@ -301,6 +301,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                    .addCategory(categoryPro)
                    .addDate(dateTime)
                    .addNote(note)
+                   .addStatus("hiện")
                    .build();
            ProductDao.insertProduct(product, shopAccount.getShopId());
            clearData();
@@ -330,6 +331,7 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                        .addCategory(categoryPro)
                        .addDate(dateTime)
                        .addNote(note)
+                       .addStatus("hiện")
                        .build();
                ProductDao.insertProduct(product, shopAccount.getShopId());
            }

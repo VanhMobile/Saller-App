@@ -55,7 +55,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Product product = filteredList.get(position);
         int index = position + 1;
-        if (product.getQuantity() == 0){
+        if (product.getStatus().equals("ẩn") || product.getQuantity() == 0){
             holder.productsBinding.btnAddBill.setVisibility(View.GONE);
         }else{
             holder.productsBinding.btnAddBill.setVisibility(View.VISIBLE);
