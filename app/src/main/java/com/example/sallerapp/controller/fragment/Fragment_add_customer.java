@@ -45,7 +45,7 @@ public class Fragment_add_customer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = FragmentAddCustomerBinding.inflate(inflater,container,false);
+        binding = FragmentAddCustomerBinding.inflate(inflater, container, false);
         initView();
         return binding.getRoot();
     }
@@ -64,7 +64,7 @@ public class Fragment_add_customer extends Fragment {
         binding.backFragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(requireContext(),  CustomerActivity.class);
+                Intent intent = new Intent(requireContext(), CustomerActivity.class);
                 intent.putExtra("customer", "listCustomer");
                 startActivity(intent);
             }
@@ -90,7 +90,7 @@ public class Fragment_add_customer extends Fragment {
                     @Override
                     public void getData(ArrayList<CategoryCustomer> customers) {
                         ArrayList<CategoryCustomer> categoryCustomers = customers;
-                        if (isAdded()){
+                        if (isAdded()) {
                             adapter = new ListTypeCustomerDialogAdapter
                                     (categoryCustomers, requireContext());
                             typeBinding.rcvTyeCustomer.setAdapter(adapter);
@@ -103,7 +103,7 @@ public class Fragment_add_customer extends Fragment {
                                     customerDialog.dismiss();
                                 }
                             });
-                        }else {
+                        } else {
                             Toast.makeText(getContext(), "Đã xảy ra lỗi ", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -123,29 +123,50 @@ public class Fragment_add_customer extends Fragment {
     }
 
     private void inSertCustomer() {
-        if (!Validations.isEmptyPress(binding.CustomerName) &&
-                !Validations.isEmptyPress(binding.CustomerAddress) &&
-                Validations.isPhoneNumberPress(binding.CustomerPhoneNumber) &&
-                !binding.CustomerType.getText().toString().equals("Loại khách hàng")){
+        int count = 0;
 
-            CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
-                @Override
-                public void getData(ArrayList<Customer> customers) {
-                    Customer customer = new CustomerBuilder()
-                            .addId(IdGenerator.generateNextShopId(customers.size()+1, "KH_"))
-                            .addName(binding.CustomerName.getText().toString())
-                            .addAddress(binding.CustomerAddress.getText().toString())
-                            .addNumberPhone(binding.CustomerPhoneNumber.getText().toString())
-                            .addCustomerType(binding.CustomerType.getText().toString())
-                            .addNote(binding.CustomerAddNote.getText().toString()).build();
-
-                    CustomerDao.insertCustomer(customer,shopAccount.getShopId());
-                    Toast.makeText(getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
-                    clearData();
-                }
-            });
-
+        if (Validations.isEmptyPress(binding.CustomerName)){
+            count++;
         }
+
+        if (Validations.isEmptyPress(binding.CustomerAddress)){
+            count++;
+        }
+
+        if (!Validations.isEmptyPress(binding.CustomerPhoneNumber)){
+            if (!Validations.isPhoneNumberPress(binding.CustomerPhoneNumber)){
+                count++;
+            }
+        }else{
+            count++;
+        }
+
+        if (binding.CustomerType.getText().toString().equals("Loại khách hàng")){
+            count ++;
+            Toast.makeText(requireContext(),"Bạn chưa chọn loại khác hàng", Toast.LENGTH_SHORT).show();
+        }
+
+        if (count != 0){
+            return;
+        }
+
+        CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
+            @Override
+            public void getData(ArrayList<Customer> customers) {
+                Customer customer = new CustomerBuilder()
+                        .addId(IdGenerator.generateNextShopId(customers.size() + 1, "KH_"))
+                        .addName(binding.CustomerName.getText().toString())
+                        .addAddress(binding.CustomerAddress.getText().toString())
+                        .addNumberPhone(binding.CustomerPhoneNumber.getText().toString())
+                        .addCustomerType(binding.CustomerType.getText().toString())
+                        .addNote(binding.CustomerAddNote.getText().toString()).build();
+
+                CustomerDao.insertCustomer(customer, shopAccount.getShopId());
+                Toast.makeText(getContext(), "Thêm thành công!", Toast.LENGTH_SHORT).show();
+                clearData();
+            }
+        });
+
 
     }
 
@@ -165,7 +186,7 @@ public class Fragment_add_customer extends Fragment {
         return uniqueCustomerTypes;
     }
 
-    public void clearData(){
+    public void clearData() {
         binding.CustomerAddress.setText("");
         binding.CustomerPhoneNumber.setText("");
         binding.CustomerName.setText("");
