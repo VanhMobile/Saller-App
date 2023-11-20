@@ -146,7 +146,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/inter_bold"
                             android:gravity="center_horizontal"
-                            android:text="0 Đ"
+                            android:text="0 đ"
                             android:textColor="@color/red"
                             android:textSize="@dimen/_15ssp" />
 
@@ -163,7 +163,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/inter_bold"
                             android:gravity="center_horizontal"
-                            android:text="0 Đ"
+                            android:text="0 đ"
                             android:textColor="@color/line"
                             android:textSize="@dimen/_15ssp" />
 
@@ -184,7 +184,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_bold"
-                            android:text="Doanh thu: 0"
+                            android:text="Lợi nhuận: 0 đ"
                             android:textColor="@color/line"
                             android:textSize="@dimen/_11ssp" />
                     </RelativeLayout>
@@ -297,7 +297,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_bold"
                             android:gravity="center_horizontal"
-                            android:text="0 Đ"
+                            android:text="0 đ"
                             android:maxWidth="@dimen/_150sdp"
                             android:maxLines="1"
                             android:ellipsize="end"
@@ -317,7 +317,7 @@
                             android:ellipsize="end"
                             android:fontFamily="@font/inter_bold"
                             android:gravity="center_horizontal"
-                            android:text="0 Đ"
+                            android:text="0 đ"
                             android:textColor="@color/line"
                             android:textSize="@dimen/_15ssp" />
 
@@ -338,7 +338,7 @@
                             android:layout_marginTop="@dimen/_10sdp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_bold"
-                            android:text="Doanh thu: 0"
+                            android:text="Lợi nhuận: 0 đ"
                             android:textColor="@color/line"
                             android:textSize="@dimen/_11ssp" />
                     </RelativeLayout>

@@ -80,18 +80,6 @@ public class ListProductsFragment extends Fragment {
             }
         });
 
-        reaLoad();
-
-        productsBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                reaLoad();
-                productsBinding.swipeRefresh.setRefreshing(false);
-            }
-        });
-    }
-
-    private void reaLoad() {
         ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
             @Override
             public void getData(ArrayList<Product> products) {
@@ -149,6 +137,23 @@ public class ListProductsFragment extends Fragment {
                         showDiaLogCatePro(products);
                     }
                 });
+            }
+        });
+
+        productsBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reaLoad();
+                productsBinding.swipeRefresh.setRefreshing(false);
+            }
+        });
+    }
+
+    private void reaLoad() {
+        ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<Product> products) {
+                productAdapter.setData(products);
             }
         });
     }

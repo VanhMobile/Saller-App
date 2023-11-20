@@ -63,7 +63,7 @@
             android:id="@+id/password"
             android:backgroundTint="@android:color/transparent"
             android:layout_width="match_parent"
-            android:hint="password"
+            android:hint="Password"
             android:textColorHint="@color/edt_login_color_hint"
             android:paddingStart="@dimen/_8sdp"
             android:textSize="@dimen/_10ssp"

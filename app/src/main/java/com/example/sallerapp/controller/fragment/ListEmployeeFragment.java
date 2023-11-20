@@ -59,6 +59,8 @@ public class ListEmployeeFragment extends Fragment {
     }
 
     private void initView() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        employBinding.adView.loadAd(adRequest);
         employBinding.searchEm.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -75,25 +77,6 @@ public class ListEmployeeFragment extends Fragment {
 
             }
         });
-        reaLoad();
-        employBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                reaLoad();
-                employBinding.swipeRefresh.setRefreshing(false);
-            }
-        });
-        employBinding.btnAddEmployee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(requireContext(), EmployeeActivity.class));
-            }
-        });
-    }
-
-    private void reaLoad() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        employBinding.adView.loadAd(adRequest);
         EmployeeDao.getEmployees(shopAccount.getShopId(), new EmployeeDao.GetData() {
             @Override
             public void getData(ArrayList<Employee> employees) {
@@ -124,6 +107,28 @@ public class ListEmployeeFragment extends Fragment {
                     DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
                     employBinding.rcvEmployee.addItemDecoration(dividerItemDecoration);
                 }
+            }
+        });
+        employBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reaLoad();
+                employBinding.swipeRefresh.setRefreshing(false);
+            }
+        });
+        employBinding.btnAddEmployee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), EmployeeActivity.class));
+            }
+        });
+    }
+
+    private void reaLoad() {
+        EmployeeDao.getEmployees(shopAccount.getShopId(), new EmployeeDao.GetData() {
+            @Override
+            public void getData(ArrayList<Employee> employees) {
+                adapter.setData(employees);
             }
         });
     }

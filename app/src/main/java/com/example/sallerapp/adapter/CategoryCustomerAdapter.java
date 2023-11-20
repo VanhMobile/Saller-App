@@ -36,6 +36,11 @@ public class CategoryCustomerAdapter extends RecyclerView.Adapter<CategoryCustom
         return new ViewHolder(binding);
     }
 
+    public void setData(List<CategoryCustomer> categoryCustomerList){
+        this.categoryCustomerList = categoryCustomerList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         CategoryCustomer categoryCustomer = categoryCustomerList.get(position);

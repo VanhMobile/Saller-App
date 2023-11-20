@@ -412,6 +412,11 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                 int quantityAttPro = Integer.parseInt(attributeProductBinding.quantity.getText().toString());
                 AttributeProduct attributeProduct = new AttributeProduct(nameAttPro,quantityAttPro);
                 attributeProducts.add(attributeProduct);
+                int SumQuantity = 0;
+                for (AttributeProduct attrB : attributeProducts){
+                    SumQuantity += attrB.getQuantity();
+                }
+                productBinding.edtQuantityProduct.setText(SumQuantity+"");
                 attributeProductAdapter.notifyDataSetChanged();
                 dialogAtt.dismiss();
             }
@@ -507,6 +512,11 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
     public void delete(AttributeProduct attributeProduct) {
         attributeProducts.remove(attributeProduct);
         attributeProductAdapter.notifyDataSetChanged();
+        int SumQuantity = 0;
+        for (AttributeProduct attrB : attributeProducts){
+            SumQuantity += attrB.getQuantity();
+        }
+        productBinding.edtQuantityProduct.setText(SumQuantity+"");
         Toast.makeText(requireContext(),"xóa thành công",Toast.LENGTH_SHORT).show();
     }
 }

@@ -69,7 +69,17 @@ public class CategoryProductFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         cateProBinding.adView.loadAd(adRequest);
 
-        reaLoad();
+        CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<CategoryProduct> categoryProducts) {
+                Log.e(TAG, "getData: " + categoryProducts.size() );
+                adapter = new CategoryProductAdapter(categoryProducts);
+                cateProBinding.rcvCatePro.setAdapter(adapter);
+                cateProBinding.rcvCatePro.setLayoutManager(new LinearLayoutManager(requireContext()));
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+                cateProBinding.rcvCatePro.addItemDecoration(dividerItemDecoration);
+            }
+        });
 
         cateProBinding.searchCategoryPro.addTextChangedListener(new TextWatcher() {
             @Override
@@ -111,12 +121,7 @@ public class CategoryProductFragment extends Fragment {
         CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryProduct> categoryProducts) {
-                Log.e(TAG, "getData: " + categoryProducts.size() );
-                adapter = new CategoryProductAdapter(categoryProducts);
-                cateProBinding.rcvCatePro.setAdapter(adapter);
-                cateProBinding.rcvCatePro.setLayoutManager(new LinearLayoutManager(requireContext()));
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
-                cateProBinding.rcvCatePro.addItemDecoration(dividerItemDecoration);
+                adapter.setData(categoryProducts);
             }
         });
     }
