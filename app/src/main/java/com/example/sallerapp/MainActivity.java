@@ -22,12 +22,11 @@ import com.example.sallerapp.funtions.MyFragment;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NetworkChangeActivity.NetworkChangeListener {
 
     private ActivityMainBinding mainBinding;
     private boolean doubleBackToExitPressedOnce = false;
-
-    BroadcastReceiver networkChange = new NetworkChangeActivity();
+    private NetworkChangeActivity networkChangeReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 , false);
 
         // ánh xạ sự kiện khi nhấn vào bottom nav view
+        networkChangeReceiver = new NetworkChangeActivity(this);
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeReceiver, intentFilter);
 
         mainBinding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -101,17 +103,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Đăng ký BroadcastReceiver khi activity hoạt động
-        registerReceiver(networkChange, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-    }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        // Hủy đăng ký BroadcastReceiver khi activity không còn hoạt động
-        unregisterReceiver(networkChange);
+    public void onNetworkChanged(boolean isConnected) {
+        if (isConnected) {
+            Toast.makeText(this,"Đã có kết nối mạng",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"Không kết nối mạng",Toast.LENGTH_SHORT).show();
+        }
     }
 }

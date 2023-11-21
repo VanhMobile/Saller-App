@@ -83,6 +83,8 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
 
     ProgressDialog progressDialog;
 
+    ArrayList<Product> data;
+
 
     public AddProductFragment() {
         // Required empty public constructor
@@ -118,6 +120,15 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
                 if (RequestPermissions.requestReadImgGalleryCamera(requireContext())) {
                     showDialog();
                 }
+            }
+        });
+
+         data = new ArrayList<>();
+        ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<Product> products) {
+                data.clear();
+                data.addAll(products);
             }
         });
 
@@ -159,32 +170,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         });
 
-        ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
-            @Override
-            public void getData(ArrayList<Product> products) {
-                productBinding.edtProductId.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                        products.forEach(o -> {
-                            String[] id = o.getProductId().split("_");
-                            if (id[0].equals(charSequence.toString())){
-                                productBinding.edtProductId.setError("ID sản phẩm không thể trùng");
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable editable) {
-
-                    }
-                });
-            }
-        });
         productBinding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -215,6 +200,13 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
             }
         }else {
             count ++;
+        }
+
+        for (Product product : data){
+            if (product.getProductId().equals(productBinding.edtProductId.getText().toString())){
+                count ++;
+                Toast.makeText(requireContext(),"Id sản phẩm trùng",Toast.LENGTH_SHORT).show();
+            }
         }
 
         if(!Validations.isEmptyPress(productBinding.edtRetailProduct)){

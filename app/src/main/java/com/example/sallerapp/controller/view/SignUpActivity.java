@@ -184,20 +184,38 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
 
                     if(task.isSuccessful()){
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        ShopAccount shopAccount = new AccountBuilder()
-                                .addIdAccount(user.getUid())
-                                .addShopName("My Shop")
-                                .addEmail(user.getEmail())
-                                .addNumberPhone(user.getPhoneNumber()+"")
-                                .addPassword("#mBBmyShop123")
-                                .addAddress("")
-                                .build();
-                        AccountDao.insertShopAccount(shopAccount);
-                        SingleAccount.getInstance().setShopAccount(shopAccount);
-                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        AccountDao.GetShopAccounts(new AccountDao.GetData() {
+                            boolean isCheck = false;
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            @Override
+                            public void getData(ArrayList<ShopAccount> shopAccounts) {
+                                for (ShopAccount account : shopAccounts){
+                                    if (account.getShopId().equals(user.getUid()) || account.getEmail().equals(user.getEmail())){
+                                        SingleAccount.getInstance().setShopAccount(account);
+                                        isCheck = true;
+                                        Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+
+                                if (!isCheck){
+                                    ShopAccount shopAccount = new AccountBuilder()
+                                            .addIdAccount(user.getUid())
+                                            .addShopName("My Shop")
+                                            .addEmail(user.getEmail())
+                                            .addNumberPhone(user.getPhoneNumber()+"")
+                                            .addPassword("#mBBmyShop123")
+                                            .addAddress("")
+                                            .build();
+                                    AccountDao.insertShopAccount(shopAccount);
+                                    SingleAccount.getInstance().setShopAccount(shopAccount);
+                                    Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
                     }
                     else{
                         Toast.makeText(SignUpActivity.this, "Loi", Toast.LENGTH_SHORT).show();

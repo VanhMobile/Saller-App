@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_marginTop="10dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
 
 
     <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:src="@drawable/icon_bill_item"/>
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@drawable/icon_bill_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/idBill"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HD1"
-                android:textStyle="bold"
-                android:textSize="@dimen/_15ssp"
-                android:fontFamily="@font/inter_bold"/>
+    <TextView
+        android:id="@+id/idBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
+        android:text="HD1"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:textSize="@dimen/_15ssp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/icon_customer"/>
-                <TextView
-                    android:id="@+id/customerName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxWidth="@dimen/_80sdp"
-                    android:text="NGUYỄN VĂN VIỆT"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:textSize="@dimen/_10ssp"
-                    android:fontFamily="@font/inter"/>
-            </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
 
-        </LinearLayout>
+        android:src="@drawable/icon_customer"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/idBill" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/_20sdp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/BillingDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="27/10/2023"
-                android:textSize="@dimen/_10ssp"
-                android:fontFamily="@font/inter"/>
-            <TextView
-                android:id="@+id/priceBill"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20000 VND"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="bold"
-                android:fontFamily="@font/inter_bold"/>
-        </LinearLayout>
+    <TextView
+        android:id="@+id/customerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/inter"
+        android:maxWidth="@dimen/_80sdp"
+        android:maxLines="1"
+        android:text="NGUYỄN VĂN VIỆT"
+        android:textSize="@dimen/_10ssp"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView4" />
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/BillingDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="27/10/2023"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_10ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/priceBill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold"
+        android:gravity="end"
+        android:text="20000 VND"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
