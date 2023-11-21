@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Tên sản phẩm"
+            android:maxLines="1"
             android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/inter_light"
             />
@@ -45,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Số lượng sản phẩm"
+            android:maxLines="1"
             android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/inter_light"
             />
@@ -61,6 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Giá vốn"
+            android:maxLines="1"
             android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/inter_light"
             />
@@ -77,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Giá sỉ"
+            android:maxLines="1"
             android:textSize="@dimen/_15ssp"
             android:fontFamily="@font/inter_light"
             />
@@ -94,6 +98,7 @@
             android:layout_height="wrap_content"
             android:hint="Giá lẻ"
             android:textSize="@dimen/_15ssp"
+            android:maxLines="1"
             android:fontFamily="@font/inter_light"
             />
     </com.google.android.material.textfield.TextInputLayout>

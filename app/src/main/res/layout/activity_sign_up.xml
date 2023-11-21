@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:hint="Email"
+            android:maxLines="1"
             android:paddingStart="@dimen/_8sdp"
             android:textColorHint="@color/edt_login_color_hint"
             android:textSize="@dimen/_10ssp" />
@@ -71,6 +72,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:hint="Password"
+            android:maxLines="1"
             android:paddingStart="@dimen/_8sdp"
             android:textColorHint="@color/edt_login_color_hint"
             android:textSize="@dimen/_10ssp" />
@@ -104,6 +106,7 @@
             android:backgroundTint="@android:color/transparent"
             android:hint="Confirm password"
             android:paddingStart="@dimen/_8sdp"
+            android:maxLines="1"
             android:textColorHint="@color/edt_login_color_hint"
             android:textSize="@dimen/_10ssp" />
     </LinearLayout>

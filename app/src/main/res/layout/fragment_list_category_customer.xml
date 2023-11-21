@@ -59,6 +59,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:padding="@dimen/_8sdp"
+                android:maxLines="1"
                 android:hint="Tìm kiếm danh mục"/>
 
             <com.google.android.gms.ads.AdView

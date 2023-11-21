@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:maxLines="1"
                 android:background="@drawable/edt_add_product"
                 android:hint="Tìm kiếm khách hàng"
                 android:padding="@dimen/_10sdp" />
