@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:padding="@dimen/_8sdp"
+    android:layout_margin="@dimen/_10sdp"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -53,6 +53,9 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/dark_gray"
                 android:textSize="@dimen/_10ssp"
+                android:maxLines="1"
+                android:maxWidth="@dimen/_250sdp"
+                android:ellipsize="end"
                 android:fontFamily="@font/inter_light"
                 android:text="Email : adb123@gmail.com"/>
         </LinearLayout>
