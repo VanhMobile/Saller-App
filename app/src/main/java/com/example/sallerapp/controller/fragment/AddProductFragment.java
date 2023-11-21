@@ -80,9 +80,6 @@ public class AddProductFragment extends Fragment implements AttributeProductAdap
     Date today = new Date();
     // Định dạng ngày
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-    ProgressDialog progressDialog;
-
     ArrayList<Product> data;
 
 
