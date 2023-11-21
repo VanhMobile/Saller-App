@@ -217,7 +217,7 @@ public class DetailProductActivity extends AppCompatActivity {
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(DetailProductActivity.this);
                     builder.setTitle("Thông báo");
-                    builder.setMessage("Bạn muốn ẩn thị sản phẩm này?");
+                    builder.setMessage("Bạn muốn ẩn sản phẩm này?");
                     builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

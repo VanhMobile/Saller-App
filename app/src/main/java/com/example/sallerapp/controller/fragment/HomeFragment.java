@@ -180,6 +180,14 @@ public class HomeFragment extends Fragment{
             public void onRefresh() {
                 statistical();
                 barChart();
+                CartShopSingle cartShopSingle = CartShopSingle.getInstance();
+
+                if (cartShopSingle.getProducts().size() == 0){
+                    homeBinding.cartSize.setVisibility(View.GONE);
+                }else{
+                    homeBinding.cartSize.setVisibility(View.VISIBLE);
+                    homeBinding.cartSize.setText(cartShopSingle.getProducts().size() + "");
+                }
                 homeBinding.swipeRefresh.setRefreshing(false);
             }
         });

@@ -101,61 +101,22 @@ public class AccountFragment extends Fragment {
         accountBinding.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                int count = 0;
-
-                if (Validations.isEmptyPress(accountBinding.afNameShop)){
-                    count ++;
-                }
-
-                if (!Validations.isEmptyPress(accountBinding.afEmailShop)){
-                    if (!Validations.isEmailPress(accountBinding.afEmailShop)){
-                        count ++;
+                AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                builder.setTitle("Thông báo");
+                builder.setMessage("Bạn muốn sửa lại thông tin shop");
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       upDateInforShopAccount();
                     }
-                }else{
-                    count ++;
-                }
-
-                if (!Validations.isEmptyPress(accountBinding.afPhonenumberShop)){
-                    if (!Validations.isPhoneNumberPress(accountBinding.afPhonenumberShop)){
-                        count ++;
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
                     }
-                }else{
-                    count ++;
-                }
-
-                if (Validations.isEmptyPress(accountBinding.afAddressShop)){
-                    count ++;
-                }
-
-                for (ShopAccount item : accounts){
-                    if (!item.getShopId().equals(shopAccount.getShopId())){
-                        if (item.getEmail().equals(accountBinding.afEmailShop.getText().toString().trim())){
-                            Toast.makeText(requireContext(),"Email đã tồn tại",Toast.LENGTH_SHORT).show();
-                            count ++;
-                        }
-                        if (item.getNumberPhone().equals(accountBinding.afPhonenumberShop.getText().toString().trim())){
-                            Toast.makeText(requireContext(),"Sđt đã tồn tại",Toast.LENGTH_SHORT).show();
-                            count ++;
-                        }
-                    }
-                }
-
-                if (count != 0){
-                    return;
-                }
-
-                String nameShop =  accountBinding.afNameShop.getText().toString().trim();
-                String emailShop = accountBinding.afEmailShop.getText().toString().trim();
-                String numberPhone = accountBinding.afPhonenumberShop.getText().toString().trim();
-                String address = accountBinding.afAddressShop.getText().toString().trim();
-
-                shopAccount.setShopName(nameShop);
-                shopAccount.setAddress(address);
-                shopAccount.setEmail(emailShop);
-                shopAccount.setNumberPhone(numberPhone);
-
-                AccountDao.insertShopAccount(shopAccount);
+                });
+                builder.show();
             }
         });
 
@@ -216,6 +177,63 @@ public class AccountFragment extends Fragment {
                 dialog.show();
             }
         });
+    }
+
+    private void upDateInforShopAccount() {
+        int count = 0;
+
+        if (Validations.isEmptyPress(accountBinding.afNameShop)){
+            count ++;
+        }
+
+        if (!Validations.isEmptyPress(accountBinding.afEmailShop)){
+            if (!Validations.isEmailPress(accountBinding.afEmailShop)){
+                count ++;
+            }
+        }else{
+            count ++;
+        }
+
+        if (!Validations.isEmptyPress(accountBinding.afPhonenumberShop)){
+            if (!Validations.isPhoneNumberPress(accountBinding.afPhonenumberShop)){
+                count ++;
+            }
+        }else{
+            count ++;
+        }
+
+        if (Validations.isEmptyPress(accountBinding.afAddressShop)){
+            count ++;
+        }
+
+        for (ShopAccount item : accounts){
+            if (!item.getShopId().equals(shopAccount.getShopId())){
+                if (item.getEmail().equals(accountBinding.afEmailShop.getText().toString().trim())){
+                    Toast.makeText(requireContext(),"Email đã tồn tại",Toast.LENGTH_SHORT).show();
+                    count ++;
+                }
+                if (item.getNumberPhone().equals(accountBinding.afPhonenumberShop.getText().toString().trim())){
+                    Toast.makeText(requireContext(),"Sđt đã tồn tại",Toast.LENGTH_SHORT).show();
+                    count ++;
+                }
+            }
+        }
+
+        if (count != 0){
+            return;
+        }
+
+        String nameShop =  accountBinding.afNameShop.getText().toString().trim();
+        String emailShop = accountBinding.afEmailShop.getText().toString().trim();
+        String numberPhone = accountBinding.afPhonenumberShop.getText().toString().trim();
+        String address = accountBinding.afAddressShop.getText().toString().trim();
+
+        shopAccount.setShopName(nameShop);
+        shopAccount.setAddress(address);
+        shopAccount.setEmail(emailShop);
+        shopAccount.setNumberPhone(numberPhone);
+
+        AccountDao.insertShopAccount(shopAccount);
     }
 
     private void logout() {
