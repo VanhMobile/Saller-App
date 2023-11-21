@@ -62,6 +62,8 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:hint="Nhập mã xác nhận của bạn"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColorHint="@color/dark_gray"
             android:paddingTop="@dimen/_5sdp"
             android:fontFamily="@font/inter"

@@ -58,6 +58,7 @@
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
+                android:maxLines="1"
                 android:padding="@dimen/_8sdp"
                 android:hint="Tìm kiếm danh mục sản phẩm"/>
 

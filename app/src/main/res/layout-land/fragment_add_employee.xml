@@ -116,6 +116,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_3sdp"
+                    android:maxLines="1"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@drawable/edt_add_product"
                     android:padding="@dimen/_5sdp"
@@ -139,6 +140,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:maxLines="1"
                     android:background="@drawable/edt_add_product"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_13ssp" />
@@ -161,6 +163,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:maxLines="1"
                     android:background="@drawable/edt_add_product"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_13ssp" />
@@ -183,6 +186,7 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:maxLines="1"
                     android:background="@drawable/edt_add_product"
                     android:padding="@dimen/_5sdp"
                     android:textSize="@dimen/_13ssp" />

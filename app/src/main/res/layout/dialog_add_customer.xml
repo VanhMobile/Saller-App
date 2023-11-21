@@ -41,6 +41,7 @@
             android:layout_marginVertical="@dimen/_10sdp"
             android:background="@drawable/edt_add_product"
             android:hint="Tìm khách hàng của bạn"
+            android:maxLines="1"
             android:padding="@dimen/_10sdp"
             android:textColorHint="@color/dark_gray"
             android:textSize="@dimen/_10ssp"
