@@ -2,6 +2,8 @@ package com.example.sallerapp.controller.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -83,6 +85,15 @@ public class AccountFragment extends Fragment {
         accountBinding.afAddressShop.setText(shopAccount.getAddress());
         accountBinding.afEmailShop.setText(shopAccount.getEmail());
         accountBinding.afPhonenumberShop.setText(shopAccount.getNumberPhone());
+        accountBinding.idShop.setText("Id: "+shopAccount.getShopId());
+
+        accountBinding.idShop.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                copyToClipboard(shopAccount.getShopId());
+                return true;
+            }
+        });
 
         AccountDao.GetShopAccounts(new AccountDao.GetData() {
             @Override
@@ -177,6 +188,17 @@ public class AccountFragment extends Fragment {
                 dialog.show();
             }
         });
+    }
+
+    private void copyToClipboard(String textToCopy) {
+        // Lấy ra ClipboardManager từ hệ thống
+        ClipboardManager clipboardManager = (ClipboardManager) requireActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        // Tạo một đối tượng ClipData để chứa dữ liệu văn bản
+        ClipData clipData = ClipData.newPlainText("label", textToCopy);
+        // Sao chép dữ liệu vào Clipboard
+        clipboardManager.setPrimaryClip(clipData);
+
+        Toast.makeText(requireContext(),"Đã coppy id",Toast.LENGTH_SHORT).show();
     }
 
     private void upDateInforShopAccount() {

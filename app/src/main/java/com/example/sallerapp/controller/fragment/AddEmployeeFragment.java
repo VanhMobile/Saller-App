@@ -215,6 +215,7 @@ public class AddEmployeeFragment extends Fragment {
                 if (count != 0) {
                     return;
                 }
+
                 if (bitmap != null) {
                     StorageReference sdb = FirebaseStorage.getInstance().getReference().child(id);
                     ByteArrayOutputStream ops = new ByteArrayOutputStream();
