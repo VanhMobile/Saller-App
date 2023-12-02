@@ -105,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     String email = signUpBinding.userName.getText().toString().trim();
                     for (int i = 0; i < shopAccounts.size(); i++){
-                        if (shopAccounts.get(i).getEmail().equals(email)){
+                        if (shopAccounts.get(i).getEmail().equalsIgnoreCase(email)){
                             count++;
                             Toast.makeText(SignUpActivity.this, "Email đã tồn tại",Toast.LENGTH_SHORT).show();
                         }

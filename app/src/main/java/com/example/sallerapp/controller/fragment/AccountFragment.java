@@ -233,10 +233,12 @@ public class AccountFragment extends Fragment {
                 if (item.getEmail().equals(accountBinding.afEmailShop.getText().toString().trim())){
                     Toast.makeText(requireContext(),"Email đã tồn tại",Toast.LENGTH_SHORT).show();
                     count ++;
+                    break;
                 }
-                if (item.getNumberPhone().equals(accountBinding.afPhonenumberShop.getText().toString().trim())){
+                if (item.getNumberPhone().equals(accountBinding.afPhonenumberShop.getText().toString().trim()) && !accountBinding.afPhonenumberShop.getText().toString().trim().isEmpty()){
                     Toast.makeText(requireContext(),"Sđt đã tồn tại",Toast.LENGTH_SHORT).show();
                     count ++;
+                    break;
                 }
             }
         }
