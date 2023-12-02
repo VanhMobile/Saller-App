@@ -73,6 +73,7 @@
             android:backgroundTint="@android:color/transparent"
             android:hint="Password"
             android:maxLines="1"
+            android:inputType="textPassword"
             android:paddingStart="@dimen/_8sdp"
             android:textColorHint="@color/edt_login_color_hint"
             android:textSize="@dimen/_10ssp" />
@@ -106,6 +107,7 @@
             android:backgroundTint="@android:color/transparent"
             android:hint="Confirm password"
             android:paddingStart="@dimen/_8sdp"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:textColorHint="@color/edt_login_color_hint"
             android:textSize="@dimen/_10ssp" />
