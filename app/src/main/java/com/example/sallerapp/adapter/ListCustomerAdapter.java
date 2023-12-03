@@ -27,6 +27,7 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
 
     public ListCustomerAdapter(ArrayList<Customer> customerArrayList, Click click) {
         this.customerArrayList = customerArrayList;
+        this.filterCustomerList = new ArrayList<>(customerArrayList);
         this.click = click;
     }
 
@@ -73,7 +74,6 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
 
     public void setDATA(ArrayList<Customer> list) {
         this.customerArrayList = new ArrayList<>(list);
-        this.filterCustomerList = new ArrayList<>(list);
         notifyDataSetChanged();
     }
 
@@ -89,7 +89,9 @@ public class ListCustomerAdapter extends RecyclerView.Adapter<ListCustomerAdapte
             customerArrayList.addAll(filterCustomerList);
         } else{
             filterCustomerList.forEach(item -> {
-                if (item.getCustomerName().toLowerCase().contains(character)){
+                if (item.getCustomerName().toLowerCase().contains(character)
+                        || item.getNumberPhone().contains(character)
+                        || item.getAddress().toLowerCase().contains(character)){
                     customerArrayList.add(item);
                 }
             });

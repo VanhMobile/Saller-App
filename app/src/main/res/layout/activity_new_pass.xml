@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/btnBack"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"
@@ -54,7 +55,7 @@
 
 
         <EditText
-
+            android:id="@+id/edtpass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
@@ -62,6 +63,8 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:hint="Nhập mật khẩu mới của bạn"
             android:paddingTop="@dimen/_5sdp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:fontFamily="@font/inter"
             android:paddingBottom="@dimen/_10sdp"
             android:textColorHint="@color/dark_gray"
@@ -74,13 +77,15 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"/>
         <EditText
-
+            android:id="@+id/edtpass2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:hint="Nhập lại mật khẩu"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:paddingTop="@dimen/_5sdp"
             android:fontFamily="@font/inter"
             android:paddingBottom="@dimen/_10sdp"
@@ -97,6 +102,7 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"

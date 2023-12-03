@@ -7,7 +7,7 @@ public class SingleAccount {
 
     private ShopAccount shopAccount = new ShopAccount();
 
-    private static SingleAccount getInstance(){
+    public static SingleAccount getInstance(){
         if (instance == null){
             instance = new SingleAccount();
         }

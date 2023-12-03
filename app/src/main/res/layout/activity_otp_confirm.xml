@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".controller.fragment.AddProductFragment">
+    tools:context=".controller.view.OtpConfirmActivity">
 
     <LinearLayout
         android:id="@+id/rlt1"
@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/btnBack"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"
@@ -54,13 +55,15 @@
 
 
         <EditText
-
+            android:id="@+id/edtCheckOTP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:hint="Nhập mã xác nhận của bạn"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textColorHint="@color/dark_gray"
             android:paddingTop="@dimen/_5sdp"
             android:fontFamily="@font/inter"
@@ -77,6 +80,7 @@
 
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15sdp"

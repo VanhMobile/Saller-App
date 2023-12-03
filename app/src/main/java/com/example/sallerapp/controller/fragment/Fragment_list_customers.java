@@ -2,6 +2,7 @@ package com.example.sallerapp.controller.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,14 +16,17 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.sallerapp.MainActivity;
 import com.example.sallerapp.R;
 import com.example.sallerapp.adapter.ListCustomerAdapter;
 import com.example.sallerapp.database.CustomerDao;
 import com.example.sallerapp.databinding.FragmentListCustomersBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.model.Customer;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
@@ -31,9 +35,8 @@ import java.util.ArrayList;
 public class Fragment_list_customers extends Fragment {
 
     private FragmentListCustomersBinding listCustomerBinding;
-    private ArrayList<Customer> customerArrayList = new ArrayList<>();
-    private ArrayList<Customer> listTemp = new ArrayList<>();
     private ListCustomerAdapter adapter;
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
     private final String TAG = Fragment_list_customers.class.getSimpleName();
 
@@ -51,28 +54,28 @@ public class Fragment_list_customers extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         listCustomerBinding.adView.loadAd(adRequest);
 
-
-        CustomerDao.getCustomers("Shop_1", new CustomerDao.GetData() {
+        CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
             @Override
             public void getData(ArrayList<Customer> customers) {
-                customerArrayList.addAll(customers);
-                listTemp = customers;
                 if (isAdded()){
-                    adapter = new ListCustomerAdapter(customerArrayList, new ListCustomerAdapter.Click() {
+                    adapter = new ListCustomerAdapter(customers, new ListCustomerAdapter.Click() {
                         @Override
                         public void clickBtnCall(Customer customer) {
-                            // Tạo một Intent với hành động ACTION_DIAL
-                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            String phoneNumber = "tel:" + customer.getNumberPhone();
 
-                            // Đặt dữ liệu Uri cho số điện thoại cần gọi
-                            intent.setData(Uri.parse("tel:" + customer.getNumberPhone()));
+                            // Tạo Intent với hành động ACTION_CALL
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
 
-                            // Kiểm tra xem ứng dụng Gọi điện thoại có sẵn trên thiết bị hay chưa
-                            if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
-                                // Nếu có, mở ứng dụng Gọi điện thoại
-                                startActivity(intent);
+                            // Đặt dữ liệu URI cho số điện thoại
+                            callIntent.setData(Uri.parse(phoneNumber));
+
+                            // Kiểm tra xem có quyền CALL_PHONE hay không
+                            if (requireActivity().checkSelfPermission(android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                                // Nếu có quyền, bắt đầu Intent
+                                startActivity(callIntent);
                             } else {
-                                Toast.makeText(requireContext(), "Không tìm thấy ứng dụng phù hợp", Toast.LENGTH_SHORT).show();
+                                // Nếu không có quyền, yêu cầu quyền từ người dùng
+                                requestPermissions(new String[]{android.Manifest.permission.CALL_PHONE}, 1);
                             }
                         }
 
@@ -109,7 +112,13 @@ public class Fragment_list_customers extends Fragment {
             }
         });
 
-
+        listCustomerBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reaLoad();
+                listCustomerBinding.swipeRefresh.setRefreshing(false);
+            }
+        });
         listCustomerBinding.addCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,5 +138,14 @@ public class Fragment_list_customers extends Fragment {
         });
 
 
+    }
+
+    private void reaLoad() {
+       CustomerDao.getCustomers(shopAccount.getShopId(), new CustomerDao.GetData() {
+           @Override
+           public void getData(ArrayList<Customer> customers) {
+               adapter.setDATA(customers);
+           }
+       });
     }
 }

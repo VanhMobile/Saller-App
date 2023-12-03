@@ -8,13 +8,13 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:src="@drawable/icon_tag" />
+        android:src="@drawable/lable" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/_5sdp"
         android:orientation="vertical">
 
         <TextView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_light"
             android:text="1. Sản phẩm mới"
-            android:textSize="@dimen/_15ssp" />
+            android:textSize="@dimen/_12ssp" />
     </LinearLayout>
 
 </LinearLayout>

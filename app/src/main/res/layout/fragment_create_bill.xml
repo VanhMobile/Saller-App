@@ -28,7 +28,7 @@
             android:layout_marginStart="11dp"
             android:layout_toEndOf="@+id/btnBack"
             android:fontFamily="@font/inter_bold"
-            android:text="Nhập kho"
+            android:text="Xuất kho"
             android:textColor="@color/white"
             android:textSize="@dimen/_15ssp" />
 
@@ -59,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="Hàng hóa"
+                android:fontFamily="@font/inter_light"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +80,7 @@
                 android:textColor="@color/line"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/view"
@@ -113,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="Bảng giá"
+                android:fontFamily="@font/inter_light"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -211,6 +213,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="Số lượng sản phẩm"
+                android:fontFamily="@font/inter_light"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
@@ -222,6 +225,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="Phương thức thanh toán"
+                android:fontFamily="@font/inter_light"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -263,6 +267,7 @@
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:text="Tổng tiền"
+                android:fontFamily="@font/inter_bold"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -275,6 +280,7 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:text="0.000 đ"
+                android:fontFamily="@font/inter_bold"
                 android:textSize="@dimen/_15ssp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -324,7 +330,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

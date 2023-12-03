@@ -43,6 +43,7 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-auth:22.2.0")
     implementation("com.google.firebase:firebase-storage:20.3.0")
     implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
@@ -65,4 +66,7 @@ dependencies {
     //
     implementation("com.karumi:dexter:6.2.3")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    //
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

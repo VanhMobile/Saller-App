@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,9 +25,11 @@ import com.example.sallerapp.database.ProductDao;
 import com.example.sallerapp.databinding.BottomDialogFilterProBinding;
 import com.example.sallerapp.databinding.FragmentListProductsBinding;
 import com.example.sallerapp.desgin_pattern.single_pantter.CartShopSingle;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.model.CartShop;
 import com.example.sallerapp.model.CategoryProduct;
 import com.example.sallerapp.model.Product;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -40,6 +43,8 @@ public class ListProductsFragment extends Fragment {
 
     ListProductAdapter productAdapter;
     ArrayList<CartShop> cartShops;
+
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
 
     public ListProductsFragment() {
         // Required empty public constructor
@@ -75,7 +80,7 @@ public class ListProductsFragment extends Fragment {
             }
         });
 
-        ProductDao.getProducts("Shop_1", new ProductDao.GetData() {
+        ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
             @Override
             public void getData(ArrayList<Product> products) {
                 productAdapter = new ListProductAdapter(products, new ListProductAdapter.Click() {
@@ -134,6 +139,23 @@ public class ListProductsFragment extends Fragment {
                 });
             }
         });
+
+        productsBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reaLoad();
+                productsBinding.swipeRefresh.setRefreshing(false);
+            }
+        });
+    }
+
+    private void reaLoad() {
+        ProductDao.getProducts(shopAccount.getShopId(), new ProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<Product> products) {
+                productAdapter.setData(products);
+            }
+        });
     }
 
     private void showDiaLogCatePro(ArrayList<Product> products) {
@@ -150,7 +172,7 @@ public class ListProductsFragment extends Fragment {
             }
         });
 
-        CategoryProductDao.getCategoryProduct("Shop_1", new CategoryProductDao.GetData() {
+        CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
             @Override
             public void getData(ArrayList<CategoryProduct> categoryProducts) {
                 CateProductDialogAdapter adapter = new CateProductDialogAdapter(categoryProducts, new CateProductDialogAdapter.Click() {

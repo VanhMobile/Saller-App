@@ -8,8 +8,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgProduct"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:src="@drawable/tao"
         app:shapeAppearanceOverlay="@style/img_rd_8"
@@ -28,7 +28,7 @@
         android:layout_toEndOf="@+id/imgProduct"
         android:fontFamily="@font/inter_light"
         android:text="1. Táo mỹ"
-        android:textSize="@dimen/_13ssp" />
+        android:textSize="@dimen/_10ssp" />
 
     <TextView
         android:id="@+id/priceProduct"
@@ -43,6 +43,6 @@
         android:maxLines="1"
         android:text="1 x 20,000 đ"
         android:textColor="@color/black"
-        android:textSize="@dimen/_13sdp" />
+        android:textSize="@dimen/_10ssp" />
 
 </RelativeLayout>

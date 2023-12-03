@@ -34,65 +34,78 @@
             android:src="@drawable/icon_add_circle" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tvFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/edt_add_product"
-        android:drawableEnd="@drawable/icon_triangle_down"
-        android:drawablePadding="@dimen/_8sdp"
-        android:gravity="center_vertical"
-        android:maxWidth="@dimen/_90sdp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:padding="@dimen/_9sdp"
-        android:text="Tất cả"
-        android:fontFamily="@font/inter_light"
-        android:textSize="@dimen/_13ssp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-    <EditText
-        android:id="@+id/edtSearchProduct"
-        android:layout_width="0dp"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/edt_add_product"
-        android:textSize="@dimen/_13ssp"
-        android:padding="@dimen/_9sdp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:hint="Tìm kiếm sản phẩm"
-        android:fontFamily="@font/inter_light"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvFilter"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-5261855707351600/9062425237"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSearchProduct"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerListProducts"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/adView"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/item_list_products" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tvFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:drawableEnd="@drawable/icon_triangle_down"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center_vertical"
+                android:maxWidth="@dimen/_90sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="@dimen/_9sdp"
+                android:text="Tất cả"
+                android:fontFamily="@font/inter_light"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtSearchProduct"
+                android:layout_width="0dp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/edt_add_product"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_9sdp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:hint="Tìm kiếm sản phẩm"
+                android:fontFamily="@font/inter_light"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvFilter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-5261855707351600/9062425237"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtSearchProduct"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerListProducts"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adView"
+                app:layout_constraintVertical_bias="0.0"
+                tools:listitem="@layout/item_list_products" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

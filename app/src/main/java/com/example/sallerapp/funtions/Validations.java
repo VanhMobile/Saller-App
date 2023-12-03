@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
@@ -62,7 +64,7 @@ public class Validations {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // nếu sai định dạng mail trả ra một error
-                Regex regex = new Regex("[A-Za-z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)");
+                Regex regex = new Regex("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
                 if (!regex.matches(charSequence.toString())) {
                     editText.setError("Sai định dạng email");
                 } else {
@@ -81,7 +83,7 @@ public class Validations {
     //check đnh dạng khi người dùng nhấn vào button
     public static boolean isEmailPress(EditText editText) {
         // check nếu edt chả ra giá trị sai định dạng thì chả ra error
-        Regex regex = new Regex("[A-Za-z0-9]+@[a-zA-Z0-9]+(\\.[a-zA-Z0-9]+)");
+        Regex regex = new Regex("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
         if (!regex.matches(editText.getText().toString())) {
             editText.setError("Sai định dạng email");
         } else {
@@ -201,12 +203,46 @@ public class Validations {
         });
     }
 
+    public static void isPassword(EditText editText, TextView errorMess) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Regex regex = new Regex("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$");
+                if (!regex.matches(charSequence.toString())) {
+                    errorMess.setVisibility(View.VISIBLE);
+                } else {
+                    errorMess.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
     public static boolean isPasswordPress(EditText editText){
         Regex regex = new Regex("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$");
         if (!regex.matches(editText.getText().toString())) {
             editText.setError("Sai định dạng password");
         } else {
             editText.setError(null);
+        }
+        return regex.matches(editText.getText().toString());
+    }
+
+    public static boolean isPasswordPress(EditText editText, TextView errorMess){
+        Regex regex = new Regex("^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$");
+        if (!regex.matches(editText.getText().toString())) {
+            errorMess.setVisibility(View.VISIBLE);
+        } else {
+            errorMess.setVisibility(View.GONE);
         }
         return regex.matches(editText.getText().toString());
     }

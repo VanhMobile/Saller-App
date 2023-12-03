@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,8 +21,10 @@ import com.example.sallerapp.adapter.CategoryProductAdapter;
 import com.example.sallerapp.controller.view.BillActivity;
 import com.example.sallerapp.database.CategoryProductDao;
 import com.example.sallerapp.databinding.FragmentCategoryProductBinding;
+import com.example.sallerapp.desgin_pattern.single_pantter.SingleAccount;
 import com.example.sallerapp.funtions.MyFragment;
 import com.example.sallerapp.model.CategoryProduct;
+import com.example.sallerapp.model.ShopAccount;
 import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
@@ -32,11 +35,8 @@ public class CategoryProductFragment extends Fragment {
 
     public static String TAG = CategoryProductFragment.class.getSimpleName();
     private FragmentCategoryProductBinding cateProBinding;
-
+    ShopAccount shopAccount = SingleAccount.getInstance().getShopAccount();
     private CategoryProductAdapter adapter;
-    private List<CategoryProduct> categoryProductList;
-    private CategoryProductAdapter.ICategoryProduct listener;
-
     public CategoryProductFragment() {
         // Required empty public constructor
     }
@@ -69,9 +69,19 @@ public class CategoryProductFragment extends Fragment {
         AdRequest adRequest = new AdRequest.Builder().build();
         cateProBinding.adView.loadAd(adRequest);
 
-        categoryProductList = new ArrayList<>();
+        CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<CategoryProduct> categoryProducts) {
+                Log.e(TAG, "getData: " + categoryProducts.size() );
+                adapter = new CategoryProductAdapter(categoryProducts);
+                cateProBinding.rcvCatePro.setAdapter(adapter);
+                cateProBinding.rcvCatePro.setLayoutManager(new LinearLayoutManager(requireContext()));
+                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
+                cateProBinding.rcvCatePro.addItemDecoration(dividerItemDecoration);
+            }
+        });
 
-        cateProBinding.edtSearchCatePro.addTextChangedListener(new TextWatcher() {
+        cateProBinding.searchCategoryPro.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -88,20 +98,13 @@ public class CategoryProductFragment extends Fragment {
             }
         });
 
-        CategoryProductDao.getCategoryProduct("Shop_1", new CategoryProductDao.GetData() {
+        cateProBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void getData(ArrayList<CategoryProduct> categoryProducts) {
-                categoryProductList = categoryProducts;
-                Log.e(TAG, "getData: " + categoryProducts.size() );
-                adapter = new CategoryProductAdapter(categoryProductList);
-                cateProBinding.rcvCategoryProduct.setAdapter(adapter);
-                cateProBinding.rcvCategoryProduct.setLayoutManager(new LinearLayoutManager(requireContext()));
-                DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL);
-                cateProBinding.rcvCategoryProduct.addItemDecoration(dividerItemDecoration);
+            public void onRefresh() {
+                reaLoad();
+                cateProBinding.swipeRefresh.setRefreshing(false);
             }
         });
-
-
 
         cateProBinding.addCatePro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +113,15 @@ public class CategoryProductFragment extends Fragment {
                         , R.id.fragmentAddPro
                         , new AddCategoryProductFragment()
                         , true);
+            }
+        });
+    }
+
+    private void reaLoad() {
+        CategoryProductDao.getCategoryProduct(shopAccount.getShopId(), new CategoryProductDao.GetData() {
+            @Override
+            public void getData(ArrayList<CategoryProduct> categoryProducts) {
+                adapter.setData(categoryProducts);
             }
         });
     }

@@ -9,7 +9,6 @@
         android:layout_height="@dimen/_40sdp"
         android:background="@color/line"
         >
-
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="@dimen/_20sdp"
@@ -27,15 +26,28 @@
             android:text="Chi tiết sản phẩm"
             android:layout_centerVertical="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/_11ssp" />
-        <ImageView
-            android:id="@+id/iconCartShopping"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:textSize="@dimen/_15ssp" />
+
+        <TextView
+            android:id="@+id/statusProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:layout_toStartOf="@+id/btnUpdate"
+            android:fontFamily="@font/inter_bold"
+            android:text="Ẩn"
+            android:textSize="@dimen/_10ssp" />
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:src="@drawable/icon_save" />
+            android:layout_centerVertical="true"
+            android:id="@+id/btnUpdate"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/icon_updata" />
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -178,6 +190,33 @@
                     android:text="200"/>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_17sdp"
+                android:layout_marginEnd="@dimen/_17sdp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giá vốn"
+                    android:fontFamily="@font/inter_light"
+                    android:textSize="@dimen/_10ssp"
+                    android:layout_weight="1"
+                    />
+                <TextView
+                    android:id="@+id/cost"
+                    android:textSize="@dimen/_10ssp"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/inter_light"
+                    android:layout_height="wrap_content"
+                    android:text="40000 đ"/>
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
