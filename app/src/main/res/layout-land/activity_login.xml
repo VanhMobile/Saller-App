@@ -43,6 +43,8 @@
                     android:backgroundTint="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:hint="User name"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColorHint="@color/edt_login_color_hint"
                     android:paddingStart="@dimen/_8sdp"
                     android:textSize="@dimen/_10ssp"
@@ -69,10 +71,13 @@
                     android:layout_marginStart="@dimen/_2sdp"
                     android:src="@drawable/icon_password"/>
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/Password"
                     android:backgroundTint="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:hint="password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColorHint="@color/edt_login_color_hint"
                     android:paddingStart="@dimen/_8sdp"
                     android:textSize="@dimen/_10ssp"

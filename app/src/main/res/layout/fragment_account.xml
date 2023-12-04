@@ -13,20 +13,17 @@
         android:id="@+id/rlt1"
         android:background="@color/line"
         android:gravity="center_vertical">
-
-
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/inter_bold"
             android:text="Thông tin cửa hàng "
             android:textColor="@color/white"
             android:textSize="@dimen/_15ssp" />
 
         <ImageView
-            android:id="@+id/iconCartShopping"
+            android:id="@+id/btnSave"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_alignParentEnd="true"
@@ -34,143 +31,181 @@
             android:src="@drawable/icon_save" />
     </RelativeLayout>
 
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/rlt1"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:padding="@dimen/_12sdp">
-
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
-            app:srcCompat="@drawable/img_wellcome"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            />
-
-        <TextView
+        android:layout_below="@+id/rlt1">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/inter_light"
-            android:text="Tên cửa hàng"
-            android:textColor="@color/line"
-
-            android:textSize="@dimen/_13ssp" />
-
-        <EditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:hint="Nhập tên cửa hàng của bạn"
-
-            android:textSize="@dimen/_13ssp"
-            android:backgroundTint="@android:color/transparent"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/inter_light"
-            android:text="Email"
-            android:textColor="@color/line"
-
-            android:textSize="@dimen/_13ssp" />
-
-        <EditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:hint="abc123@gamil.com"
-
-            android:textSize="@dimen/_13ssp"
-            android:backgroundTint="@android:color/transparent"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/inter_light"
-            android:text="Số điện thoại"
-            android:textColor="@color/line"
-            android:textSize="@dimen/_13ssp" />
-
-        <EditText
-            android:paddingTop="@dimen/_5sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:hint="Nhập số điện thoại"
-            android:textSize="@dimen/_13ssp"
-            android:backgroundTint="@android:color/transparent"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/inter_light"
-            android:text="Địa chỉ cửa hàng"
-            android:textColor="@color/line"
-            android:textSize="@dimen/_13ssp" />
-
-        <EditText
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:hint="Nhập địa chỉ"
-            android:paddingTop="@dimen/_5sdp"
-            android:paddingBottom="@dimen/_10sdp"
-            android:textSize="@dimen/_13ssp"
-            android:backgroundTint="@android:color/transparent"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@color/line"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"/>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rlt1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/_12sdp">
 
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                app:srcCompat="@drawable/img_wellcome"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/idShop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/_15ssp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter_bold"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="ID: Shop_1"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/inter_light"
+                android:text="Tên cửa hàng"
+                android:textColor="@color/line"
+                android:textSize="@dimen/_13ssp" />
+
+            <EditText
+                android:id="@+id/af_nameShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:hint="Shop name"
+                android:textSize="@dimen/_13ssp"
+                android:backgroundTint="@android:color/transparent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/line"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/inter_light"
+                android:text="Email"
+                android:textColor="@color/line"
+
+                android:textSize="@dimen/_13ssp" />
+
+            <EditText
+                android:id="@+id/af_emailShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:hint="abc123@gamil.com"
+
+                android:textSize="@dimen/_13ssp"
+                android:backgroundTint="@android:color/transparent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/line"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/inter_light"
+                android:text="Số điện thoại"
+                android:textColor="@color/line"
+                android:textSize="@dimen/_13ssp" />
+
+            <EditText
+                android:id="@+id/af_phonenumberShop"
+                android:paddingTop="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:hint="Nhập số điện thoại"
+                android:textSize="@dimen/_13ssp"
+                android:backgroundTint="@android:color/transparent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/line"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/inter_light"
+                android:text="Địa chỉ cửa hàng"
+                android:textColor="@color/line"
+                android:textSize="@dimen/_13ssp" />
+
+            <EditText
+                android:id="@+id/af_addressShop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:hint="Nhập địa chỉ"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:textSize="@dimen/_13ssp"
+                android:backgroundTint="@android:color/transparent"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/line"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"/>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_60sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:backgroundTint="@color/line"
+                android:text="Đăng xuất"
+                android:id="@+id/btnLogout"
+                android:textSize="@dimen/_13ssp"
+                app:cornerRadius="@dimen/_8sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:text="Cập nhập mật khẩu"
+                android:id="@+id/af_updatePassword"
+                android:textColor="@color/line"
+                android:backgroundTint="@color/white"
+                app:strokeWidth="@dimen/_1sdp"
+                app:strokeColor="@color/line"
+                android:textSize="@dimen/_13ssp"
+                app:cornerRadius="@dimen/_8sdp" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

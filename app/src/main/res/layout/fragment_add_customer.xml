@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/backFragment"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"
@@ -35,6 +36,7 @@
             android:textSize="@dimen/_15sdp" />
 
         <ImageView
+            android:id="@+id/btnSave"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"
@@ -65,6 +67,15 @@
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingHorizontal="@dimen/_10sdp">
 
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/adView"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="ca-app-pub-5261855707351600/9062425237"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -75,6 +86,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/CustomerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -97,29 +109,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/edt_add_product"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:maxLength="100"
-                    android:maxLines="1"
-                    android:padding="@dimen/_10sdp"
-                    android:paddingHorizontal="20dp"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_3sdp"
-                    android:fontFamily="@font/inter"
-                    android:text="Mã khách hàng"
-                    android:textSize="@dimen/_10sdp" />
-
-
-                <EditText
+                    android:id="@+id/CustomerAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -142,6 +132,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/CustomerPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -164,6 +155,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <TextView
+                    android:id="@+id/CustomerType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_3sdp"
@@ -171,7 +163,8 @@
                     android:drawableEnd="@drawable/icon_triangle_down"
                     android:fontFamily="@font/inter_light"
                     android:padding="@dimen/_10sdp"
-                    android:text="Khác hàng mới"
+                    android:gravity="center_vertical"
+                    android:text="Loại khách hàng"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10ssp" />
 
@@ -185,6 +178,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <EditText
+                    android:id="@+id/CustomerAddNote"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_150sdp"
                     android:layout_gravity="center"
@@ -199,15 +193,17 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAddCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_70sdp"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/inter_bold"
                     android:padding="@dimen/_10sdp"
                     android:text="Lưu"
                     android:textColor="@color/white"
+                    android:layout_marginBottom="@dimen/_20sdp"
                     android:textSize="@dimen/_15sdp" />
             </LinearLayout>
 

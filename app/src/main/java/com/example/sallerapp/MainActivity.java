@@ -3,30 +3,59 @@ package com.example.sallerapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.sallerapp.controller.fragment.AccountFragment;
 import com.example.sallerapp.controller.fragment.AddProductFragment;
 import com.example.sallerapp.controller.fragment.Fragment_list_bill;
 import com.example.sallerapp.controller.fragment.HomeFragment;
 import com.example.sallerapp.controller.fragment.ListEmployeeFragment;
 import com.example.sallerapp.controller.fragment.ListProductsFragment;
+import com.example.sallerapp.controller.view.NetworkChangeActivity;
 import com.example.sallerapp.databinding.ActivityMainBinding;
 import com.example.sallerapp.funtions.MyFragment;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NetworkChangeActivity.NetworkChangeListener {
 
     private ActivityMainBinding mainBinding;
+    private boolean doubleBackToExitPressedOnce = false;
+    private NetworkChangeActivity networkChangeReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mainBinding.getRoot());
-
         initView();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Nhấn lần nữa để thoát", Toast.LENGTH_SHORT).show();
+
+        // Đặt thời gian chờ để reset trạng thái doubleBackToExitPressedOnce
+        new android.os.Handler().postDelayed(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        doubleBackToExitPressedOnce = false;
+                    }
+                },
+                2000 // 2 giây
+        );
     }
 
     private void initView() {
@@ -36,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 , false);
 
         // ánh xạ sự kiện khi nhấn vào bottom nav view
+        networkChangeReceiver = new NetworkChangeActivity(this);
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeReceiver, intentFilter);
 
         mainBinding.bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -61,7 +93,10 @@ public class MainActivity extends AppCompatActivity {
                             , new ListProductsFragment()
                             , false);
                 } else if (item.getItemId() == R.id.bottomNavAccount) {
-                    
+                    MyFragment.replaceFragment(MainActivity.this.getSupportFragmentManager()
+                            , R.id.fragmentContainer
+                            , new AccountFragment()
+                            , false);
                 }
                 return true;
             }
@@ -69,4 +104,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onNetworkChanged(boolean isConnected) {
+        if (isConnected) {
+            Toast.makeText(this,"Đã có kết nối mạng",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"Không kết nối mạng",Toast.LENGTH_SHORT).show();
+        }
+    }
 }

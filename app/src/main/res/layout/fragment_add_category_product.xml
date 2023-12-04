@@ -7,6 +7,7 @@
     tools:context=".controller.fragment.Fragment_add_customer">
 
 
+
     <LinearLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -35,6 +36,7 @@
             android:textSize="@dimen/_15ssp" />
 
         <ImageView
+            android:id="@+id/imgSave"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center_vertical"
@@ -50,6 +52,15 @@
         android:layout_below="@+id/toolbar"
         android:orientation="vertical"
         android:padding="@dimen/_10sdp">
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-5261855707351600/9062425237"/>
 
 
         <TextView
