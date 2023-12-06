@@ -92,6 +92,8 @@ public class HomeFragment extends Fragment{
             homeBinding.cartSize.setText(cartShopSingle.getProducts().size() + "");
         }
 
+        RequestPermissions.requestReadImgGalleryCamera(requireContext());
+
         homeBinding.shortcut.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

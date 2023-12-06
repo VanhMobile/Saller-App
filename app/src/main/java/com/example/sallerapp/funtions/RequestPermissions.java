@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.Settings;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ public class RequestPermissions {
 
     private static boolean isRequestPermission = false;
 
-    // hàm check permissions nhiều quyền
+
 
     public static boolean requestReadImgGalleryCamera(Context context){
         Dexter.withContext(context)
@@ -34,15 +35,63 @@ public class RequestPermissions {
                 )
                 .withListener(new MultiplePermissionsListener() {
                     @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
-                       isRequestPermission = true;
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.getGrantedPermissionResponses().size() > 0){
+                            isRequestPermission = true;
+                        }
+
+                        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S_V2){
+                            if (report.getDeniedPermissionResponses().size() > 2){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("Thông báo")
+                                        .setMessage("Để sử dụng các chức năng bạn cần cấp quyền cho ứng dụng !!")
+                                        .setPositiveButton("Đã hiểu", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                                Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+                                                intent.setData(uri);
+                                                context.startActivity(intent);
+                                            }
+                                        })
+                                        .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }else{
+                            if (report.getDeniedPermissionResponses().size() > 1){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("Thông báo")
+                                        .setMessage("Để sử dụng các chức năng bạn cần cấp quyền cho ứng dụng !!")
+                                        .setPositiveButton("Đã hiểu", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                                Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+                                                intent.setData(uri);
+                                                context.startActivity(intent);
+                                            }
+                                        })
+                                        .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }
                     }
 
                     @Override
                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> list, PermissionToken permissionToken) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setTitle("Cảnh báo")
-                                .setMessage("Bạn chưa cấp quyền cho máy ảnh hãy đến cài đặt")
+                                .setMessage("Bạn chưa cấp quyền cho app hãy đến cài đặt")
                                 .setPositiveButton("Đến cài đặt", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
