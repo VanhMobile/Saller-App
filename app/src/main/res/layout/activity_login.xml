@@ -91,6 +91,18 @@
         android:text="@string/txt_remember"
         android:fontFamily="@font/inter"
         android:textSize="@dimen/_10ssp" />
+    <ImageView
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:id="@+id/edtVt"
+        android:src="@drawable/img_2"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter"
+        android:text="đăng nhập bằng vân tay"/>
 
 
     <com.google.android.material.button.MaterialButton

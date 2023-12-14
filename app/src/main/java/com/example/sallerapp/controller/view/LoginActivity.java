@@ -1,11 +1,15 @@
 package com.example.sallerapp.controller.view;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.sallerapp.MainActivity;
@@ -30,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -44,6 +49,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         loginBinding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(loginBinding.getRoot());
+        loginBinding.edtVt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                        .setTitle("pls")
+                        .setDescription("abc")
+                        .setNegativeButtonText("Hủy")
+                        .build();
+                getPrompt().authenticate(promptInfo);
+            }
+        });
         initView();
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -175,4 +191,35 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+    private BiometricPrompt getPrompt(){
+        Executor executor = ContextCompat.getMainExecutor(this);
+        BiometricPrompt.AuthenticationCallback callback = new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+                notifyUser(errString.toString());
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                notifyUser("Đăng nhập thành công");
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+                notifyUser("Vui lòng thử lại");
+            }
+        };
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this , executor , callback);
+        return biometricPrompt;
+
+    }
+    private void notifyUser(String message){
+        Toast.makeText(this , message , Toast.LENGTH_SHORT).show();
+    }
+
 }
